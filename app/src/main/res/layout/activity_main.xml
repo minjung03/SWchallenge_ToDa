@@ -22,13 +22,6 @@
         android:layout_gravity="center_horizontal"
         android:text="                     "/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="6px"
-        android:background="#000000"
-        android:layout_gravity="center_horizontal"
-        android:text="다흰바보"/>
-
     <ListView
         android:layout_width="800px"
         android:layout_height="1000px"
