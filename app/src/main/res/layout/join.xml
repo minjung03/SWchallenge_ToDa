@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_marginTop="250px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원가입"
+        android:textSize="20sp"
+        android:layout_gravity="center"/>
+    <View
+        android:layout_width="230px"
+        android:layout_height="10px"
+        android:layout_gravity="center"
+        android:background="#EDA1A1"/>
+
+    <LinearLayout
+        android:layout_marginTop="130px"
+        android:layout_width="700px"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="* "
+                android:textColor="#A11818"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="닉네임"
+                android:paddingBottom="15px"
+                android:textSize="17sp" />
+        </LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E7E6E6"
+            android:layout_marginBottom="15px"
+            android:padding="5px"
+            android:id="@+id/Ed_JoinName"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="* "
+                android:textColor="#A11818"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아이디"
+                android:paddingBottom="15px"
+                android:textSize="17sp" />
+        </LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E7E6E6"
+            android:layout_marginBottom="15px"
+            android:padding="5px"
+            android:id="@+id/Ed_JoinID"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="* "
+                android:textColor="#A11818"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비밀번호"
+                android:paddingBottom="15px"
+                android:textSize="17sp" />
+        </LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E7E6E6"
+            android:padding="5px"
+            android:layout_marginBottom="15px"
+            android:id="@+id/Ed_JoinPW"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이메일"
+            android:paddingBottom="15px"
+            android:textSize="17sp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E7E6E6"
+            android:layout_marginBottom="15px"
+            android:padding="5px"
+            android:id="@+id/Ed_JoinEmail"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="200px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="* "
+            android:textAlignment="center"
+            android:textColor="#A11818"
+            android:textSize="12sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="은 필수사항"
+            android:textStyle="bold"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="100px"
+        android:layout_width="700px"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:textStyle="bold"
+            android:layout_width="330px"
+            android:layout_height="100px"
+            android:text="가입하기"
+            android:textColor="#ffffff"
+            android:id="@+id/btnJoin"
+            android:layout_marginRight="40px"
+            android:background="@drawable/buttonstyle"/>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="330px"
+            android:layout_height="100px"
+            android:background="@drawable/buttonstyle"
+            android:text="돌아가기"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>
