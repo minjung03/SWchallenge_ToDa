@@ -8,56 +8,75 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:layout_marginTop="200px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:layout_marginTop="100dp"
-        android:fontFamily="@font/gowunbatangregular"
-        android:layout_gravity="center_horizontal"
-        android:text="당신의 하루를 적어주세요"/>
-
+        android:text="당신의 하루를 적어주세요"
+        android:textSize="20sp"
+        android:layout_gravity="center"/>
     <View
-        android:layout_width="150dp"
-        android:layout_height="6px"
-        android:background="#ffff99"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_width="600px"
+        android:layout_height="10px"
+        android:layout_gravity="center"
+        android:background="#F6FF96"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="850px"
         android:layout_height="wrap_content"
-        android:textSize="13sp"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:fontFamily="@font/gowunbatangregular"
-        android:background="#ffe4e1"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:background="#FFF3DC"
+        android:layout_marginTop="150px"
+        android:textStyle="bold"
         android:text="오늘의 질문"/>
 
     <TextView
+        android:id="@+id/Text_Question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/gowunbatangregular"
-        android:layout_gravity="center_horizontal"
-        android:text="Q. 오늘 하루를 한 마디로 표현하자면?"/>
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:text="Q. 오늘 하루를 한 마디로 표현하자면 ?"/>
 
     <EditText
-        android:hint="  답변을 작성해주세요"
-        android:textSize="15sp"
-        android:paddingTop="10dp"
-        android:background="#e6e6fa"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginBottom="100dp"
-        android:layout_marginRight="40dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="top|left" android:inputType="textMultiLine"
-        android:scrollHorizontally="false" />
+        android:layout_width="850px"
+        android:layout_height="700px"
+        android:layout_gravity="center"
+        android:layout_marginTop="100px"
+        android:id="@+id/Ed_Diary"
+        android:text="답변을 작성해주세요"
+        android:textColor="#AAAAAA"
+        android:textSize="13sp"
+        android:textAlignment="center"
+        android:background="#F4F4F4"/>
+
+    <LinearLayout
+        android:layout_marginTop="120px"
+        android:layout_width="850px"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:textStyle="bold"
+            android:layout_width="390px"
+            android:layout_height="100px"
+            android:text="작성완료"
+            android:textColor="#ffffff"
+            android:id="@+id/btnSumit"
+            android:layout_marginRight="70px"
+            android:background="@drawable/button_style"/>
+
+        <Button
+            android:id="@+id/btnList"
+            android:layout_width="390px"
+            android:layout_height="100px"
+            android:background="@drawable/button_style"
+            android:text="목록보기"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+    </LinearLayout>
+
 
 </LinearLayout>

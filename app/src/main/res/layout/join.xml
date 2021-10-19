@@ -143,13 +143,13 @@
             android:textColor="#ffffff"
             android:id="@+id/btnJoin"
             android:layout_marginRight="40px"
-            android:background="@drawable/buttonstyle"/>
+            android:background="@drawable/button_style"/>
 
         <Button
             android:id="@+id/btnBack"
             android:layout_width="330px"
             android:layout_height="100px"
-            android:background="@drawable/buttonstyle"
+            android:background="@drawable/button_style"
             android:text="돌아가기"
             android:textColor="#ffffff"
             android:textStyle="bold" />
