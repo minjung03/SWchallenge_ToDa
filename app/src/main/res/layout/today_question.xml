@@ -8,27 +8,28 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_marginTop="200px"
+        android:layout_marginTop="90dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="당신의 하루를 적어주세요"
         android:textSize="20sp"
         android:layout_gravity="center"/>
     <View
-        android:layout_width="600px"
-        android:layout_height="10px"
+        android:layout_width="270dp"
+        android:layout_height="5dp"
         android:layout_gravity="center"
-        android:background="#F6FF96"/>
+        android:background="#FFF696"/>
 
     <TextView
-        android:layout_width="850px"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textAlignment="center"
         android:background="#FFF3DC"
-        android:layout_marginTop="150px"
+        android:layout_marginTop="50dp"
         android:textStyle="bold"
         android:text="오늘의 질문"/>
+    <!-- 오늘의 질문 배경색 - FFF3DC -->
 
     <TextView
         android:id="@+id/Text_Question"
@@ -41,10 +42,10 @@
         android:text="Q. 오늘 하루를 한 마디로 표현하자면 ?"/>
 
     <EditText
-        android:layout_width="850px"
-        android:layout_height="700px"
+        android:layout_width="320dp"
+        android:layout_height="300dp"
         android:layout_gravity="center"
-        android:layout_marginTop="100px"
+        android:layout_marginTop="30dp"
         android:id="@+id/Ed_Diary"
         android:text="답변을 작성해주세요"
         android:textColor="#AAAAAA"
@@ -53,30 +54,29 @@
         android:background="#F4F4F4"/>
 
     <LinearLayout
-        android:layout_marginTop="120px"
-        android:layout_width="850px"
+        android:layout_marginTop="40dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal">
         <Button
             android:textStyle="bold"
-            android:layout_width="390px"
-            android:layout_height="100px"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:text="작성완료"
-            android:textColor="#ffffff"
+            android:textColor="#FFFFFF"
             android:id="@+id/btnSumit"
-            android:layout_marginRight="70px"
+            android:layout_marginRight="20dp"
             android:background="@drawable/button_style"/>
 
         <Button
-            android:id="@+id/btnList"
-            android:layout_width="390px"
-            android:layout_height="100px"
+            android:id="@+id/btnShowList"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:background="@drawable/button_style"
             android:text="목록보기"
             android:textColor="#ffffff"
             android:textStyle="bold" />
     </LinearLayout>
-
 
 </LinearLayout>
