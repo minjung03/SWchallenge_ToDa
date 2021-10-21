@@ -62,7 +62,7 @@
         <Button
             android:textStyle="bold"
             android:layout_width="150dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:text="작성완료"
             android:textColor="#FFFFFF"
             android:id="@+id/btnSumit"
@@ -72,7 +72,7 @@
         <Button
             android:id="@+id/btnShowList"
             android:layout_width="150dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:background="@drawable/button_style"
             android:text="목록보기"
             android:textColor="#ffffff"

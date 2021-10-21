@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To Do List"
+        android:textSize="20sp"/>
+    <View
+        android:layout_width="110dp"
+        android:layout_height="4dp"
+        android:background="#4589BD"/>
+
+    <TextView
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:background="#DCEEFF"
+        android:layout_marginTop="50dp"
+        android:textStyle="bold"
+        android:text="오늘의 할 일"/>
+
+    <ListView
+        android:layout_marginTop="20dp"
+        android:layout_width="320dp"
+        android:layout_height="300dp"
+        android:id="@+id/todoListView" />
+
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:textStyle="bold"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:text="추가하기"
+            android:textColor="#FFFFFF"
+            android:id="@+id/btn_ListAdd"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button_style"/>
+
+        <Button
+            android:id="@+id/btn_ListDelete"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:background="@drawable/button_style"
+            android:text="삭제하기"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>
