@@ -5,5 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#f2f2f2"
     tools:context=".MainActivity">
+
+    <!-- 설정 창 이동.. 네비게이션 메뉴 화면/기능 공부!! -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="250dp"
+        android:text="  하루의 기록  "
+        android:textSize="20sp" />
+
+    <ImageView
+        android:layout_width="238dp"
+        android:layout_height="174dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/today_diary_logo" />
+
+    <LinearLayout
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_main_login"
+            android:layout_width="125dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button_style"
+            android:text="로그인"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btn_main_join"
+            android:layout_width="125dp"
+            android:layout_height="35dp"
+            android:background="@drawable/button_style"
+            android:text="회원가입"
+            android:textStyle="bold"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
 </LinearLayout>
