@@ -17,7 +17,7 @@
         android:background="#EDA1A1"/>
 
     <LinearLayout
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -34,7 +34,7 @@
             android:background="#E7E6E6"
             android:layout_marginBottom="5dp"
             android:padding="3dp"
-            android:id="@+id/Ed_LoginID"/>
+            android:id="@+id/Ed_CheckID"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,28 +48,28 @@
             android:background="#E7E6E6"
             android:padding="3dp"
             android:layout_marginBottom="5dp"
-            android:id="@+id/Ed_LoginPW"/>
+            android:id="@+id/Ed_CheckPW"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_marginTop="40dp"
-        android:layout_width="320dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal">
         <Button
             android:textStyle="bold"
-            android:layout_width="150dp"
+            android:layout_width="125dp"
             android:layout_height="35dp"
             android:text="취소"
             android:textColor="#FFFFFF"
-            android:id="@+id/btn_ListAdd_Add"
+            android:id="@+id/btn_CheckCancel"
             android:layout_marginRight="20dp"
             android:background="@drawable/button_style"/>
 
         <Button
-            android:id="@+id/btn_Listback"
-            android:layout_width="150dp"
+            android:id="@+id/btn_CheckSumit"
+            android:layout_width="125dp"
             android:layout_height="35dp"
             android:background="@drawable/button_style"
             android:text="확인"
