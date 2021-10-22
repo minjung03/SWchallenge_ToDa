@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="정말 탈퇴하시겠습니끼?"
+        android:text="정말 탈퇴하시겠습니까?"
         android:textSize="20sp"
         android:layout_gravity="center"
         android:layout_marginTop="180dp"
