@@ -147,12 +147,12 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/btnJoin"
             android:textStyle="bold"
             android:layout_width="125dp"
             android:layout_height="35dp"
             android:text="가입하기"
             android:textColor="#ffffff"
-            android:id="@+id/btnJoin"
             android:background="@drawable/button_style"/>
 
     </LinearLayout>

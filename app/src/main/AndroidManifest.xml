@@ -15,6 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity android:name=".Login"/>
+        <activity android:name=".Join"/>
+        <activity android:name=".MainMenu"/>
+        <activity android:name=".Setting"/>
+        <activity android:name=".SettingBackground"/>
     </application>
 
 </manifest>
