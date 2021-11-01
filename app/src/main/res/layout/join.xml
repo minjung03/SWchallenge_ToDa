@@ -39,7 +39,7 @@
                 android:textSize="17sp" />
         </LinearLayout>
         <EditText
-            android:maxLength="4"
+            android:maxLength="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#E7E6E6"

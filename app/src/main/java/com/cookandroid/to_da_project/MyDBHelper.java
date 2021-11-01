@@ -20,4 +20,5 @@ public class MyDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS userTBL");
         onCreate(db);
     }
+
 }
