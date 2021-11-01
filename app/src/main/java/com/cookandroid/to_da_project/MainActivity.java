@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button startingButton = (Button) findViewById(R.id.btn_starting);
+        Button startingButton = (Button) findViewById(R.id.btn_main_start);
 
         startingButton.setOnClickListener(new View.OnClickListener() {
 
@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
+
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
     }
