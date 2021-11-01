@@ -1,22 +1,47 @@
 package com.cookandroid.to_da_project;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Join extends AppCompatActivity {
+
+    Button btnBack, btnJoin;
+    EditText Ed_JoinName, Ed_JoinID, Ed_JoinPW;
+
+    // DB 테스트 위한 요소&변수
+    // TextView txName, txID, txPW;
+
+    MyDBHelper myHelper;
+    SQLiteDatabase sqlDB;
+
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.join);
 
-        Button BackButton = (Button) findViewById(R.id.btnBack);
+        btnBack = (Button) findViewById(R.id.btnBack);
+        btnJoin = (Button) findViewById(R.id.btnJoin);
+        Ed_JoinName = findViewById(R.id.Ed_JoinName);
+        Ed_JoinID = findViewById(R.id.Ed_JoinID);
+        Ed_JoinPW = findViewById(R.id.Ed_JoinPW);
 
-        BackButton.setOnClickListener(new View.OnClickListener() {
+        /* DB 테스트 위한 요소&변수
+        txName = findViewById(R.id.txName);
+        txID = findViewById(R.id.txID);
+        txPW = findViewById(R.id.txPW);*/
 
+        myHelper = new MyDBHelper(this);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Login.class);
@@ -24,14 +49,54 @@ public class Join extends AppCompatActivity {
             }
         });
 
-        Button JoinButton = (Button) findViewById(R.id.btnJoin);
-
-        JoinButton.setOnClickListener(new View.OnClickListener() {
-
+        btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-                startActivity(intent);
+                try{
+
+                    sqlDB = myHelper.getWritableDatabase();
+                    sqlDB.execSQL("INSERT INTO userTBL VALUES ('"+Ed_JoinName.getText().toString()+"', '"+
+                            Ed_JoinID.getText().toString()+"', '"+Ed_JoinPW.getText().toString()+"');");
+                    sqlDB.close();
+                    Toast.makeText(getApplicationContext(), "가입되었습니다.", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(getApplicationContext(), Login.class);
+                    startActivity(intent);
+
+                    /* select (DB테스트)
+                    Cursor cursor = sqlDB.rawQuery("SELECT * FROM userTBL", null);
+                    String strName =" ";
+                    String strID = " ";
+                    String strPW = " ";
+
+                    while (cursor.moveToNext()) {
+                        strName += cursor.getString(0) + "\n";
+                        strID += cursor.getString(1) + "\n";
+                        strPW += cursor.getString(2) + "\n";
+                    }
+
+                    txName.setText(strName);
+                    txID.setText(strID);
+                    txPW.setText(strPW);
+
+                    cursor.close();
+                    sqlDB.close();
+                    */
+
+                    /* delete (DB테스트)
+                    String name = Ed_JoinName.getText().toString().trim();
+
+                    if (!name.isEmpty()) {
+                        String sql = "DELETE FROM userTBL WHERE nicname = '" + name + "'";
+                        sqlDB.execSQL(sql);
+                        sqlDB.close();
+                        Toast.makeText(getApplicationContext(), "삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                    }*/
+
+                }catch(Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "가입에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

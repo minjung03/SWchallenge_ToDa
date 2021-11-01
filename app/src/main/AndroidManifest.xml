@@ -21,6 +21,7 @@
         <activity android:name=".MainMenu"/>
         <activity android:name=".Setting"/>
         <activity android:name=".SettingBackground"/>
+        <activity android:name=".MyDBHelper"/>
     </application>
 
 </manifest>
