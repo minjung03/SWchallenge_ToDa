@@ -4,12 +4,12 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/imgView_setting"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/setting_icon"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:id="@+id/imgView_setting"/>
+        android:layout_marginLeft="30dp" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -19,6 +19,8 @@ public class Setting extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SettingBackground.class);
                 startActivity(intent);
+
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
 
@@ -28,6 +30,8 @@ public class Setting extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SettingNicknameChange.class);
                 startActivity(intent);
+
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
 
