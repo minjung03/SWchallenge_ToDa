@@ -62,7 +62,7 @@ public class Login extends AppCompatActivity {
 
                         for (int i = 1; i <= count; i++) {
                             cursor.moveToNext(); // 다음 행으로
-                            strName = cursor.getString(cursor.getColumnIndex("nicname"));
+                           // strName = cursor.getString(cursor.getColumnIndex("nicname"));
                             strID = cursor.getString(cursor.getColumnIndex("userid"));
                             strPW = cursor.getString(cursor.getColumnIndex("userpw"));
 

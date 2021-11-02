@@ -69,26 +69,26 @@
         android:layout_marginTop="40dp"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
-        <Button
-            android:textStyle="bold"
-            android:layout_width="150dp"
-            android:layout_height="35dp"
-            android:text="작성완료"
-            android:textColor="#FFFFFF"
-            android:id="@+id/btnSumit"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/button_style"/>
 
         <Button
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="작성 완료"
+            android:textColor="#FFFFFF"
+            android:id="@+id/btnSumit"
+            android:background="@drawable/button_style"/>
+
+<!--        <Button
             android:id="@+id/btnShowList"
             android:layout_width="150dp"
             android:layout_height="35dp"
             android:background="@drawable/button_style"
             android:text="나의 일기장"
             android:textColor="#ffffff"
-            android:textStyle="bold" />
+            android:textStyle="bold" />-->
     </LinearLayout>
 
 </LinearLayout>
