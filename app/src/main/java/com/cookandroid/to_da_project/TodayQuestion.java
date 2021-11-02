@@ -1,13 +1,63 @@
 package com.cookandroid.to_da_project;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.w3c.dom.Text;
+
 public class TodayQuestion extends AppCompatActivity {
+
+    Button btnBackMenu, btnSumit;
+    TextView TextView_Nickname;
+
+    String ID, PW;
+
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView(R.layout.today_question);
+
+        btnBackMenu = findViewById(R.id.btnBackMenu);
+        btnSumit = findViewById(R.id.btnSumit);
+        TextView_Nickname = findViewById(R.id.TextView_Nickname);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        String loginNIC = bundle.getString("loginNIC");
+        /* String loginID = bundle.getString("loginID");
+        String loginPW = bundle.getString("loginPW"); */
+
+        TextView_Nickname.setText(loginNIC);
+
+        btnBackMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+            }
+        });
+
+        btnSumit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), TodayQuestion.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+            }
+        });
+
+
     }
 }

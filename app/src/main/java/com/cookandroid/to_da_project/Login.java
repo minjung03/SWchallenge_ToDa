@@ -21,7 +21,7 @@ public class Login extends AppCompatActivity {
     MyDBHelper myHelper;
     SQLiteDatabase sqlDB;
 
-    String loginID, loginPW;
+    String loginID, loginPW, loginNIC;
     String strName, strID, strPW;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,15 +59,19 @@ public class Login extends AppCompatActivity {
                         Cursor cursor = sqlDB.rawQuery("SELECT nicname, userid, userpw FROM " + "userTBL", null);
                         int count = cursor.getCount();
 
-
                         for (int i = 1; i <= count; i++) {
                             cursor.moveToNext(); // 다음 행으로
-                           // strName = cursor.getString(cursor.getColumnIndex("nicname"));
+                            strName = cursor.getString(cursor.getColumnIndex("nicname"));
                             strID = cursor.getString(cursor.getColumnIndex("userid"));
                             strPW = cursor.getString(cursor.getColumnIndex("userpw"));
 
                             if (loginID.equals(strID) && loginPW.equals(strPW)) {
+                                loginNIC = strName;
+
                                 Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+                                intent.putExtra("loginNIC", loginNIC);
+                                intent.putExtra("loginID", loginID);
+                                intent.putExtra("loginPW", loginPW);
                                 startActivity(intent);
                                 togle = 1;
                             }

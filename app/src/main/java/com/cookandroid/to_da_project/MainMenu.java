@@ -33,8 +33,19 @@ public class MainMenu extends AppCompatActivity {
         todolistLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TodayQuestion.class);
-                startActivity(intent);
+
+                Intent intent1 = getIntent();
+                Bundle bundle = intent1.getExtras();
+
+                String loginNIC = bundle.getString("loginNIC");
+                String loginID = bundle.getString("loginID");
+                String loginPW = bundle.getString("loginPW");
+
+                Intent intent2 = new Intent(getApplicationContext(), TodayQuestion.class);
+                intent2.putExtra("loginID", loginID);
+                intent2.putExtra("loginPW", loginPW);
+                intent2.putExtra("loginNIC", loginNIC);
+                startActivity(intent2);
 
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }

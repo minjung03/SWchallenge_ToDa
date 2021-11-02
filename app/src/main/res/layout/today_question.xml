@@ -14,11 +14,11 @@
         android:gravity="center"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/TextView_Nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="..."
-            android:textSize="20sp"
-            android:id="@+id/TextView_Nickname"/>
+            android:textSize="20sp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,28 +67,29 @@
 
     <LinearLayout
         android:layout_marginTop="40dp"
-        android:layout_width="320dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btnBackMenu"
+            android:layout_width="140dp"
+            android:layout_height="35dp"
+            android:background="@drawable/button_style"
+            android:text="돌아가기"
+            android:layout_marginRight="20dp"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+
+        <Button
             android:textStyle="bold"
-            android:layout_width="match_parent"
+            android:layout_width="140dp"
             android:layout_height="35dp"
             android:text="작성 완료"
             android:textColor="#FFFFFF"
             android:id="@+id/btnSumit"
             android:background="@drawable/button_style"/>
-
-<!--        <Button
-            android:id="@+id/btnShowList"
-            android:layout_width="150dp"
-            android:layout_height="35dp"
-            android:background="@drawable/button_style"
-            android:text="나의 일기장"
-            android:textColor="#ffffff"
-            android:textStyle="bold" />-->
     </LinearLayout>
 
 </LinearLayout>
