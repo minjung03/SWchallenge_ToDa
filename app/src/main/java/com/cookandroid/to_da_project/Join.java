@@ -25,6 +25,8 @@ public class Join extends AppCompatActivity {
     MyDBHelper myHelper;
     SQLiteDatabase sqlDB;
 
+    String joinName, joinID, joinPW;
+
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.join);
@@ -57,19 +59,24 @@ public class Join extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
-                    sqlDB = myHelper.getWritableDatabase();
+                    joinName = Ed_JoinName.getText().toString();
+                    joinID = Ed_JoinID.getText().toString();
+                    joinPW = Ed_JoinPW.getText().toString();
 
-                    String sql = "INSERT INTO userTBL VALUES ('"+Ed_JoinName.getText().toString()+"', '"+Ed_JoinID.getText().toString()+"', '"+Ed_JoinPW.getText().toString()+"');";
-                    Log.d("myapp", sql);
-                    sqlDB.execSQL(sql);
-                    sqlDB.close();
+                    if(!(joinName.equals("") || joinID.equals("") || joinPW.equals(""))) {
 
-                    Intent intent = new Intent(getApplicationContext(), Login.class);
-                    startActivity(intent);
+                        sqlDB = myHelper.getWritableDatabase();
+                        String sql = "INSERT INTO userTBL VALUES ('" + joinName + "', '" + joinID + "', '" + joinPW + "');";
+                        Log.d("myapp", sql);
+                        sqlDB.execSQL(sql);
+                        sqlDB.close();
 
-                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        Intent intent = new Intent(getApplicationContext(), Login.class);
+                        startActivity(intent);
 
-                    Toast.makeText(getApplicationContext(), "가입되었습니다.", Toast.LENGTH_SHORT).show();
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+                        Toast.makeText(getApplicationContext(), "가입되었습니다.", Toast.LENGTH_SHORT).show();
 
                     /* select (DB테스트)
                     Cursor cursor = sqlDB.rawQuery("SELECT * FROM userTBL", null);
@@ -102,6 +109,10 @@ public class Join extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "삭제되었습니다.", Toast.LENGTH_SHORT).show();
                     }
                     */
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "필수사항 값을 입력해주세요", Toast.LENGTH_SHORT).show();
+                    }
 
                 }catch(Exception e){
                     e.printStackTrace();

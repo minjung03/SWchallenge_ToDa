@@ -48,32 +48,41 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
-                    sqlDB = myHelper.getWritableDatabase();
-                    Cursor cursor = sqlDB.rawQuery("SELECT nicname, userid, userpw FROM " + "userTBL", null);
-                    int count = cursor.getCount();
 
                     loginID = Ed_LoginID.getText().toString();
                     loginPW = Ed_LoginPW.getText().toString();
 
-                    for(int i=0;i<2;i++) {
-                        cursor.moveToNext(); // 다음 행으로
-                         strName = cursor.getString(cursor.getColumnIndex("nicname"));
-                         strID = cursor.getString(cursor.getColumnIndex("userid"));
-                         strPW = cursor.getString(cursor.getColumnIndex("userpw"));
+                    if(!(loginID.equals("") || loginPW.equals(""))) {
+                        int togle = 0; // 아이디나 비밀번호가 맞지않을 때 체크용 변수
 
-                        if(loginID.equals(strID) && loginPW.equals(strPW)){
-                            Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-                            startActivity(intent);
+                        sqlDB = myHelper.getWritableDatabase();
+                        Cursor cursor = sqlDB.rawQuery("SELECT nicname, userid, userpw FROM " + "userTBL", null);
+                        int count = cursor.getCount();
+
+
+                        for (int i = 1; i <= count; i++) {
+                            cursor.moveToNext(); // 다음 행으로
+                            strName = cursor.getString(cursor.getColumnIndex("nicname"));
+                            strID = cursor.getString(cursor.getColumnIndex("userid"));
+                            strPW = cursor.getString(cursor.getColumnIndex("userpw"));
+
+                            if (loginID.equals(strID) && loginPW.equals(strPW)) {
+                                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+                                startActivity(intent);
+                                togle = 1;
+                            }
                         }
+                        cursor.close();
+                        sqlDB.close();
 
-
+                        if (togle == 0) Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show();
                     }
-
-                    Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호를 확인하세요 " + strID + strPW, Toast.LENGTH_SHORT).show();
-
-
-                    cursor.close();
-                    sqlDB.close();
+                    else if(loginID.equals("") && loginPW.equals("")){
+                        Toast.makeText(getApplicationContext(), "값을 입력해주세요", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "아이디/비밀번호를 전부 입력해주세요", Toast.LENGTH_SHORT).show();
+                    }
 
                 }catch(Exception e){
                     e.printStackTrace();
