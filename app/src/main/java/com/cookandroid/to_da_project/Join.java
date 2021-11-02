@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,7 +59,9 @@ public class Join extends AppCompatActivity {
                 try{
                     sqlDB = myHelper.getWritableDatabase();
 
-                    sqlDB.execSQL("INSERT INTO userTBL VALUES ('"+Ed_JoinName.getText().toString()+"', '"+Ed_JoinID.getText().toString()+"', '"+Ed_JoinPW.getText().toString()+"');");
+                    String sql = "INSERT INTO userTBL VALUES ('"+Ed_JoinName.getText().toString()+"', '"+Ed_JoinID.getText().toString()+"', '"+Ed_JoinPW.getText().toString()+"');";
+                    Log.d("myapp", sql);
+                    sqlDB.execSQL(sql);
                     sqlDB.close();
 
                     Intent intent = new Intent(getApplicationContext(), Login.class);

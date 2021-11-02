@@ -16,11 +16,18 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Login"/>
         <activity android:name=".Join"/>
+        <activity android:name=".Login"/>
         <activity android:name=".MainMenu"/>
         <activity android:name=".Setting"/>
         <activity android:name=".SettingBackground"/>
+        <activity android:name=".SettingNicknameChange"/>
+        <activity android:name=".TodoList"/>
+        <activity android:name=".TodayQuestion"/>
+        <activity android:name=".TodayList"/>
+        <activity android:name=".TodoListAdd"/>
+        <activity android:name=".SettingidpassCheck"/>
+        <activity android:name=".SettingidpassChange"/>
         <activity android:name=".MyDBHelper"/>
     </application>
 

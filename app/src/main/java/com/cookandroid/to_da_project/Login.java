@@ -52,22 +52,26 @@ public class Login extends AppCompatActivity {
                     Cursor cursor = sqlDB.rawQuery("SELECT nicname, userid, userpw FROM " + "userTBL", null);
                     int count = cursor.getCount();
 
-                    for(int i=0;i<count;i++) {
-                        cursor.moveToNext();
-                         strName = cursor.getString(0) + "\n";
-                         strID = cursor.getString(1) + "\n";
-                         strPW = cursor.getString(2) + "\n";
-                    }
                     loginID = Ed_LoginID.getText().toString();
                     loginPW = Ed_LoginPW.getText().toString();
 
-                    if(loginID.equals(strID) && loginPW.equals(strPW)){
-                        Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-                        startActivity(intent);
+                    for(int i=0;i<2;i++) {
+                        cursor.moveToNext(); // 다음 행으로
+                         strName = cursor.getString(cursor.getColumnIndex("nicname"));
+                         strID = cursor.getString(cursor.getColumnIndex("userid"));
+                         strPW = cursor.getString(cursor.getColumnIndex("userpw"));
+
+                        if(loginID.equals(strID) && loginPW.equals(strPW)){
+                            Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+                            startActivity(intent);
+                        }
+
+
                     }
-                    else {
-                        Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show();
-                    }
+
+                    Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호를 확인하세요 " + strID + strPW, Toast.LENGTH_SHORT).show();
+
+
                     cursor.close();
                     sqlDB.close();
 
