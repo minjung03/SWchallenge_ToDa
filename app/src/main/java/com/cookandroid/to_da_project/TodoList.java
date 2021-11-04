@@ -15,6 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ResourceBundle;
 
 public class TodoList extends AppCompatActivity {
+
+    LinearLayout Todolist_Layout;
+
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView(R.layout.todolist_list);
@@ -22,10 +25,10 @@ public class TodoList extends AppCompatActivity {
         Button ListAddButton = (Button) findViewById(R.id.btn_ListAdd);
 
         SharedPreferences preferences = getSharedPreferences("change_color", MODE_PRIVATE);
-        String n = preferences.getString("color1", "#FFDEFA");
+        String n = preferences.getString("color1", "##D2E8CF");
 
-        LinearLayout TodolistLayout = findViewById(R.id.Todolist_list);
-        TodolistLayout.setBackgroundColor(Color.parseColor(n));
+        Todolist_Layout = findViewById(R.id.Todolist_list);
+        Todolist_Layout.setBackgroundColor(Color.parseColor(n));
 
         ListAddButton.setOnClickListener(new View.OnClickListener() {
             @Override

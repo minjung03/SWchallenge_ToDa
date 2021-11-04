@@ -13,23 +13,32 @@
     <View
         android:layout_width="110dp"
         android:layout_height="4dp"
-        android:background="#4589BD"/>
+        android:background="#7CA4CB"/>
 
     <TextView
         android:padding="3dp"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:background="#DCEEFF"
+        android:background="#6489AF"
+        android:textColor="#ffffff"
         android:layout_marginTop="50dp"
         android:textStyle="bold"
         android:text="오늘의 할 일"/>
 
+    <!-- 잠시 주석 처리
     <ListView
         android:layout_marginTop="20dp"
         android:layout_width="320dp"
         android:layout_height="300dp"
-        android:id="@+id/todoListView" />
+        android:id="@+id/todoListView" />-->
+
+    <!-- 백그라운드 색상 어울림 테스트용 -->
+    <View
+        android:layout_width="320dp"
+        android:background="#ffffff"
+        android:layout_height="300dp"
+        android:id="@+id/todoListView"/>
 
     <LinearLayout
         android:layout_marginTop="40dp"
