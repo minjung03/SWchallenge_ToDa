@@ -4,7 +4,7 @@
     <solid android:color="#FFDEFA" />
     <stroke
         android:width="6dp"
-        android:color="#FFDEFA"
+        android:color="@color/Pink"
         android:dashGap="1dp"
         android:dashWidth="47dp" />
     <padding

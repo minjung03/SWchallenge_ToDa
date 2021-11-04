@@ -29,6 +29,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btnColor1"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:textStyle="bold"
