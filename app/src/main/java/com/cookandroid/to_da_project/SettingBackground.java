@@ -39,7 +39,7 @@ public class SettingBackground extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("color1", "#FCE9EB");
+                editor.putString("color", "#FCE9EB");
                 editor.commit();
             }
         });
@@ -48,7 +48,7 @@ public class SettingBackground extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("color2", "#E0F0FB");
+                editor.putString("color", "#E0F0FB");
                 editor.commit();
             }
         });
@@ -57,7 +57,7 @@ public class SettingBackground extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("color3", "#FEF9CD");
+                editor.putString("color", "#FEF9CD");
                 editor.commit();
             }
         });
@@ -66,7 +66,7 @@ public class SettingBackground extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("color4", "#D2E8CF");
+                editor.putString("color", "#D2E8CF");
                 editor.commit();
             }
         });
