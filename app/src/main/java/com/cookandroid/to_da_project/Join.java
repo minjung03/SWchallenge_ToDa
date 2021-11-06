@@ -27,6 +27,8 @@ public class Join extends AppCompatActivity {
 
     String joinName, joinID, joinPW;
 
+
+
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.join);
@@ -36,6 +38,7 @@ public class Join extends AppCompatActivity {
         Ed_JoinName = findViewById(R.id.Ed_JoinName);
         Ed_JoinID = findViewById(R.id.Ed_JoinID);
         Ed_JoinPW = findViewById(R.id.Ed_JoinPW);
+
 
         /* DB 테스트 위한 요소&변수
         txName = findViewById(R.id.txName);

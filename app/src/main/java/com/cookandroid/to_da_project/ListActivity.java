@@ -1,14 +1,9 @@
 package com.cookandroid.to_da_project;
 
-import android.graphics.Movie;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 
@@ -19,7 +14,7 @@ public class ListActivity extends AppCompatActivity {
     ArrayList<List> listArray;
     List listitem;
 
-    int[] list_num = {0};
+    Integer[] list_num = {0};
     String[] list_value = {"안드로이드 프로젝트 하기"};
 
     @Override
@@ -30,7 +25,7 @@ public class ListActivity extends AppCompatActivity {
         Listview = findViewById(R.id.todoListView);
         listArray = new ArrayList<List>();
 
-        for (int i = 0; i < list_value.length; i++) {
+        for (int i = 0; i < list_num.length; i++) {
             listitem = new List(list_num[i], list_value[i]);
             listArray.add(listitem); //각 아이템을 List 클래스로 사용, Array에 add
         }

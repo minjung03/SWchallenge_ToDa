@@ -24,6 +24,8 @@ public class Login extends AppCompatActivity {
     String loginID, loginPW, loginNIC;
     String strName, strID, strPW;
 
+    private BackDoubleClick backDoubleClick;
+
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
@@ -33,6 +35,7 @@ public class Login extends AppCompatActivity {
         Ed_LoginID = (EditText) findViewById(R.id.Ed_LoginID);
         Ed_LoginPW = (EditText) findViewById(R.id.Ed_LoginPW);
 
+        backDoubleClick = new BackDoubleClick(this);
         myHelper = new MyDBHelper(this);
 
         btnJoin.setOnClickListener(new View.OnClickListener() {
@@ -94,5 +97,10 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+
+    }
+    @Override public void onBackPressed() {
+        // super.onBackPressed();
+        backDoubleClick.onBackPressed();
     }
 }
