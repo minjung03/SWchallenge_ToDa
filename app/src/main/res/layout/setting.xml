@@ -108,7 +108,6 @@
         android:text="회원 탈퇴"
         android:textColor="#000000"
         android:textSize="17sp" />
-
     <View
         android:layout_width="300dp"
         android:layout_height="1dp"
