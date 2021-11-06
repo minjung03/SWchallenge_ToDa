@@ -29,6 +29,7 @@
         <activity android:name=".SettingidpassCheck"/>
         <activity android:name=".SettingidpassChange"/>
         <activity android:name=".MyDBHelper"/>
+        <activity android:name=".ListActivity"/>
     </application>
 
 </manifest>

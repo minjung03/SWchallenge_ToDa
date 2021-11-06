@@ -31,7 +31,6 @@
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/todolist_icon"
             android:layout_margin="10dp"
             android:layout_marginLeft="30dp"/>
 
@@ -82,11 +81,12 @@
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/setting_icon"
+            android:src="@drawable/today_icon"
             android:layout_margin="10dp"
             android:layout_marginLeft="30dp"/>
 
         <LinearLayout
+            android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -119,45 +119,48 @@
         android:background="#E1E1E1"/>
 
 
-
     <LinearLayout
         android:id="@+id/Linear_diary"
-        android:layout_marginTop="20dp"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
+
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/setting_icon"
             android:layout_margin="10dp"
-            android:layout_marginLeft="30dp"/>
+            android:src="@drawable/todolist_icon" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/btn_menu_todoList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="To do List"
                 android:gravity="bottom"
-                android:textSize="23sp"
-                android:textColor="#000000"/>
+                android:text="To do List"
+                android:textColor="#000000"
+                android:textSize="23sp" />
+
             <View
                 android:layout_width="110dp"
                 android:layout_height="4dp"
-                android:background="#4589BD"/>
+                android:background="#7CA4CB" />
+
             <TextView
-                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:layout_marginTop="5dp"
+                android:text="오늘의 할일을 추가하고 실천해보세요"
                 android:textColor="#474747"
-                android:text="오늘의 할일을 추가하고 실천해보세요"/>
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 

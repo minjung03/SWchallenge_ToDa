@@ -11,16 +11,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainMenu extends AppCompatActivity {
+
+    ImageView imgView_setting;
+    LinearLayout Linear_diary, Linear_calendar ,Linear_todoList;
+
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu_view);
 
-        ImageView settingimageView = (ImageView)findViewById(R.id.imgView_setting);
-        LinearLayout todolistLayout = (LinearLayout)findViewById(R.id.Linear_todoList);
-        LinearLayout calendarLayout = (LinearLayout)findViewById(R.id.Linear_calendar);
-        LinearLayout diaryLayout = (LinearLayout)findViewById(R.id.Linear_diary);
+        imgView_setting = (ImageView)findViewById(R.id.imgView_setting);
+        Linear_diary = (LinearLayout)findViewById(R.id.Linear_diary);
+        Linear_calendar = (LinearLayout)findViewById(R.id.Linear_calendar);
+        Linear_todoList = (LinearLayout)findViewById(R.id.Linear_todoList);
 
-        settingimageView.setOnClickListener(new View.OnClickListener() {
+        imgView_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Setting.class);
@@ -30,7 +34,7 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
-        todolistLayout.setOnClickListener(new View.OnClickListener() {
+        Linear_diary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -51,20 +55,20 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
-        calendarLayout.setOnClickListener(new View.OnClickListener() {
+        Linear_calendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TodayList.class);
                 startActivity(intent);
-
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
 
-        diaryLayout.setOnClickListener(new View.OnClickListener() {
+        Linear_todoList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TodoList.class);
+                // Intent intent = new Intent(getApplicationContext(), TodoList.class);
+                Intent intent = new Intent(getApplicationContext(), ListActivity.class);
                 startActivity(intent);
 
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
