@@ -6,7 +6,7 @@
         android:width="6dp"
         android:color="#D2E8CF"
         android:dashGap="1dp"
-        android:dashWidth="47dp" />
+        android:dashWidth="300dp" />
     <padding
         android:bottom="9dp"
         android:left="9dp"

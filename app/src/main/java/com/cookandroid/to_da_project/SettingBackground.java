@@ -5,13 +5,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingBackground extends AppCompatActivity {
 
-    Button btnPink, btnBlue, btnYellow, btnGreen;
+    Button btnPink, btnBlue, btnYellow, btnGreen, btnWhite;
     Button btn_Setting_back;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +42,8 @@ public class SettingBackground extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("color", "#FCE9EB");
                 editor.commit();
+                Toast.makeText(getApplicationContext(), "분홍색을 선택하셨습니다", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -50,6 +53,7 @@ public class SettingBackground extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("color", "#E0F0FB");
                 editor.commit();
+                Toast.makeText(getApplicationContext(), "파란색을 선택하셨습니다", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -59,6 +63,7 @@ public class SettingBackground extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("color", "#FEF9CD");
                 editor.commit();
+                Toast.makeText(getApplicationContext(), "노란색을 선택하셨습니다", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -68,6 +73,17 @@ public class SettingBackground extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("color", "#D2E8CF");
                 editor.commit();
+                Toast.makeText(getApplicationContext(), "초록색을 선택하셨습니다", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnWhite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("color", "#FFFFFF");
+                editor.commit();
+                Toast.makeText(getApplicationContext(), "하얀색을 선택하셨습니다", Toast.LENGTH_SHORT).show();
             }
         });
 
