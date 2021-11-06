@@ -8,19 +8,19 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SettingNicknameChange extends AppCompatActivity {
+public class SettingUserSecession extends AppCompatActivity {
 
-    Button btn_nickname_cancel;
-    Button btn_nickname_change;
+    Button btn_secession_NO;
+    Button btn_secession_YES;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.setting_nickname_change);
+        setContentView(R.layout.setting_user_secession);
 
-        btn_nickname_cancel = (Button)findViewById(R.id.btn_nickname_cancel);
-        btn_nickname_change = (Button)findViewById(R.id.btn_nickname_cancel);
+        btn_secession_NO = (Button)findViewById(R.id.btn_secession_NO);
+        btn_secession_YES = (Button)findViewById(R.id.btn_secession_YES);
 
-        btn_nickname_cancel.setOnClickListener(new View.OnClickListener() {
+        btn_secession_NO.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Setting.class);
@@ -30,10 +30,10 @@ public class SettingNicknameChange extends AppCompatActivity {
             }
         });
 
-        btn_nickname_change.setOnClickListener(new View.OnClickListener() {
+        btn_secession_YES.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Setting.class);
+                Intent intent = new Intent(getApplicationContext(), SettingidpassCheck.class);
                 startActivity(intent);
 
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
