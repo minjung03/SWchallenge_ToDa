@@ -25,7 +25,7 @@ public class TodoList extends AppCompatActivity {
         Button ListAddButton = (Button) findViewById(R.id.btn_ListAdd);
 
         SharedPreferences preferences = getSharedPreferences("change_color", MODE_PRIVATE);
-        String n = preferences.getString("color", "#D2E8CF");
+        String n = preferences.getString("color", "#FFFFFF");
 
         Todolist_Layout = findViewById(R.id.Todolist_list);
         Todolist_Layout.setBackgroundColor(Color.parseColor(n));

@@ -26,19 +26,12 @@
         android:textStyle="bold"
         android:text="오늘의 할 일"/>
 
-    <!-- 잠시 주석 처리
+
     <ListView
         android:layout_marginTop="20dp"
         android:layout_width="320dp"
         android:layout_height="300dp"
-        android:id="@+id/todoListView" />-->
-
-    <!-- 백그라운드 색상 어울림 테스트용 -->
-    <View
-        android:layout_width="320dp"
-        android:background="#ffffff"
-        android:layout_height="300dp"
-        android:id="@+id/todoListView"/>
+        android:id="@+id/todoListView" />
 
     <LinearLayout
         android:layout_marginTop="40dp"
@@ -46,6 +39,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_ListBack"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:background="@drawable/button_style"
+            android:text="돌아가기"
+            android:layout_marginRight="20dp"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+
         <Button
             android:textStyle="bold"
             android:layout_width="150dp"
@@ -53,17 +57,8 @@
             android:text="추가하기"
             android:textColor="#FFFFFF"
             android:id="@+id/btn_ListAdd"
-            android:layout_marginRight="20dp"
             android:background="@drawable/button_style"/>
 
-        <Button
-            android:id="@+id/btn_ListDelete"
-            android:layout_width="150dp"
-            android:layout_height="35dp"
-            android:background="@drawable/button_style"
-            android:text="삭제하기"
-            android:textColor="#ffffff"
-            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.cookandroid.to_da_project;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,9 +24,19 @@ public class SettingBackground extends AppCompatActivity {
         btnBlue = (Button)findViewById(R.id.btnBlue);
         btnYellow = (Button)findViewById(R.id.btnYellow);
         btnGreen = (Button)findViewById(R.id.btnGreen);
+        btnWhite = findViewById(R.id.btnWhite);
+        btn_Setting_back = (Button)findViewById(R.id.btn_setting_back);
 
         SharedPreferences preferences = getSharedPreferences("change_color", MODE_PRIVATE);
-        btn_Setting_back = (Button)findViewById(R.id.btn_setting_back);
+        int color = preferences.getInt("setColor", 0);
+
+        switch(color){
+            case 1: btnPink.setBackgroundResource(R.drawable.button1_select); break;
+            case 2: btnBlue.setBackgroundResource(R.drawable.button2_select); break;
+            case 3: btnYellow.setBackgroundResource(R.drawable.button3_select); break;
+            case 4: btnGreen.setBackgroundResource(R.drawable.button4_select); break;
+            default: btnWhite.setBackgroundResource(R.drawable.button5_select); break;
+        }
 
         btn_Setting_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,8 +52,14 @@ public class SettingBackground extends AppCompatActivity {
             public void onClick(View v) {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("color", "#FCE9EB");
+                editor.putInt("setColor", 1);
                 editor.commit();
-                Toast.makeText(getApplicationContext(), "분홍색을 선택하셨습니다", Toast.LENGTH_SHORT).show();
+
+                btnPink.setBackgroundResource(R.drawable.button1_select);
+                btnBlue.setBackgroundResource(R.drawable.button2_background_color);
+                btnYellow.setBackgroundResource(R.drawable.button3_background_color);
+                btnGreen.setBackgroundResource(R.drawable.button4_background_color);
+                btnWhite.setBackgroundResource(R.drawable.button5_background_color);
 
             }
         });
@@ -52,8 +69,14 @@ public class SettingBackground extends AppCompatActivity {
             public void onClick(View v) {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("color", "#E0F0FB");
+                editor.putInt("setColor", 2);
                 editor.commit();
-                Toast.makeText(getApplicationContext(), "파란색을 선택하셨습니다", Toast.LENGTH_SHORT).show();
+                btnPink.setBackgroundResource(R.drawable.button1_background_color);
+                btnBlue.setBackgroundResource(R.drawable.button2_select);
+                btnYellow.setBackgroundResource(R.drawable.button3_background_color);
+                btnGreen.setBackgroundResource(R.drawable.button4_background_color);
+                btnWhite.setBackgroundResource(R.drawable.button5_background_color);
+
             }
         });
 
@@ -62,8 +85,15 @@ public class SettingBackground extends AppCompatActivity {
             public void onClick(View v) {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("color", "#FEF9CD");
+                editor.putInt("setColor", 3);
                 editor.commit();
-                Toast.makeText(getApplicationContext(), "노란색을 선택하셨습니다", Toast.LENGTH_SHORT).show();
+
+                btnPink.setBackgroundResource(R.drawable.button1_background_color);
+                btnBlue.setBackgroundResource(R.drawable.button2_background_color);
+                btnYellow.setBackgroundResource(R.drawable.button3_select);
+                btnGreen.setBackgroundResource(R.drawable.button4_background_color);
+                btnWhite.setBackgroundResource(R.drawable.button5_background_color);
+
             }
         });
 
@@ -72,8 +102,14 @@ public class SettingBackground extends AppCompatActivity {
             public void onClick(View v) {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("color", "#D2E8CF");
+                editor.putInt("setColor", 4);
                 editor.commit();
-                Toast.makeText(getApplicationContext(), "초록색을 선택하셨습니다", Toast.LENGTH_SHORT).show();
+                btnPink.setBackgroundResource(R.drawable.button1_background_color);
+                btnBlue.setBackgroundResource(R.drawable.button2_background_color);
+                btnYellow.setBackgroundResource(R.drawable.button3_background_color);
+                btnGreen.setBackgroundResource(R.drawable.button4_select);
+                btnWhite.setBackgroundResource(R.drawable.button5_background_color);
+
             }
         });
 
@@ -82,8 +118,13 @@ public class SettingBackground extends AppCompatActivity {
             public void onClick(View view) {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("color", "#FFFFFF");
+                editor.putInt("setColor", 5);
                 editor.commit();
-                Toast.makeText(getApplicationContext(), "하얀색을 선택하셨습니다", Toast.LENGTH_SHORT).show();
+                btnPink.setBackgroundResource(R.drawable.button1_background_color);
+                btnBlue.setBackgroundResource(R.drawable.button2_background_color);
+                btnYellow.setBackgroundResource(R.drawable.button3_background_color);
+                btnGreen.setBackgroundResource(R.drawable.button4_background_color);
+                btnWhite.setBackgroundResource(R.drawable.button5_select);
             }
         });
 
