@@ -19,9 +19,8 @@
         android:layout_gravity="center"
         android:textColor="#171717"
         android:layout_marginTop="5dp"
-        android:text="* 새로운 닉네임을 입력하세요"
-        android:textSize="10sp"/>
-
+        android:text="* 새로운 닉네임을 입력하세요 (3자 이내)"
+        android:textSize="11sp"/>
 
     <LinearLayout
         android:layout_marginTop="30dp"
@@ -39,6 +38,7 @@
             android:textSize="17sp" />
 
         <EditText
+            android:maxLength="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#E7E6E6"

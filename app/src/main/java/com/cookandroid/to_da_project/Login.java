@@ -21,8 +21,9 @@ public class Login extends AppCompatActivity {
     MyDBHelper myHelper;
     SQLiteDatabase sqlDB;
 
-    String loginID, loginPW, loginNIC;
+    String loginID, loginPW;
     String strName, strID, strPW;
+
 
     private BackDoubleClick backDoubleClick;
 
@@ -69,12 +70,12 @@ public class Login extends AppCompatActivity {
                             strPW = cursor.getString(cursor.getColumnIndex("userpw"));
 
                             if (loginID.equals(strID) && loginPW.equals(strPW)) {
-                                loginNIC = strName;
 
                                 Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-                                intent.putExtra("loginNIC", loginNIC);
-                                intent.putExtra("loginID", loginID);
-                                intent.putExtra("loginPW", loginPW);
+                                intent.putExtra("Nicname", strName);
+                                intent.putExtra("UserId", strID);
+                                intent.putExtra("UserPw", strPW);
+
                                 startActivity(intent);
                                 togle = 1;
                             }

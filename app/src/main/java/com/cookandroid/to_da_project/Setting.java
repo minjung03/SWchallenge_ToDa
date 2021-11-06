@@ -33,8 +33,17 @@ public class Setting extends AppCompatActivity {
         btn_setting_NameChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SettingNicknameChange.class);
-                startActivity(intent);
+
+                Intent intent1 = getIntent();
+                Bundle bundle = intent1.getExtras();
+                String Nicname = bundle.getString("Nicname");
+                String UserId = bundle.getString("UserId");
+                String UserPw = bundle.getString("UserPw");
+
+                Intent intent2 = new Intent(getApplicationContext(), SettingNicknameChange.class);
+                intent2.putExtra("Nicname",Nicname);
+                intent2.putExtra("UserId",UserId);
+                startActivity(intent2);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
@@ -42,8 +51,18 @@ public class Setting extends AppCompatActivity {
         btn_setting_IdPassChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SettingidpassCheck.class);
-                startActivity(intent);
+
+                Intent intent1 = getIntent();
+                Bundle bundle = intent1.getExtras();
+                String Nicname = bundle.getString("Nicname");
+                String UserId = bundle.getString("UserId");
+                String UserPw = bundle.getString("UserPw");
+
+                Intent intent2 = new Intent(getApplicationContext(), SettingidpassCheck.class);
+                intent2.putExtra("UserId",UserId);
+                intent2.putExtra("UserPw",UserPw);
+
+                startActivity(intent2);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });

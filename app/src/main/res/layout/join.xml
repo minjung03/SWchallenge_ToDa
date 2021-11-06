@@ -37,6 +37,13 @@
                 android:text="닉네임"
                 android:paddingBottom="5dp"
                 android:textSize="17sp" />
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(3자 이내)"
+                android:paddingBottom="5dp"
+                android:textSize="13sp" />
         </LinearLayout>
         <EditText
             android:maxLength="3"

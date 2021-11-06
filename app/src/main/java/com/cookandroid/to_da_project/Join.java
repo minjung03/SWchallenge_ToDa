@@ -25,9 +25,9 @@ public class Join extends AppCompatActivity {
     MyDBHelper myHelper;
     SQLiteDatabase sqlDB;
 
+    User user;
+
     String joinName, joinID, joinPW;
-
-
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +73,10 @@ public class Join extends AppCompatActivity {
                         Log.d("myapp", sql);
                         sqlDB.execSQL(sql);
                         sqlDB.close();
+
+                        user.setNicname(joinName);
+                        user.setUserID(joinID);
+                        user.setUserPW(joinPW);
 
                         Intent intent = new Intent(getApplicationContext(), Login.class);
                         startActivity(intent);

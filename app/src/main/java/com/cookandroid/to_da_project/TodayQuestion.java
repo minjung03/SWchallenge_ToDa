@@ -18,7 +18,7 @@ public class TodayQuestion extends AppCompatActivity {
     Button btnBackMenu, btnSumit;
     TextView TextView_Nickname;
 
-    String ID, PW;
+    User user;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -30,12 +30,9 @@ public class TodayQuestion extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+        String Nicname = bundle.getString("Nicname");
 
-        String loginNIC = bundle.getString("loginNIC");
-        /* String loginID = bundle.getString("loginID");
-        String loginPW = bundle.getString("loginPW"); */
-
-        TextView_Nickname.setText(loginNIC);
+        TextView_Nickname.setText(Nicname);
 
         btnBackMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +48,7 @@ public class TodayQuestion extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+                Intent intent = new Intent(getApplicationContext(), TodayList.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
