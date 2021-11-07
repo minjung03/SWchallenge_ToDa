@@ -15,8 +15,6 @@ public class MainMenu extends AppCompatActivity {
     ImageView imgView_setting;
     LinearLayout Linear_diary, Linear_calendar ,Linear_todoList;
 
-    User user;
-
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu_view);
@@ -76,8 +74,8 @@ public class MainMenu extends AppCompatActivity {
         Linear_todoList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TodoList.class);
-                // Intent intent = new Intent(getApplicationContext(), ListActivity.class);
+                // Intent intent = new Intent(getApplicationContext(), TodoList.class);
+                 Intent intent = new Intent(getApplicationContext(), ListActivity.class);
                 startActivity(intent);
 
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);

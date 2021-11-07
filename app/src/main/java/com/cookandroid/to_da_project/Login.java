@@ -24,7 +24,6 @@ public class Login extends AppCompatActivity {
     String loginID, loginPW;
     String strName, strID, strPW;
 
-
     private BackDoubleClick backDoubleClick;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -19,13 +19,8 @@ public class Join extends AppCompatActivity {
     Button btnBack, btnJoin;
     EditText Ed_JoinName, Ed_JoinID, Ed_JoinPW;
 
-    // DB 테스트 위한 요소&변수
-    // TextView txName, txID, txPW;
-
     MyDBHelper myHelper;
     SQLiteDatabase sqlDB;
-
-    User user;
 
     String joinName, joinID, joinPW;
 
@@ -39,12 +34,6 @@ public class Join extends AppCompatActivity {
         Ed_JoinID = findViewById(R.id.Ed_JoinID);
         Ed_JoinPW = findViewById(R.id.Ed_JoinPW);
 
-
-        /* DB 테스트 위한 요소&변수
-        txName = findViewById(R.id.txName);
-        txID = findViewById(R.id.txID);
-        txPW = findViewById(R.id.txPW);
-        */
 
         myHelper = new MyDBHelper(this);
 
@@ -73,10 +62,6 @@ public class Join extends AppCompatActivity {
                         Log.d("myapp", sql);
                         sqlDB.execSQL(sql);
                         sqlDB.close();
-
-                        user.setNicname(joinName);
-                        user.setUserID(joinID);
-                        user.setUserPW(joinPW);
 
                         Intent intent = new Intent(getApplicationContext(), Login.class);
                         startActivity(intent);

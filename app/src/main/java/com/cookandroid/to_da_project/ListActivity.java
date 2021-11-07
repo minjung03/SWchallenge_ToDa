@@ -14,7 +14,7 @@ public class ListActivity extends AppCompatActivity {
     ArrayList<List> listArray;
     List listitem;
 
-    Integer[] list_num = {0};
+    String[] list_num = {"0"};
     String[] list_value = {"안드로이드 프로젝트 하기"};
 
     @Override

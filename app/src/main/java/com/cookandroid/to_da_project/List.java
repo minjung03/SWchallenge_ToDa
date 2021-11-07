@@ -2,19 +2,19 @@ package com.cookandroid.to_da_project;
 
 public class List {
 
-    Integer num;
+    String num;
     String list_value;
 
-    public List(Integer num, String list_value) {
+    public List(String num, String list_value) {
         this.num = num;
         this.list_value = list_value;
     }
 
-    public int getNum() {
+    public String getNum() {
         return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(String num) {
         this.num = num;
     }
 

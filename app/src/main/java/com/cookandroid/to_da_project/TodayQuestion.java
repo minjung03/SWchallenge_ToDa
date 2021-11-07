@@ -18,8 +18,6 @@ public class TodayQuestion extends AppCompatActivity {
     Button btnBackMenu, btnSumit;
     TextView TextView_Nickname;
 
-    User user;
-
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView(R.layout.today_question);
