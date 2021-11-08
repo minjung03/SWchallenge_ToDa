@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "241252683324",
+    "project_id": "todaydira-e3a34",
+    "storage_bucket": "todaydira-e3a34.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241252683324:android:49f2c9a44e640fdf4f3d39",
+        "android_client_info": {
+          "package_name": "com.cookandroid.to_da_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241252683324-p4pt5hef0mb97mds2c58haoauclm0gmr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNFI7U3KmzPssWmbIcSZ8bfU1Hti1WyOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241252683324-p4pt5hef0mb97mds2c58haoauclm0gmr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

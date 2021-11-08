@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
     defaultConfig {
         applicationId "com.cookandroid.to_da_project"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 3
         versionName "3.0"
@@ -25,10 +25,14 @@ android {
 }
 
 dependencies {
+    implementation platform('com.google.firebase:firebase-bom:29.0.0')
+    implementation 'com.google.firebase:firebase-analytics'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'com.google.firebase:firebase-messaging:11.0.4'
 }
