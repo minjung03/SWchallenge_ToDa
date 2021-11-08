@@ -42,17 +42,14 @@ public class TodoList extends AppCompatActivity {
         Todolist_Layout = findViewById(R.id.Todolist_list);
         img_listAdd = findViewById(R.id.img_listAdd);
         Ed_list = findViewById(R.id.Ed_list);
+        listView = findViewById(R.id.todoListView);
 
         preferences = getSharedPreferences("change_color", MODE_PRIVATE);
         String n = preferences.getString("color", "#FFFFFF");
         Todolist_Layout.setBackgroundColor(Color.parseColor(n));
 
-        adapter = new ListAdapter();
-        listView = findViewById(R.id.todoListView);
+        adapter = new ListAdapter(TodoList.this);
         listView.setAdapter(adapter);
-
-        SharedPreferences preferences = getSharedPreferences("todo_list", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
 
         img_listAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +57,7 @@ public class TodoList extends AppCompatActivity {
                 list_num = String.valueOf(adapter.getCount()+1);
                 list_value = Ed_list.getText().toString();
                 adapter.addItem(list_num, list_value);
+                Ed_list.setText("");
 
                 adapter.notifyDataSetChanged();
             }

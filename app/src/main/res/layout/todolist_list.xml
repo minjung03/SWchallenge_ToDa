@@ -14,8 +14,8 @@
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp" />
 
-   <TextView
-       android:layout_marginTop="40dp"
+    <TextView
+        android:layout_marginTop="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="To Do List"
@@ -69,13 +69,13 @@
                 android:textSize="13sp" />
         </FrameLayout>
 
-            <ImageView
-                android:id="@+id/img_listAdd"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="18dp"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/more"/>
+        <ImageView
+            android:id="@+id/img_listAdd"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="18dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/more"/>
     </LinearLayout>
 
     <ListView

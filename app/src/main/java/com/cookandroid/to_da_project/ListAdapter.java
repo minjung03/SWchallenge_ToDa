@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,9 +19,8 @@ public class ListAdapter extends BaseAdapter {
 
     public ListAdapter(){ }
 
-    public ListAdapter(Context mContext, ArrayList<List> mData) { // 어댑터 생성시 컨텍스트와 데이터배열 가져옴
+    public ListAdapter(Context mContext) { // 어댑터 생성시 컨텍스트와 데이터배열 가져옴
         this.mContext = mContext;
-        this.listData = mData;
     }
 
     // 리스트 객체 내의 아이템의 개수를 반환
@@ -54,10 +54,18 @@ public class ListAdapter extends BaseAdapter {
 
         TextView list_num = convertView.findViewById(R.id.tx_todolist_num);
         TextView list_value = convertView.findViewById(R.id.tx_todolist_value);
+        Button btn_list_delete = convertView.findViewById(R.id.btn_list_delete);
 
         list_num.setText(listViewItem.getNum());
         list_value.setText(listViewItem.getList_value());
 
+        btn_list_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listData.remove(position);
+                notifyDataSetChanged();
+            }
+        });
         return convertView;
     }
 
