@@ -6,7 +6,10 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -20,16 +23,15 @@ public class TodoList extends AppCompatActivity {
 
     LinearLayout Todolist_Layout;
     SharedPreferences preferences;
-    Button btn_ListAdd;
-    Button btn_ListBack;
+    Button btn_ListAdd, btn_ListBack;
+    ImageView img_listAdd;
+    EditText Ed_list;
 
-    ListView Listview;
-    ListAdapter list_Adapter;
-    ArrayList<List> listArray;
-    List listitem;
+    ListView listView;
+    ListAdapter adapter;
 
-    String[] list_num = {"1" , "2"};
-    String[] list_value = {"안드로이드 프로젝트 하기" , "쓰레기통 치우기"};
+    String list_num;
+    String list_value;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -38,29 +40,28 @@ public class TodoList extends AppCompatActivity {
         btn_ListAdd = (Button) findViewById(R.id.btn_ListAdd);
         btn_ListBack = (Button) findViewById(R.id.btn_ListBack);
         Todolist_Layout = findViewById(R.id.Todolist_list);
+        img_listAdd = findViewById(R.id.img_listAdd);
+        Ed_list = findViewById(R.id.Ed_list);
 
         preferences = getSharedPreferences("change_color", MODE_PRIVATE);
         String n = preferences.getString("color", "#FFFFFF");
         Todolist_Layout.setBackgroundColor(Color.parseColor(n));
 
-        Listview = findViewById(R.id.todoListView);
-        listArray = new ArrayList<List>();
+        adapter = new ListAdapter();
+        listView = findViewById(R.id.todoListView);
+        listView.setAdapter(adapter);
 
-        for (int i = 0; i < list_num.length; i++) {
-            listitem = new List(list_num[i], list_value[i]);
-            listArray.add(listitem); //각 아이템을 List 클래스로 사용, Array에 add
-        }
-        //List 어댑터에 ArrayList로 세팅하고 ListView와 연결
-        list_Adapter = new ListAdapter(this, listArray);
-        Listview.setAdapter(list_Adapter);
+        SharedPreferences preferences = getSharedPreferences("todo_list", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
 
-        btn_ListAdd.setOnClickListener(new View.OnClickListener() {
+        img_listAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TodoListAdd.class);
-                startActivity(intent);
+                list_num = String.valueOf(adapter.getCount()+1);
+                list_value = Ed_list.getText().toString();
+                adapter.addItem(list_num, list_value);
 
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                adapter.notifyDataSetChanged();
             }
         });
 
