@@ -4,14 +4,14 @@ import android.app.Application;
 
 public class List {
 
-    public String num;
+    public int num;
     public String list_value;
 
-    public String getNum() {
+    public int getNum() {
         return num;
     }
 
-    public void setNum(String num) {
+    public void setNum(int num) {
         this.num = num;
     }
 

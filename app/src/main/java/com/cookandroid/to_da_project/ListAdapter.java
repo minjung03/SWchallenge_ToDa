@@ -1,6 +1,7 @@
 package com.cookandroid.to_da_project;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Movie;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,66 +15,59 @@ import java.util.ArrayList;
 
 public class ListAdapter extends BaseAdapter {
 
-    Context mContext; // 메인 액티버티의 컨텍스트를 저장
-    ArrayList<List> listData = new ArrayList<List>(); // ListViewitem 아이템 데이터를 저장한 배열리스트를 저장
+    ArrayList<List> list = new ArrayList<List>();
 
-    public ListAdapter(){ }
-
-    public ListAdapter(Context mContext) { // 어댑터 생성시 컨텍스트와 데이터배열 가져옴
-        this.mContext = mContext;
-    }
-
-    // 리스트 객체 내의 아이템의 개수를 반환
     @Override
     public int getCount() {
-        return listData.size();
-    }
-
-    // 전달받은 position의 위치에 해당하는 리스트 객체 아이템을 반환
-    @Override
-    public Object getItem(int position) {
-        return listData.get(position);
-    }
-
-    // 전달받은 position의 위치에 해당하는 리스트 객체 아이템의 행번호를 반환
-    @Override
-    public long getItemId(int position) {
-        return position;
+        return list.size(); //그냥 배열의 크기를 반환하면 됨
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        final int pos = position;
-        final Context context = parent.getContext();
+    public Object getItem(int i) {
+        return list.get(i); //배열에 아이템을 현재 위치값을 넣어 가져옴
+    }
 
-        if(convertView == null){
+    @Override
+    public long getItemId(int i) {
+        return i; //그냥 위치값을 반환해도 되지만 원한다면 아이템의 num 을 반환해도 된다.
+    }
+
+
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+
+        final Context context = viewGroup.getContext();
+
+        //리스트뷰에 아이템이 인플레이트 되어있는지 확인한후
+        //아이템이 없다면 아래처럼 아이템 레이아웃을 인플레이트 하고 view객체에 담는다.
+        if(view == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.todolist_custom, parent, false);
+            view = inflater.inflate(R.layout.todolist_custom,viewGroup,false);
         }
-        List listViewItem = listData.get(position);
 
-        TextView list_num = convertView.findViewById(R.id.tx_todolist_num);
-        TextView list_value = convertView.findViewById(R.id.tx_todolist_value);
-        Button btn_list_delete = convertView.findViewById(R.id.btn_list_delete);
+        //이제 아이템에 존재하는 텍스트뷰 객체들을 view객체에서 찾아 가져온다
+        TextView tvNum = (TextView)view.findViewById(R.id.tx_todolist_num);
+        TextView tvName = (TextView)view.findViewById(R.id.tx_todolist_value);
+        Button btn_list_delete = view.findViewById(R.id.btn_list_delete);
 
-        list_num.setText(listViewItem.getNum());
-        list_value.setText(listViewItem.getList_value());
+        //현재 포지션에 해당하는 아이템에 글자를 적용하기 위해 list배열에서 객체를 가져온다.
+        List listdata = list.get(i);
 
-        btn_list_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listData.remove(position);
-                notifyDataSetChanged();
-            }
-        });
-        return convertView;
+        //가져온 객체안에 있는 글자들을 각 뷰에 적용한다
+        tvNum.setText(Integer.toString(listdata.getNum())); //원래 int형이라 String으로 형 변환
+        tvName.setText(listdata.getList_value());
+
+        return view;
     }
 
-    public void addItem(String num , String value){
-        List item = new List();
-        item.setNum(num);
-        item.setList_value(value);
+    //ArrayList로 선언된 list 변수에 목록을 채워주기 위함 다른방시으로 구현해도 됨
+    public void addItemToList(int num, String name){
+        List listdata = new List();
 
-        listData.add(item);
+        listdata.setNum(num);
+        listdata.setList_value(name);
+
+        //값들의 조립이 완성된 listdata객체 한개를 list배열에 추가
+        list.add(listdata);
     }
 }
