@@ -14,8 +14,8 @@ public class ListActivity extends AppCompatActivity {
     ArrayList<List> listArray;
     List listitem;
 
-    String[] list_num = {"0"};
-    String[] list_value = {"안드로이드 프로젝트 하기"};
+    String[] list_num = {"1" , "2"};
+    String[] list_value = {"안드로이드 프로젝트 하기" , "쓰레기통 치우기"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

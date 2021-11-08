@@ -1,6 +1,8 @@
 package com.cookandroid.to_da_project;
 
-public class List {
+import android.app.Application;
+
+public class List extends Application {
 
     String num;
     String list_value;
