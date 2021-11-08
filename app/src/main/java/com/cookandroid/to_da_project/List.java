@@ -2,15 +2,10 @@ package com.cookandroid.to_da_project;
 
 import android.app.Application;
 
-public class List extends Application {
+public class List {
 
-    String num;
-    String list_value;
-
-    public List(String num, String list_value) {
-        this.num = num;
-        this.list_value = list_value;
-    }
+    public String num;
+    public String list_value;
 
     public String getNum() {
         return num;
