@@ -16,13 +16,22 @@
         android:layout_gravity="center"
         android:background="#FFF696"/>
 
-    <CalendarView
+  <!--  <CalendarView
         android:layout_marginTop="10dp"
         android:layout_width="350dp"
         android:layout_height="290dp"
         android:layout_gravity="center"
-        android:id="@+id/Calendar"/>
+        android:id="@+id/Calendar"/> -->
 
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:mcv_showOtherDates="all"
+        app:mcv_selectionColor="#00F"
+        />
 <!--    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/calendarView"
@@ -40,6 +49,16 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:background="#F5EDA9"
+        android:layout_marginTop="17dp"/>
+
+    <TextView
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="Test"
+        android:textStyle="bold"
+        android:id="@+id/TextView"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginTop="17dp"/>
 
 
