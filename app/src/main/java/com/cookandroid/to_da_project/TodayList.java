@@ -83,14 +83,14 @@ public class TodayList extends AppCompatActivity {
                 int Month = date.getMonth() + 1;
                 int Day = date.getDay();
 
-                /*
+                String shot_Day = Year + "년 " + Month + "월 " + Day + "일";
                 Log.i("Year test", Year + "");
                 Log.i("Month test", Month + "");
                 Log.i("Day test", Day + "");
                 Log.i("shot_Day test", shot_Day + "");
-                */
 
-                String shot_Day = Year + "년 " + Month + "월 " + Day + "일";
+
+
                 //calendarView.clearSelection();
                 textView.setText(shot_Day);
             }
