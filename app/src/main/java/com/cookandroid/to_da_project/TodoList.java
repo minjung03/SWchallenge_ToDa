@@ -84,7 +84,6 @@ public class TodoList extends AppCompatActivity {
             //num 행은 가장 첫번째에 있으니 0번이 되고, name은 1번
             adapter.addItemToList(cursor.getInt(0),cursor.getString(1));
         }
-
         //리스트뷰의 어댑터 대상을 여태 설계한 adapter로 설정
         listView.setAdapter(adapter);
     }
@@ -100,14 +99,17 @@ public class TodoList extends AppCompatActivity {
 
         displayList(); //리스트뷰 새로고침
     }
-
-/* 지우기 위한 테스트 함수
-    void deleteList(){
-        ListDBHelper helper = new ListDBHelper(this);
-        SQLiteDatabase database = helper.getReadableDatabase();
-        String qry = "DELETE FROM listTBL WHERE list_num = 2";
-        database.execSQL(qry); //만들어준 쿼리문 실행
-        displayList(); //리스트뷰 새로고침
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
     }
-*/
 }
