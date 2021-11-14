@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Setting extends AppCompatActivity {
 
-    Button btn_setting_Background, btn_setting_NameChange, btn_setting_IdPassChange, btn_setting_back;
+    Button btn_setting_Background, btn_setting_NameChange, btn_setting_IdPassChange, btn_setting_back, btn_setting_secession;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +20,7 @@ public class Setting extends AppCompatActivity {
         btn_setting_NameChange = (Button) findViewById(R.id.btn_setting_NameChange);
         btn_setting_IdPassChange = (Button)findViewById(R.id.btn_setting_IdPassChange);
         btn_setting_back = (Button)findViewById(R.id.btn_setting_back);
+        btn_setting_secession = findViewById(R.id.btn_setting_secession);
 
         btn_setting_Background.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,8 +43,17 @@ public class Setting extends AppCompatActivity {
         btn_setting_IdPassChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(), SettingidpassCheck.class);
-                startActivity(intent2);
+                Intent intent = new Intent(getApplicationContext(), SettingidpassCheck.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+            }
+        });
+
+        btn_setting_secession.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SettingUserSecession.class);
+                startActivity(intent);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });

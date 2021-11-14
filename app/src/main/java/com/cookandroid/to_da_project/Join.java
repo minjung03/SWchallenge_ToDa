@@ -60,16 +60,9 @@ public class Join extends AppCompatActivity {
 
                         sqlDB = myHelper.getWritableDatabase();
                         String sql = "INSERT INTO userTBL VALUES ('" + joinName + "', '" + joinID + "', '" + joinPW + "');";
-                        // Log.d("myapp", sql);
+                        Log.d("myapp", sql);
                         sqlDB.execSQL(sql);
                         sqlDB.close();
-
-                        SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = test.edit();
-                        editor.putString("user_name", joinName);
-                        editor.putString("user_id", joinID);
-                        editor.putString("user_pw", joinPW);
-                        editor.commit();
 
                         Intent intent = new Intent(getApplicationContext(), Login.class);
                         startActivity(intent);

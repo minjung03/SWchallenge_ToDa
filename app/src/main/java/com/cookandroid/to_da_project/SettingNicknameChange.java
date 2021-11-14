@@ -1,6 +1,7 @@
 package com.cookandroid.to_da_project;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,25 +44,29 @@ public class SettingNicknameChange extends AppCompatActivity {
             }
         });
 
-
         btn_nickname_change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try{
-                    Intent intent1 = getIntent();
-                    Bundle bundle = intent1.getExtras();
-                    String Nicname = bundle.getString("Nicname");
-                    String UserId = bundle.getString("UserId");
-
+                    SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
+                    String user_id = test.getString("user_id", "null");
                     new_nicname = ED_nickname_Change.getText().toString();
 
                     sqlDB = myHelper.getWritableDatabase();
-                    String sql = "UPDATE userTBL SET nicname = '"+new_nicname+"' WHERE userid = '"+UserId+"'";
+                    String sql = "UPDATE userTBL SET nicname = '"+new_nicname+"' WHERE userid = '"+user_id+"'";
                     sqlDB.execSQL(sql);
-
                     sqlDB.close();
 
+                    SharedPreferences.Editor editor = test.edit();
+                    editor.remove("user_name");
+
+                    editor.putString("user_name", new_nicname);
+                    editor.commit();
+
                     Toast.makeText(getApplicationContext(), "변경이 완료되었습니다", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), Setting.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
                 }catch (Exception e){
                     e.printStackTrace();

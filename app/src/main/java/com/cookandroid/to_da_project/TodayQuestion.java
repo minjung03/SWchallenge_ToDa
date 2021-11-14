@@ -1,9 +1,11 @@
 package com.cookandroid.to_da_project;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,9 +25,12 @@ public class TodayQuestion extends AppCompatActivity {
     Button btnBackMenu, btnSumit;
     TextView TextView_Nickname;
     EditText Ed_Diary;
+    SharedPreferences preferences;
 
     MyDBHelper myHelper;
     SQLiteDatabase sqlDB;
+
+    String getDate, diary_value;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -37,18 +42,18 @@ public class TodayQuestion extends AppCompatActivity {
         Ed_Diary = findViewById(R.id.Ed_Diary);
 
         myHelper = new MyDBHelper(this);
-        // user_info 에 저장한 값으로 바꾸기
-/*        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        String Nicname = bundle.getString("Nicname");
-        TextView_Nickname.setText(Nicname);*/
+
+        preferences = getSharedPreferences("user_info", MODE_PRIVATE);
+        String user_name = preferences.getString("user_name", "null");
+        TextView_Nickname.setText(user_name);
 
         // 현재 시간 가져오기
         long now = System.currentTimeMillis();
         // date 형식으로 바꾸기
         Date date = new Date(now);
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
-        String getDate = simpleDate.format(date);
+        getDate = simpleDate.format(date);
+
 
         btnBackMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,9 +69,10 @@ public class TodayQuestion extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try{
-                    String Diary_value = Ed_Diary.getText().toString();
+                    diary_value = Ed_Diary.getText().toString();
+
                     sqlDB = myHelper.getWritableDatabase();
-                    String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + Diary_value + "');";
+                    String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + diary_value + "');";
                     sqlDB.execSQL(sql);
                     sqlDB.close();
 

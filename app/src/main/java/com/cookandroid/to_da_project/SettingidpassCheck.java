@@ -1,6 +1,7 @@
 package com.cookandroid.to_da_project;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -20,7 +21,7 @@ public class SettingidpassCheck extends AppCompatActivity {
 
     TextView Ed_Ex_id, Ed_Ex_pass;
 
-    String ed_id, ed_pw;
+    String ed_id, ed_pw, page_togle;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,25 +44,21 @@ public class SettingidpassCheck extends AppCompatActivity {
         btn_CheckSumit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 try {
                     ed_id = Ed_Ex_id.getText().toString();
                     ed_pw = Ed_Ex_pass.getText().toString();
 
-                    Intent intent1 = getIntent();
-                    Bundle bundle = intent1.getExtras();
-                    String UserId = bundle.getString("UserId");
-                    String UserPw = bundle.getString("UserPw");
+                    SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
+                    String user_id = test.getString("user_id", "null");
+                    String user_pw = test.getString("user_pw", "null");
 
                     if (!(ed_id.equals("") || ed_pw.equals(""))) {
                         int togle = 0; // 아이디나 비밀번호가 맞지않을 때 체크용 변수
 
-                            if (ed_id.equals(UserId) && ed_pw.equals(UserPw)) {
+                            if (ed_id.equals(user_id) && ed_pw.equals(user_pw)) {
 
-                                Intent intent = new Intent(getApplicationContext(), SettingidpassChange.class);
-                                intent.putExtra("UserId", UserId);
-                                intent.putExtra("UserPw", UserPw);
-                                startActivity(intent);
+                                Intent intent1 = new Intent(getApplicationContext(), SettingidpassChange.class);
+                                startActivity(intent1);
                                 togle = 1;
                             }
                         if (togle == 0)
@@ -73,7 +70,7 @@ public class SettingidpassCheck extends AppCompatActivity {
                     }
                 }catch (Exception e){
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "변경에 실패하였습니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "확인이 실패하였습니다", Toast.LENGTH_SHORT).show();
                 }
             }
         });

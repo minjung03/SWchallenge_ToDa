@@ -1,6 +1,7 @@
 package com.cookandroid.to_da_project;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -69,6 +70,13 @@ public class Login extends AppCompatActivity {
                             strPW = cursor.getString(cursor.getColumnIndex("userpw"));
 
                             if (loginID.equals(strID) && loginPW.equals(strPW)) {
+
+                                SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = test.edit();
+                                editor.putString("user_name", strName);
+                                editor.putString("user_id", loginID);
+                                editor.putString("user_pw", loginPW);
+                                editor.commit();
 
                                 Intent intent = new Intent(getApplicationContext(), MainMenu.class);
                                 startActivity(intent);

@@ -46,11 +46,33 @@ public class SettingidpassChange extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
+                    new_id = Ed_new_id.getText().toString();
+                    new_pw = Ed_new_pass.getText().toString();
 
+                    SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
+                    String user_id = test.getString("user_id", "null");
 
+                    sqlDB = myHelper.getWritableDatabase();
+                    String sql = "UPDATE userTBL SET userid = '" + new_id + "', userpw = '" + new_pw + "' WHERE userid = '"+user_id+"';";
+                    sqlDB.execSQL(sql);
+                    sqlDB.close();
+
+                    SharedPreferences.Editor editor = test.edit();
+                    editor.remove("user_id");
+                    editor.remove("user_pw");
+
+                    editor.putString("user_id", new_id);
+                    editor.putString("user_pw", new_pw);
+                    editor.commit();
+
+                    Toast.makeText(getApplicationContext(), "변경이 완료되었습니다", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), Setting.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
                 }catch (Exception e){
-
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "변경에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
