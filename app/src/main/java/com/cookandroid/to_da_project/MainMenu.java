@@ -27,17 +27,7 @@ public class MainMenu extends AppCompatActivity {
         imgView_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent1 = getIntent();
-                Bundle bundle = intent1.getExtras();
-                String Nicname = bundle.getString("Nicname");
-                String UserId = bundle.getString("UserId");
-                String UserPw = bundle.getString("UserPw");
-
                 Intent intent2 = new Intent(getApplicationContext(), Setting.class);
-                intent2.putExtra("Nicname",Nicname);
-                intent2.putExtra("UserId",UserId);
-                intent2.putExtra("UserPw",UserPw);
                 startActivity(intent2);
 
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
@@ -48,14 +38,7 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent1 = getIntent();
-                Bundle bundle = intent1.getExtras();
-                String Nicname = bundle.getString("Nicname");
-                String UserId = bundle.getString("UserId");
-                String UserPw = bundle.getString("UserPw");
-
                 Intent intent2 = new Intent(getApplicationContext(), TodayQuestion.class);
-                intent2.putExtra("Nicname",Nicname);
                 startActivity(intent2);
 
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);

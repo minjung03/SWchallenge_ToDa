@@ -1,6 +1,7 @@
 package com.cookandroid.to_da_project;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -59,9 +60,16 @@ public class Join extends AppCompatActivity {
 
                         sqlDB = myHelper.getWritableDatabase();
                         String sql = "INSERT INTO userTBL VALUES ('" + joinName + "', '" + joinID + "', '" + joinPW + "');";
-                        Log.d("myapp", sql);
+                        // Log.d("myapp", sql);
                         sqlDB.execSQL(sql);
                         sqlDB.close();
+
+                        SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = test.edit();
+                        editor.putString("user_name", joinName);
+                        editor.putString("user_id", joinID);
+                        editor.putString("user_pw", joinPW);
+                        editor.commit();
 
                         Intent intent = new Intent(getApplicationContext(), Login.class);
                         startActivity(intent);
@@ -69,38 +77,6 @@ public class Join extends AppCompatActivity {
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
                         Toast.makeText(getApplicationContext(), "가입되었습니다.", Toast.LENGTH_SHORT).show();
-
-                    /* select (DB테스트)
-                    Cursor cursor = sqlDB.rawQuery("SELECT * FROM userTBL", null);
-                    // Cursor행 읽어오기
-                    String strName =" ";
-                    String strID = " ";
-                    String strPW = " ";
-
-                    while (cursor.moveToNext()) {
-                        strName += cursor.getString(0) + "\n";
-                        strID += cursor.getString(1) + "\n";
-                        strPW += cursor.getString(2) + "\n";
-                    }
-
-                    txName.setText(strName);
-                    txID.setText(strID);
-                    txPW.setText(strPW);
-
-                    cursor.close();
-                    sqlDB.close();
-                    */
-
-                    /* delete (DB테스트)
-                    String name = Ed_JoinName.getText().toString().trim();
-
-                    if (!name.isEmpty()) {
-                        String sql = "DELETE FROM userTBL WHERE nicname = '" + name + "'";
-                        sqlDB.execSQL(sql);
-                        sqlDB.close();
-                        Toast.makeText(getApplicationContext(), "삭제되었습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                    */
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "필수사항 값을 입력해주세요", Toast.LENGTH_SHORT).show();

@@ -1,6 +1,7 @@
 package com.cookandroid.to_da_project;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -46,18 +47,7 @@ public class SettingidpassChange extends AppCompatActivity {
             public void onClick(View view) {
                 try {
 
-                    Intent intent1 = getIntent();
-                    Bundle bundle = intent1.getExtras();
-                    String UserId = bundle.getString("UserId");
 
-                    new_id = Ed_new_id.getText().toString();
-                    new_pw = Ed_new_pass.getText().toString();
-
-                    sqlDB = myHelper.getWritableDatabase();
-                    String sql = "UPDATE userTBL SET userid = '" + new_id + "' , userpw = '" + new_pw + "' WHERE userid = '" + UserId + "'";
-                    sqlDB.execSQL(sql);
-
-                    Toast.makeText(getApplicationContext(), "변경 되었습니다", Toast.LENGTH_SHORT).show();
 
                 }catch (Exception e){
 

@@ -71,10 +71,6 @@ public class Login extends AppCompatActivity {
                             if (loginID.equals(strID) && loginPW.equals(strPW)) {
 
                                 Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-                                intent.putExtra("Nicname", strName);
-                                intent.putExtra("UserId", strID);
-                                intent.putExtra("UserPw", strPW);
-
                                 startActivity(intent);
                                 togle = 1;
                             }

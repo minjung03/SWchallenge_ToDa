@@ -93,5 +93,4 @@
             android:id="@+id/btnSumit"
             android:background="@drawable/button_style"/>
     </LinearLayout>
-
 </LinearLayout>

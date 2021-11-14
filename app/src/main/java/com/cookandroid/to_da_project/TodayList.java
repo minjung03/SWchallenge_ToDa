@@ -58,27 +58,10 @@ public class TodayList extends AppCompatActivity {
                 oneDayDecorator
         );
 
-       /* calendarView.setOnDateChangedListener(new MaterialCalendarView.OnDateChangeListener() {
-            @SuppressLint("DefaultLocale")
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                textView.setText(String.format("%d년 %d월 %d일", year, month, dayOfMonth));
-            }
-        });*/
-        /*calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
-            @Override
-            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-
-              //  textView.setText(date);
-            }
-
-        
-
-        });
-        CalendarDay date = CalendarDay.today();*/
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                // 사용자가 누른 날짜
                 int Year = date.getYear();
                 int Month = date.getMonth() + 1;
                 int Day = date.getDay();
@@ -88,8 +71,6 @@ public class TodayList extends AppCompatActivity {
                 Log.i("Month test", Month + "");
                 Log.i("Day test", Day + "");
                 Log.i("shot_Day test", shot_Day + "");
-
-
 
                 //calendarView.clearSelection();
                 textView.setText(shot_Day);

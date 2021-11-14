@@ -46,7 +46,6 @@ public class ListAdapter extends BaseAdapter {
         }
 
         //이제 아이템에 존재하는 텍스트뷰 객체들을 view객체에서 찾아 가져온다
-        TextView tvNum = (TextView)view.findViewById(R.id.tx_todolist_num);
         TextView tvName = (TextView)view.findViewById(R.id.tx_todolist_value);
         Button btn_list_delete = view.findViewById(R.id.btn_list_delete);
 
@@ -54,7 +53,6 @@ public class ListAdapter extends BaseAdapter {
         List listdata = list.get(i);
 
         //가져온 객체안에 있는 글자들을 각 뷰에 적용한다
-        tvNum.setText(Integer.toString(listdata.getNum())); //원래 int형이라 String으로 형 변환
         tvName.setText(listdata.getList_value());
 
         return view;
