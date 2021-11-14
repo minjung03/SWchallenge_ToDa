@@ -27,10 +27,15 @@ public class TodayQuestion extends AppCompatActivity {
     EditText Ed_Diary;
     SharedPreferences preferences;
 
-    MyDBHelper myHelper;
+    DiaryDBHelper diaryDBHelper;
     SQLiteDatabase sqlDB;
 
     String getDate, diary_value;
+
+
+    // 출력 테스트
+    String diary_date, diary_values;
+    TextView test, test2;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -41,7 +46,10 @@ public class TodayQuestion extends AppCompatActivity {
         TextView_Nickname = findViewById(R.id.TextView_Nickname);
         Ed_Diary = findViewById(R.id.Ed_Diary);
 
-        myHelper = new MyDBHelper(this);
+        test = findViewById(R.id.test);
+        test2 = findViewById(R.id.test2);
+
+        diaryDBHelper = new DiaryDBHelper(this);
 
         preferences = getSharedPreferences("user_info", MODE_PRIVATE);
         String user_name = preferences.getString("user_name", "null");
@@ -71,17 +79,35 @@ public class TodayQuestion extends AppCompatActivity {
                 try{
                     diary_value = Ed_Diary.getText().toString();
 
-                    sqlDB = myHelper.getWritableDatabase();
-                    String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + diary_value + "');";
+                    sqlDB = diaryDBHelper.getWritableDatabase();
+                    // String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + diary_value + "');";
+                    String sql = "INSERT INTO diaryTBL VALUES ('2021-11-10', '" + diary_value + "');";
+                    sqlDB.execSQL(sql);
+                    sqlDB.close();
 
                     Toast.makeText(getApplicationContext(), "저장되었습니다.",Toast.LENGTH_LONG).show();
 
-                   /* Intent intent = new Intent(getApplicationContext(), TodayList.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);*/
-                    sqlDB.execSQL(sql);
+                    // 출력 테스트
+                    /*
+                    Cursor cursor = sqlDB.rawQuery("SELECT date, diary FROM " + "diaryTBL", null);
+                    int count = cursor.getCount();
 
+                    for (int i = 1; i <= count; i++) {
+                        cursor.moveToNext(); // 다음 행으로
+                        diary_date = cursor.getString(cursor.getColumnIndex("date"));
+                        diary_values = cursor.getString(cursor.getColumnIndex("diary"));
+
+                        test.setText(diary_date);
+                        test2.setText(diary_values);
+                    }
+                    cursor.close();
                     sqlDB.close();
+                     */
+
+                    Intent intent = new Intent(getApplicationContext(), TodayList.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
                 }catch (Exception e){
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "저장에 실패하였습니다.", Toast.LENGTH_SHORT).show();

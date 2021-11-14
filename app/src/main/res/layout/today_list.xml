@@ -78,12 +78,14 @@
         android:background="#F4F4F4"/>
 
     <TextView
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:id="@+id/TextView_list"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/Text_diary"
         android:textSize="12sp"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
+        android:textColor="#000000"
         android:text="해당 날짜의 일기가 보여집니다."/>
 
     </FrameLayout>

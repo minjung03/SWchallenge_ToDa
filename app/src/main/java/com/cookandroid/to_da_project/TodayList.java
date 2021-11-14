@@ -1,12 +1,13 @@
 package com.cookandroid.to_da_project;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,22 +19,34 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
-import java.util.Calendar;
 
 public class TodayList extends AppCompatActivity {
 
     Button btn_today_Back;
     Calendar_OndDayDecorator oneDayDecorator;
     MaterialCalendarView calendarView;
+    TextView Text_diary;
+
+    DiaryDBHelper diaryDBHelper;
+    SQLiteDatabase sqlDB;
+
+    String diary_date, diary_value;
+    String day_select;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView(R.layout.today_list);
 
         btn_today_Back = (Button)findViewById(R.id.btn_today_Back);
+        Text_diary = findViewById(R.id.Text_diary);
+
+        // 날짜 출력 테스트
         TextView textView = findViewById(R.id.TextView);
+
         calendarView = findViewById(R.id.calendarView);
         oneDayDecorator = new Calendar_OndDayDecorator();
+
+        diaryDBHelper = new DiaryDBHelper(this);
 
         btn_today_Back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,19 +74,36 @@ public class TodayList extends AppCompatActivity {
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                // 사용자가 누른 날짜
-                int Year = date.getYear();
-                int Month = date.getMonth() + 1;
-                int Day = date.getDay();
+                try {
+                    // 사용자가 누른 날짜
+                    int Year = date.getYear();
+                    int Month = date.getMonth() + 1;
+                    int Day = date.getDay();
+                    day_select = Year + "-" + Month + "-" + Day;
 
-                String shot_Day = Year + "년 " + Month + "월 " + Day + "일";
-                Log.i("Year test", Year + "");
-                Log.i("Month test", Month + "");
-                Log.i("Day test", Day + "");
-                Log.i("shot_Day test", shot_Day + "");
+                    sqlDB = diaryDBHelper.getWritableDatabase();
+                    Cursor cursor = sqlDB.rawQuery("SELECT * FROM " + "diaryTBL", null);
+                    int count = cursor.getCount();
 
-                //calendarView.clearSelection();
-                textView.setText(shot_Day);
+                    outer : for (int i = 1; i <= count; i++) {
+                        cursor.moveToNext(); // 다음 행으로
+                        diary_date = cursor.getString(cursor.getColumnIndex("date"));
+                        diary_value = cursor.getString(cursor.getColumnIndex("diary"));
+
+                        if (diary_date.equals(day_select)) {
+                            Text_diary.setText(diary_value);
+                            break outer;
+                        }else {
+                            Text_diary.setText("저장된 일기가 없습니다");
+                        }
+                    }
+                    cursor.close();
+                    sqlDB.close();
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "일기 출력이 실패하였습니다", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
