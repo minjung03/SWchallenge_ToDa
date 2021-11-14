@@ -73,14 +73,15 @@ public class TodayQuestion extends AppCompatActivity {
 
                     sqlDB = myHelper.getWritableDatabase();
                     String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + diary_value + "');";
-                    sqlDB.execSQL(sql);
-                    sqlDB.close();
 
                     Toast.makeText(getApplicationContext(), "저장되었습니다.",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(), TodayList.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
+                   /* Intent intent = new Intent(getApplicationContext(), TodayList.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);*/
+                    sqlDB.execSQL(sql);
+
+                    sqlDB.close();
                 }catch (Exception e){
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "저장에 실패하였습니다.", Toast.LENGTH_SHORT).show();
