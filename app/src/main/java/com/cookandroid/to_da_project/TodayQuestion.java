@@ -31,11 +31,7 @@ public class TodayQuestion extends AppCompatActivity {
     SQLiteDatabase sqlDB;
 
     String getDate, diary_value;
-
-
-    // 출력 테스트
-    String diary_date, diary_values, user_id;
-    TextView test, test2;
+    String user_id;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -45,9 +41,6 @@ public class TodayQuestion extends AppCompatActivity {
         btnSumit = findViewById(R.id.btnSumit);
         TextView_Nickname = findViewById(R.id.TextView_Nickname);
         Ed_Diary = findViewById(R.id.Ed_Diary);
-
-        test = findViewById(R.id.test);
-        test2 = findViewById(R.id.test2);
 
         diaryDBHelper = new DiaryDBHelper(this);
 
@@ -90,24 +83,6 @@ public class TodayQuestion extends AppCompatActivity {
                     sqlDB.execSQL(sql);
                     sqlDB.close();
                     Toast.makeText(getApplicationContext(), "저장되었습니다.",Toast.LENGTH_LONG).show();
-
-
-                    // 출력 테스트
-                    /*
-                    Cursor cursor = sqlDB.rawQuery("SELECT date, diary FROM " + "diaryTBL", null);
-                    int count = cursor.getCount();
-
-                    for (int i = 1; i <= count; i++) {
-                        cursor.moveToNext(); // 다음 행으로
-                        diary_date = cursor.getString(cursor.getColumnIndex("date"));
-                        diary_values = cursor.getString(cursor.getColumnIndex("diary"));
-
-                        test.setText(diary_date);
-                        test2.setText(diary_values);
-                    }
-                    cursor.close();
-                    sqlDB.close();
-                     */
 
                     Intent intent = new Intent(getApplicationContext(), TodayList.class);
                     startActivity(intent);
