@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -54,6 +55,13 @@ public class ListAdapter extends BaseAdapter {
 
         //가져온 객체안에 있는 글자들을 각 뷰에 적용한다
         list_value.setText(listdata.getList_value());
+
+        btn_list_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "안녕", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return view;
     }

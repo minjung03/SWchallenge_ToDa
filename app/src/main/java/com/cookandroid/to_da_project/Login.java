@@ -71,8 +71,8 @@ public class Login extends AppCompatActivity {
 
                             if (loginID.equals(strID) && loginPW.equals(strPW)) {
 
-                                SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
-                                SharedPreferences.Editor editor = test.edit();
+                                SharedPreferences user = getSharedPreferences("user_info", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = user.edit();
                                 editor.putString("user_name", strName);
                                 editor.putString("user_id", loginID);
                                 editor.putString("user_pw", loginPW);
