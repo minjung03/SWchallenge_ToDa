@@ -86,7 +86,6 @@ public class TodayQuestion extends AppCompatActivity {
                     // String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + diary_value + "');";
 
                     String sql = "INSERT INTO diaryTBL VALUES ('" + user_id + "', '" +getDate + "', '" + diary_value + "');";
-                    Toast.makeText(getApplicationContext(), sql,Toast.LENGTH_LONG).show();
 
                     sqlDB.execSQL(sql);
                     sqlDB.close();

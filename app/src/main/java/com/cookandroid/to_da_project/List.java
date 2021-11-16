@@ -4,15 +4,15 @@ import android.app.Application;
 
 public class List {
 
-    public int num;
+    public String userid;
     public String list_value;
 
-    public int getNum() {
-        return num;
+    public String getUserid() {
+        return userid;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public String getList_value() {

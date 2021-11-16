@@ -19,8 +19,9 @@ public class SettingUserSecession extends AppCompatActivity {
 
     MyDBHelper myHelper;
     DiaryDBHelper diaryDBHelper;
+    ListDBHelper listDBHelper;
 
-    SQLiteDatabase sqlDB, sqlDB2;
+    SQLiteDatabase userDB, diaryDB, listDB;
 
     String ed_id, ed_pw;
 
@@ -35,6 +36,7 @@ public class SettingUserSecession extends AppCompatActivity {
 
         myHelper = new MyDBHelper(this);
         diaryDBHelper = new DiaryDBHelper(this);
+        listDBHelper = new ListDBHelper(this);
 
         btn_secession_NO.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,31 +59,36 @@ public class SettingUserSecession extends AppCompatActivity {
                     String user_id = test.getString("user_id", "null");
                     String user_pw = test.getString("user_pw", "null");
 
-
-
-
                     if (!(ed_id.equals("") || ed_pw.equals(""))) {
                         int togle = 0; // 아이디나 비밀번호가 맞지않을 때 체크용 변수
 
                         if (ed_id.equals(user_id) && ed_pw.equals(user_pw)) {
 
-                            // 탈퇴
-                            sqlDB = myHelper.getWritableDatabase();
-                            String MY_sql = "DELETE FROM userTBL WHERE userid= '" + user_id+"'";
+                            // 유저의 정보 삭제
+                            userDB = myHelper.getWritableDatabase();
+                            String user_sql = "DELETE FROM userTBL WHERE userid= '" + user_id+"'";
 
-                            sqlDB2 = diaryDBHelper.getWritableDatabase();
+                            diaryDB = diaryDBHelper.getWritableDatabase();
                             String D_sql = "DELETE FROM diaryTBL WHERE userid= '" + user_id+"'";
 
-                            Toast.makeText(getApplicationContext(), "탈퇴되었습니다1", Toast.LENGTH_SHORT).show();
+                            listDB = listDBHelper.getWritableDatabase();
+                            String list_sql = "DELETE FROM listTBL WHERE userid= '" + user_id+"'";
 
-                            sqlDB.execSQL(MY_sql);
-                            sqlDB.close();
+                            userDB.execSQL(user_sql);
+                            userDB.close();
 
-                            sqlDB2.execSQL(D_sql);
-                            sqlDB2.close();
+                            diaryDB.execSQL(D_sql);
+                            diaryDB.close();
+
+                            listDB.execSQL(list_sql);
+                            listDB.close();
+                            togle = 1;
 
                             Toast.makeText(getApplicationContext(), "탈퇴되었습니다", Toast.LENGTH_SHORT).show();
-                            togle = 1;
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
                         }
                         if (togle == 0)
                             Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show();
@@ -92,7 +99,7 @@ public class SettingUserSecession extends AppCompatActivity {
                     }
                 }catch (Exception e){
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "확인이 실패하였습니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "탈퇴를 실패하였습니다", Toast.LENGTH_SHORT).show();
                 }
             }
         });

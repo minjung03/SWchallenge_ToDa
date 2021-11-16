@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#f2f2f2"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity" >
 
     <!-- 설정 창 이동.. 네비게이션 메뉴 화면/기능 공부!! -->
 

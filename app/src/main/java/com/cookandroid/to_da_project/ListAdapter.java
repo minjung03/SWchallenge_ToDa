@@ -1,6 +1,7 @@
 package com.cookandroid.to_da_project;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Movie;
 import android.view.LayoutInflater;
@@ -32,7 +33,6 @@ public class ListAdapter extends BaseAdapter {
         return i; //그냥 위치값을 반환해도 되지만 원한다면 아이템의 num 을 반환해도 된다.
     }
 
-
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
@@ -46,23 +46,23 @@ public class ListAdapter extends BaseAdapter {
         }
 
         //이제 아이템에 존재하는 텍스트뷰 객체들을 view객체에서 찾아 가져온다
-        TextView tvName = (TextView)view.findViewById(R.id.tx_todolist_value);
+        TextView list_value = (TextView)view.findViewById(R.id.tx_todolist_value);
         Button btn_list_delete = view.findViewById(R.id.btn_list_delete);
 
         //현재 포지션에 해당하는 아이템에 글자를 적용하기 위해 list배열에서 객체를 가져온다.
         List listdata = list.get(i);
 
         //가져온 객체안에 있는 글자들을 각 뷰에 적용한다
-        tvName.setText(listdata.getList_value());
+        list_value.setText(listdata.getList_value());
 
         return view;
     }
 
     //ArrayList로 선언된 list 변수에 목록을 채워주기 위함 다른방시으로 구현해도 됨
-    public void addItemToList(int num, String name){
+    public void addItemToList(String userid, String name){
         List listdata = new List();
 
-        listdata.setNum(num);
+        listdata.setUserid(userid);
         listdata.setList_value(name);
 
         //값들의 조립이 완성된 listdata객체 한개를 list배열에 추가

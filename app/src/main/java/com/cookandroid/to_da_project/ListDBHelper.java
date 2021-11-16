@@ -12,7 +12,7 @@ public class ListDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE listTBL(list_num INTEGER PRIMARY KEY AUTOINCREMENT, list_value TEXT)");
+        db.execSQL("CREATE TABLE listTBL(userid TEXT, list_value TEXT)");
     }
 
     @Override
