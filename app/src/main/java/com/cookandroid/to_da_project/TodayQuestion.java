@@ -34,7 +34,7 @@ public class TodayQuestion extends AppCompatActivity {
 
 
     // 출력 테스트
-    String diary_date, diary_values;
+    String diary_date, diary_values, user_id;
     TextView test, test2;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,12 +55,15 @@ public class TodayQuestion extends AppCompatActivity {
         String user_name = preferences.getString("user_name", "null");
         TextView_Nickname.setText(user_name);
 
+        user_id = preferences.getString("user_id", "null");
+
         // 현재 시간 가져오기
         long now = System.currentTimeMillis();
         // date 형식으로 바꾸기
         Date date = new Date(now);
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
         getDate = simpleDate.format(date);
+
 
 
         btnBackMenu.setOnClickListener(new View.OnClickListener() {
@@ -81,11 +84,14 @@ public class TodayQuestion extends AppCompatActivity {
 
                     sqlDB = diaryDBHelper.getWritableDatabase();
                     // String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + diary_value + "');";
-                    String sql = "INSERT INTO diaryTBL VALUES ('2021-11-10', '" + diary_value + "');";
+
+                    String sql = "INSERT INTO diaryTBL VALUES ('" + user_id + "', '" +getDate + "', '" + diary_value + "');";
+                    Toast.makeText(getApplicationContext(), sql,Toast.LENGTH_LONG).show();
+
                     sqlDB.execSQL(sql);
                     sqlDB.close();
-
                     Toast.makeText(getApplicationContext(), "저장되었습니다.",Toast.LENGTH_LONG).show();
+
 
                     // 출력 테스트
                     /*
