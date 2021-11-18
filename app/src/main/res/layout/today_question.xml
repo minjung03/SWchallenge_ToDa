@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity" android:background="#ffffff">
 
     <LinearLayout
         android:layout_marginTop="90dp"
@@ -66,17 +66,6 @@
         android:textSize="13sp"
         android:textAlignment="center"
         android:background="#F4F4F4"/>
-
-    <TextView
-        android:background="#FFEFEF"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/test"/>
-    <TextView
-        android:background="#FFEFEF"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/test2"/>
 
     <LinearLayout
         android:layout_marginTop="40dp"

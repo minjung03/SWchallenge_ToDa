@@ -74,6 +74,12 @@ public class Join extends AppCompatActivity {
                         sqlDB.execSQL(sql);
                         sqlDB.close();
 
+                        SharedPreferences list_background = getSharedPreferences("change_color", MODE_PRIVATE);
+                        SharedPreferences.Editor editor2 = list_background.edit();
+                        editor2.putString("color", "#FFFFFF");
+                        editor2.putInt("setColor", 0);
+                        editor2.commit();
+
                         Intent intent = new Intent(getApplicationContext(), Login.class);
                         startActivity(intent);
 

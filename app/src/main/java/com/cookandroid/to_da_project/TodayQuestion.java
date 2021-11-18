@@ -50,11 +50,11 @@ public class TodayQuestion extends AppCompatActivity {
 
         String[] Question = {"한달 후의 자신에게 하고 싶은 말은 무엇인가요?", "오늘 하루는 어땠나요?", "당신이 사랑하는 사람 중 한 명을 소개해주세요!",
                 "오늘 가장 맛있게 먹었던 음식은 무엇인가요?", "주변 사람들에게 평소 하고 싶은 말이 있나요?", "오늘의 반성할 점은 무엇인가요?",
-        "오늘 가장 보고 싶었던 사람은 누구였나요?", "오늘 하루를 한 문장으로 표현해주세요. 또, 왜 그렇게 적으셨나요?", "오늘 하루 중 가장 기뻤던 순간은 언제인가요?",
-        "오늘 하루를 어떤 식으로 마무리 하고 있으신가요?", "오늘의 목표는 무엇이였나요?", "오늘 가장 많이 느꼈던 감정은 무엇인가요?",
-        "당신의 기분에 어울리는 색깔을 적어주세요. 또, 왜 그렇게 적으셨나요?", "이 다이어리를 열기 전 무엇을 하고 계셨나요?",
-        "오늘의 자신에게 해줄 칭찬을 적어주세요!", "다이어리를 닫은 뒤, 무엇을 하실껀가요?", "오늘의 제일 인상 깊었던 뉴스는 무엇인가요?",
-        "오늘, 나를 가장 행복하게 만들었던 것은 무엇인가요?", "오늘의 마지막을 장식할 할 일은 무엇인가요?", "오늘은 어디를 다녀오셨나요? 다녀온 곳이 없다면 최근에 다녀온 곳을 적어주세요!"};
+                "오늘 가장 보고 싶었던 사람은 누구였나요?", "오늘 하루를 한 문장으로 표현해주세요. 또, 왜 그렇게 적으셨나요?", "오늘 하루 중 가장 기뻤던 순간은 언제인가요?",
+                "오늘 하루를 어떤 식으로 마무리 하고 있으신가요?", "오늘의 목표는 무엇이였나요?", "오늘 가장 많이 느꼈던 감정은 무엇인가요?",
+                "당신의 기분에 어울리는 색깔을 적어주세요. 또, 왜 그렇게 적으셨나요?", "이 다이어리를 열기 전 무엇을 하고 계셨나요?",
+                "오늘의 자신에게 해줄 칭찬을 적어주세요!", "다이어리를 닫은 뒤, 무엇을 하실껀가요?", "오늘의 제일 인상 깊었던 뉴스는 무엇인가요?",
+                "오늘, 나를 가장 행복하게 만들었던 것은 무엇인가요?", "오늘의 마지막을 장식할 할 일은 무엇인가요?", "오늘은 어디를 다녀오셨나요? 다녀온 곳이 없다면 최근에 다녀온 곳을 적어주세요!"};
 
 
 
@@ -63,9 +63,6 @@ public class TodayQuestion extends AppCompatActivity {
         TextView_Nickname = findViewById(R.id.TextView_Nickname);
         Text_Question = findViewById(R.id.Text_Question);
         Ed_Diary = findViewById(R.id.Ed_Diary);
-
-        test = findViewById(R.id.test);
-        test2 = findViewById(R.id.test2);
 
         diaryDBHelper = new DiaryDBHelper(this);
         myDBHelper = new MyDBHelper(this);
@@ -159,29 +156,10 @@ public class TodayQuestion extends AppCompatActivity {
                     // String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + diary_value + "');";
 
                     String sql = "INSERT INTO diaryTBL VALUES ('" + user_id + "', '" +getDate + "', '" + diary_value + "');";
-                    Toast.makeText(getApplicationContext(), sql,Toast.LENGTH_LONG).show();
 
                     sqlDB_D.execSQL(sql);
                     sqlDB_D.close();
                     Toast.makeText(getApplicationContext(), "저장되었습니다.",Toast.LENGTH_LONG).show();
-
-
-                    // 출력 테스트
-                    /*
-                    Cursor cursor = sqlDB.rawQuery("SELECT date, diary FROM " + "diaryTBL", null);
-                    int count = cursor.getCount();
-
-                    for (int i = 1; i <= count; i++) {
-                        cursor.moveToNext(); // 다음 행으로
-                        diary_date = cursor.getString(cursor.getColumnIndex("date"));
-                        diary_values = cursor.getString(cursor.getColumnIndex("diary"));
-
-                        test.setText(diary_date);
-                        test2.setText(diary_values);
-                    }
-                    cursor.close();
-                    sqlDB.close();
-                     */
 
                     Intent intent = new Intent(getApplicationContext(), TodayList.class);
                     startActivity(intent);

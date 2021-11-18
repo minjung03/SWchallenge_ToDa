@@ -28,6 +28,8 @@ public class TodoList extends AppCompatActivity {
 
     ListView listView;
 
+    String user_id;
+
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView(R.layout.todolist_list);
@@ -42,6 +44,9 @@ public class TodoList extends AppCompatActivity {
         preferences = getSharedPreferences("change_color", MODE_PRIVATE);
         String n = preferences.getString("color", "#FFFFFF");
         Todolist_Layout.setBackgroundColor(Color.parseColor(n));
+
+        SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
+        user_id = test.getString("user_id", "null");
 
         displayList();
 
@@ -78,8 +83,7 @@ public class TodoList extends AppCompatActivity {
 
         //목록의 개수만큼 순회하여 adapter에 있는 list배열에 add
         while(cursor.moveToNext()){
-            //num 행은 가장 첫번째에 있으니 0번이 되고, name은 1번
-            adapter.addItemToList(cursor.getInt(0),cursor.getString(1));
+            adapter.addItemToList(user_id,cursor.getString(1));
         }
         //리스트뷰의 어댑터 대상을 여태 설계한 adapter로 설정
         listView.setAdapter(adapter);
@@ -90,7 +94,7 @@ public class TodoList extends AppCompatActivity {
         ListDBHelper helper = new ListDBHelper(this);
         SQLiteDatabase database = helper.getReadableDatabase();
 
-        String qry = "INSERT INTO listTBL(list_value) VALUES('"+list_value+"')";
+        String qry = "INSERT INTO listTBL(userid ,list_value) VALUES('"+user_id+"', '"+list_value+"')";
 
         database.execSQL(qry); //만들어준 쿼리문 실행
 

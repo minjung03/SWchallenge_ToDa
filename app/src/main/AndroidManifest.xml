@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cookandroid.to_da_project">
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <application
 
+    <application
         android:allowBackup="true"
         android:icon="@mipmap/today_diary_logo3"
         android:label="@string/app_name"
@@ -29,19 +28,6 @@
         <activity android:name=".SettingidpassChange"/>
         <activity android:name=".MyDBHelper"/>
         <activity android:name=".SettingUserSecession"/>
-
-        <service android:name=".FirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
-        <service android:name=".FirebaseinstanceIDServices">
-
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
-            </intent-filter>
-        </service>
     </application>
 
 </manifest>

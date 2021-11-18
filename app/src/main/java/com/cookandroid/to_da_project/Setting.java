@@ -10,7 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Setting extends AppCompatActivity {
 
-    Button btn_setting_Background, btn_setting_NameChange, btn_setting_IdPassChange, btn_setting_back, btn_setting_secession;
+    Button btn_setting_Background, btn_setting_NameChange, btn_setting_IdPassChange,
+            btn_setting_back, btn_setting_secession, btn_setting_logout;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +22,7 @@ public class Setting extends AppCompatActivity {
         btn_setting_IdPassChange = (Button)findViewById(R.id.btn_setting_IdPassChange);
         btn_setting_back = (Button)findViewById(R.id.btn_setting_back);
         btn_setting_secession = findViewById(R.id.btn_setting_secession);
+        btn_setting_logout = findViewById(R.id.btn_setting_logout);
 
         btn_setting_Background.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +46,15 @@ public class Setting extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SettingidpassCheck.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+            }
+        });
+
+        btn_setting_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
