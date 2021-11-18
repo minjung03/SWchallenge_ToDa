@@ -12,7 +12,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE userTBL(nicname CHAR(6),userid CHAR(15) PRIMARY KEY, userpw CHAR(15))");
+        db.execSQL("CREATE TABLE userTBL(nicname CHAR(6),userid CHAR(15) PRIMARY KEY, userpw CHAR(15), date TEXT)");
     }
 
     @Override

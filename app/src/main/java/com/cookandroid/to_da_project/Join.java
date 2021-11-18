@@ -15,6 +15,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Join extends AppCompatActivity {
 
     Button btnBack, btnJoin;
@@ -23,7 +26,7 @@ public class Join extends AppCompatActivity {
     MyDBHelper myHelper;
     SQLiteDatabase sqlDB;
 
-    String joinName, joinID, joinPW;
+    String joinName, joinID, joinPW, getDate;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +62,14 @@ public class Join extends AppCompatActivity {
                     if(!(joinName.equals("") || joinID.equals("") || joinPW.equals(""))) {
 
                         sqlDB = myHelper.getWritableDatabase();
-                        String sql = "INSERT INTO userTBL VALUES ('" + joinName + "', '" + joinID + "', '" + joinPW + "');";
+
+                        // 현재 시간 가져오기
+                        long now = System.currentTimeMillis();
+                        // date 형식으로 바꾸기
+                        Date date = new Date(now);
+                        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+                        getDate = simpleDate.format(date);
+                        String sql = "INSERT INTO userTBL VALUES ('" + joinName + "', '" + joinID + "', '" + joinPW + "','" + getDate + "');";
                         Log.d("myapp", sql);
                         sqlDB.execSQL(sql);
                         sqlDB.close();

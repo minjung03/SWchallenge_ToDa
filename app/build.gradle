@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -37,3 +37,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:11.0.4'
     implementation "com.prolificinteractive:material-calendarview:1.4.3"
 }
+
+apply plugin: 'com.google.gms.google-services'
