@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -27,6 +28,8 @@ public class ListAdapter extends BaseAdapter {
     ListDBHelper listDBHelper;
     SQLiteDatabase listDB;
     TodoList mtodoList;
+
+    int listChk_cnt = 0;
 
     String id;
 
@@ -90,6 +93,25 @@ public class ListAdapter extends BaseAdapter {
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(context,"실패하였습니다", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        list_chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(compoundButton.getId() == R.id.list_chk){
+                    if(list_chk.isChecked()){
+                        // DB에 리스트 목록이랑 체크 여부 테이블 만들기
+                        listChk_cnt++;
+                        Toast.makeText(context,  String.valueOf(listChk_cnt) , Toast.LENGTH_SHORT).show();
+                        // list.get(i).getList_value().toString() 내용출력
+                        // String.valueOf(getCount()) 현재 리스트 전체 개수 or db count
+                    }
+                    else {
+                        listChk_cnt--;
+                        Toast.makeText(context, String.valueOf(listChk_cnt), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
