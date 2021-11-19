@@ -30,7 +30,7 @@ public class TodayList extends AppCompatActivity {
     DiaryDBHelper diaryDBHelper;
     SQLiteDatabase sqlDB;
 
-    String diary_date, diary_value;
+    String diary_date, diary_value, diary_id;
     String day_select;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,16 +81,20 @@ public class TodayList extends AppCompatActivity {
                     int Day = date.getDay();
                     day_select = Year + "-" + Month + "-" + Day;
 
+                    SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
+                    String user_id = test.getString("user_id", "null");
+
                     sqlDB = diaryDBHelper.getWritableDatabase();
                     Cursor cursor = sqlDB.rawQuery("SELECT * FROM " + "diaryTBL", null);
                     int count = cursor.getCount();
 
                     outer : for (int i = 1; i <= count; i++) {
                         cursor.moveToNext(); // 다음 행으로
+                        diary_id = cursor.getString(cursor.getColumnIndex("userid"));
                         diary_date = cursor.getString(cursor.getColumnIndex("date"));
                         diary_value = cursor.getString(cursor.getColumnIndex("diary"));
 
-                        if (diary_date.equals(day_select)) {
+                        if (diary_date.equals(day_select) && diary_id.equals(user_id)) {
                             Text_diary.setText(diary_value);
                             break outer;
                         }else {

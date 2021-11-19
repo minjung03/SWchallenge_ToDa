@@ -55,12 +55,12 @@ public class SettingidpassCheck extends AppCompatActivity {
                     if (!(ed_id.equals("") || ed_pw.equals(""))) {
                         int togle = 0; // 아이디나 비밀번호가 맞지않을 때 체크용 변수
 
-                            if (ed_id.equals(user_id) && ed_pw.equals(user_pw)) {
+                        if (ed_id.equals(user_id) && ed_pw.equals(user_pw)) {
 
-                                Intent intent1 = new Intent(getApplicationContext(), SettingidpassChange.class);
-                                startActivity(intent1);
-                                togle = 1;
-                            }
+                            Intent intent1 = new Intent(getApplicationContext(), SettingidpassChange.class);
+                            startActivity(intent1);
+                            togle = 1;
+                        }
                         if (togle == 0)
                             Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show();
                     } else if (ed_id.equals("") && ed_pw.equals("")) {

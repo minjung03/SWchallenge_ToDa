@@ -47,7 +47,6 @@ public class SettingUserSecession extends AppCompatActivity {
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
-
         btn_secession_YES.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,11 +83,13 @@ public class SettingUserSecession extends AppCompatActivity {
                             listDB.close();
                             togle = 1;
 
+/*
                             SharedPreferences preferences = getSharedPreferences("change_color", MODE_PRIVATE);
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putString("color", "#FFFFFF");
                             editor.putInt("setColor", 0);
                             editor.commit();
+*/
 
                             Toast.makeText(getApplicationContext(), "탈퇴되었습니다", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);

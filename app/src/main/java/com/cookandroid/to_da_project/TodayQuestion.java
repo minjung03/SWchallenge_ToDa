@@ -57,7 +57,6 @@ public class TodayQuestion extends AppCompatActivity {
                 "오늘, 나를 가장 행복하게 만들었던 것은 무엇인가요?", "오늘의 마지막을 장식할 할 일은 무엇인가요?", "오늘은 어디를 다녀오셨나요? 다녀온 곳이 없다면 최근에 다녀온 곳을 적어주세요!"};
 
 
-
         btnBackMenu = findViewById(R.id.btnBackMenu);
         btnSumit = findViewById(R.id.btnSumit);
         TextView_Nickname = findViewById(R.id.TextView_Nickname);
@@ -79,8 +78,8 @@ public class TodayQuestion extends AppCompatActivity {
         Date date = new Date(now);
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
         getDate = simpleDate.format(date);
-
         //
+
         sqlDB_M = myDBHelper.getWritableDatabase();
         Cursor cursor = sqlDB_M.rawQuery("SELECT userid, date FROM " + "userTBL", null);
         int count = cursor.getCount();
