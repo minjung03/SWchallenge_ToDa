@@ -4,7 +4,7 @@
     android:layout_height="match_parent"  android:background="#ffffff">
 
     <LinearLayout
-        android:padding="5dp"
+        android:id="@+id/item_layout"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -16,9 +16,14 @@
             android:text="1."
             android:layout_marginRight="10dp"/>-->
 
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/list_chk"/>
+
         <TextView
             android:id="@+id/tx_todolist_value"
-            android:layout_width="220dp"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="70dp"
             android:text="내용입니다."
@@ -45,5 +50,4 @@
         android:layout_height="1dp"
         android:layout_marginTop="7dp"
         android:background="#E1E1E1"/>
-
 </LinearLayout>

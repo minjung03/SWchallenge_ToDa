@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,14 @@ public class ListAdapter extends BaseAdapter {
     ArrayList<List> list = new ArrayList<List>();
     ListDBHelper listDBHelper;
     SQLiteDatabase listDB;
+    TodoList mtodoList;
+
+    String id;
+
+    ListAdapter(TodoList activity){
+        mtodoList = activity;
+        id = mtodoList.tx_getID.getText().toString();
+    }
 
     @Override
     public int getCount() {
@@ -55,31 +65,34 @@ public class ListAdapter extends BaseAdapter {
         //이제 아이템에 존재하는 텍스트뷰 객체들을 view객체에서 찾아 가져온다
         TextView list_value = (TextView) view.findViewById(R.id.tx_todolist_value);
         Button btn_list_delete = (Button) view.findViewById(R.id.btn_list_delete);
+        CheckBox list_chk = (CheckBox) view.findViewById(R.id.list_chk);
+        LinearLayout item_layout = (LinearLayout)view.findViewById(R.id.item_layout);
 
         List listitem = list.get(i);
+        //가져온 객체안에 있는 글자들을 각 뷰에 적용한다
+        list_value.setText(listitem.getList_value());
 
         btn_list_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-                    String list_value = listitem.getList_value();
-                    list.remove(i);
+                    String listvalue = listitem.getList_value();
 
                     listDB = listDBHelper.getWritableDatabase();
-                    String list_sql = "DELETE FROM listTBL WHERE list_value= '" + list_value + "'";
+
+                    String list_sql = "DELETE FROM listTBL WHERE userid = '"+id+"' And list_value = '" + listvalue + "';";
 
                     listDB.execSQL(list_sql);
                     listDB.close();
+                    list.remove(i);
                     notifyDataSetChanged();
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
+                    Toast.makeText(context,"실패하였습니다", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        //가져온 객체안에 있는 글자들을 각 뷰에 적용한다
-        list_value.setText(listitem.getList_value());
-
         return view;
     }
 
