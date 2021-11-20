@@ -7,6 +7,7 @@ public class List {
     public String userid;
     public String list_value;
     public String list_chk;
+    boolean checked;
 
     public String getUserid() {
         return userid;
@@ -30,6 +31,14 @@ public class List {
 
     public void setList_chk(String list_chk) {
         this.list_chk = list_chk;
+    }
+
+    public boolean isCheked(){
+        return checked;
+    }
+
+    public void setCheked(boolean checked){
+        this.checked =  checked;
     }
 
 }

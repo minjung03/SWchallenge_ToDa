@@ -79,7 +79,6 @@ public class ListAdapter extends BaseAdapter {
         //가져온 객체안에 있는 글자들을 각 뷰에 적용한다
         list_value.setText(listitem.getList_value());
 
-     //   Toast.makeText(context, listdata.getList_chk() ,Toast.LENGTH_SHORT).show();
           if(list.get(i).getList_chk() == "true"){
                 list_chk.setChecked(true);
           } else list_chk.setChecked(false);
@@ -113,6 +112,9 @@ public class ListAdapter extends BaseAdapter {
                 if(compoundButton.getId() == R.id.list_chk){
                     if(list_chk.isChecked()){
 
+                        boolean newState = !list.get(i).isCheked();
+                        list.get(i).checked = newState;
+
                         list.get(i).setList_chk("true");
                         listDB = listDBHelper.getWritableDatabase();
                         String list_sql = "UPDATE listTBL SET list_chk = 'true' WHERE userid = '"+id+"' And list_value = '" + list.get(i).getList_value().toString() + "';";
@@ -133,6 +135,7 @@ public class ListAdapter extends BaseAdapter {
                 }
             }
         });
+
         return view;
     }
 
@@ -142,6 +145,7 @@ public class ListAdapter extends BaseAdapter {
         List listdata = new List();
         listdata.setUserid(userid);
         listdata.setList_value(list_value);
+        listdata.setCheked(false);
         if(list_chk.equals("true")){
             listdata.setList_chk("true");
         }
