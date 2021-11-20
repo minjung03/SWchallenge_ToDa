@@ -102,19 +102,9 @@ public class TodayList extends AppCompatActivity {
                 TextView_Question.setText("저장된 일기가 없습니다");
             }
         }
-        img_editIcon.setVisibility(View.VISIBLE);
         cursor.close();
         sqlDB.close();
 
-        img_editIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TodayQuestionCrystal.class);
-                startActivity(intent);
-
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-            }
-        });
 
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
@@ -132,7 +122,6 @@ public class TodayList extends AppCompatActivity {
                         img_editIcon.setVisibility(View.VISIBLE);
                     }
                     else img_editIcon.setVisibility(View.INVISIBLE);
-
 
 
                     sqlDB = diaryDBHelper.getWritableDatabase();

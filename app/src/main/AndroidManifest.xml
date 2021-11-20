@@ -28,7 +28,6 @@
         <activity android:name=".SettingidpassChange"/>
         <activity android:name=".MyDBHelper"/>
         <activity android:name=".SettingUserSecession"/>
-        <activity android:name=".TodayQuestionCrystal"/>
     </application>
 
 </manifest>
