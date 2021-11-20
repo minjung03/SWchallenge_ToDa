@@ -49,6 +49,7 @@ public class TodoList extends AppCompatActivity {
         String n = preferences.getString("color", "#FFFFFF");
         Todolist_Layout.setBackgroundColor(Color.parseColor(n));
 
+
         SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
         user_id = test.getString("user_id", "null");
         tx_getID.setText(user_id);
@@ -77,6 +78,13 @@ public class TodoList extends AppCompatActivity {
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
+    }
+
+    void setListBackground(){
+        ListDBHelper helper = new ListDBHelper(this);
+        SQLiteDatabase database = helper.getReadableDatabase();
+
+        Cursor cursor = database.rawQuery("SELECT count(*) FROM listTBL WHERE list_chk='true';", null);
     }
 
     void displayList() {
