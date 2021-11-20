@@ -29,7 +29,7 @@ public class TodayList extends AppCompatActivity {
     Button btn_today_Back;
     Calendar_OndDayDecorator oneDayDecorator;
     MaterialCalendarView calendarView;
-    TextView Text_diary, TextView_Question;
+    TextView Text_diary, TextView_Question, Text_Date;
     ImageView img_editIcon;
 
     DiaryDBHelper diaryDBHelper;
@@ -54,11 +54,17 @@ public class TodayList extends AppCompatActivity {
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
         getDate = simpleDate.format(date);
 
+        Text_Date = findViewById(R.id.Text_Date);
+        Text_Date.setText(getDate);
+
 
         calendarView = findViewById(R.id.calendarView);
         oneDayDecorator = new Calendar_OndDayDecorator();
 
         diaryDBHelper = new DiaryDBHelper(this);
+
+        SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
+        String user_id = test.getString("user_id", "null");
 
         // 주말 색 바꾸기
         calendarView.addDecorators(
@@ -76,6 +82,31 @@ public class TodayList extends AppCompatActivity {
                 oneDayDecorator
         );
 
+        sqlDB = diaryDBHelper.getWritableDatabase();
+        Cursor cursor = sqlDB.rawQuery("SELECT * FROM " + "diaryTBL", null);
+        int count = cursor.getCount();
+
+        outer : for (int i = 1; i <= count; i++) {
+            cursor.moveToNext(); // 다음 행으로
+            diary_id = cursor.getString(cursor.getColumnIndex("userid"));
+            diary_date = cursor.getString(cursor.getColumnIndex("date"));
+            diary_value = cursor.getString(cursor.getColumnIndex("diary"));
+            diary_question = cursor.getString(cursor.getColumnIndex("question"));
+
+            if (diary_date.equals(getDate) && diary_id.equals(user_id)) {
+                TextView_Question.setText(diary_question);
+                Text_diary.setText(diary_value);
+                break outer;
+            }else {
+                Text_diary.setText("저장된 일기가 없습니다");
+                TextView_Question.setText("저장된 일기가 없습니다");
+            }
+        }
+        img_editIcon.setVisibility(View.VISIBLE);
+        cursor.close();
+        sqlDB.close();
+
+
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
@@ -86,13 +117,14 @@ public class TodayList extends AppCompatActivity {
                     int Day = date.getDay();
                     day_select = Year + "-" + Month + "-" + Day;
 
+                    Text_Date.setText(day_select);
+
                     if(getDate.equals(day_select)){
                         img_editIcon.setVisibility(View.VISIBLE);
                     }
                     else img_editIcon.setVisibility(View.INVISIBLE);
 
-                    SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
-                    String user_id = test.getString("user_id", "null");
+
 
                     sqlDB = diaryDBHelper.getWritableDatabase();
                     Cursor cursor = sqlDB.rawQuery("SELECT * FROM " + "diaryTBL", null);
