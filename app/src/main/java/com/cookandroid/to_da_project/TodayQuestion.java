@@ -32,17 +32,15 @@ public class TodayQuestion extends AppCompatActivity {
     MyDBHelper myDBHelper;
     SQLiteDatabase sqlDB_D, sqlDB_M;
 
-    String getDate, diary_value, getDate2;
-    String myDB_date, myDB_userid, myDate;
+    String getDate, diary_value, user_id, myDB_date, myDB_userid, myDate;
 
     long cnt;
     int cnt2;
 
     Date FirstDate, SecondDate;
 
+
     // 출력 테스트
-    String diary_date, diary_values, user_id;
-    TextView test, test2;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -55,7 +53,6 @@ public class TodayQuestion extends AppCompatActivity {
                 "당신의 기분에 어울리는 색깔을 적어주세요. 또, 왜 그렇게 적으셨나요?", "이 다이어리를 열기 전 무엇을 하고 계셨나요?",
                 "오늘의 자신에게 해줄 칭찬을 적어주세요!", "다이어리를 닫은 뒤, 무엇을 하실껀가요?", "오늘의 제일 인상 깊었던 뉴스는 무엇인가요?",
                 "오늘, 나를 가장 행복하게 만들었던 것은 무엇인가요?", "오늘의 마지막을 장식할 할 일은 무엇인가요?", "오늘은 어디를 다녀오셨나요? 다녀온 곳이 없다면 최근에 다녀온 곳을 적어주세요!"};
-
 
         btnBackMenu = findViewById(R.id.btnBackMenu);
         btnSumit = findViewById(R.id.btnSumit);
@@ -124,10 +121,6 @@ public class TodayQuestion extends AppCompatActivity {
 
 
 
-
-
-
-
         //test
         //cnt = 1;
         //int cnt2 = (int)cnt;
@@ -151,10 +144,11 @@ public class TodayQuestion extends AppCompatActivity {
                 try{
                     diary_value = Ed_Diary.getText().toString();
 
+                    String q = Question[cnt2%2].toString();
+
                     sqlDB_D = diaryDBHelper.getWritableDatabase();
                     // String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + diary_value + "');";
-
-                    String sql = "INSERT INTO diaryTBL VALUES ('" + user_id + "', '" +getDate + "', '" + diary_value + "');";
+                    String sql = "INSERT INTO diaryTBL VALUES ('" + user_id + "', '" +getDate + "', '" + diary_value + "', '"+q+"');";
 
                     sqlDB_D.execSQL(sql);
                     sqlDB_D.close();

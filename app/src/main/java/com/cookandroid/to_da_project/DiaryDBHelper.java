@@ -12,7 +12,7 @@ public class DiaryDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE diaryTBL(userid TEXT, date TEXT PRIMARY KEY, diary TEXT)");
+        db.execSQL("CREATE TABLE diaryTBL(userid TEXT, date TEXT PRIMARY KEY, diary TEXT, question TEXT)");
     }
 
     @Override

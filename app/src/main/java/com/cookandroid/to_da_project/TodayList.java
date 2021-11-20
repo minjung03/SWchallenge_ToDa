@@ -25,12 +25,12 @@ public class TodayList extends AppCompatActivity {
     Button btn_today_Back;
     Calendar_OndDayDecorator oneDayDecorator;
     MaterialCalendarView calendarView;
-    TextView Text_diary;
+    TextView Text_diary, TextView_Question;
 
     DiaryDBHelper diaryDBHelper;
     SQLiteDatabase sqlDB;
 
-    String diary_date, diary_value, diary_id;
+    String diary_date, diary_value, diary_id, diary_question;
     String day_select;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class TodayList extends AppCompatActivity {
 
         btn_today_Back = (Button)findViewById(R.id.btn_today_Back);
         Text_diary = findViewById(R.id.Text_diary);
+        TextView_Question = findViewById(R.id.TextView_Question);
 
         // 날짜 출력 테스트
         TextView textView = findViewById(R.id.TextView);
@@ -88,7 +89,7 @@ public class TodayList extends AppCompatActivity {
                     Cursor cursor = sqlDB.rawQuery("SELECT * FROM " + "diaryTBL", null);
                     int count = cursor.getCount();
 
-                    outer : for (int i = 1; i <= count; i++) {
+                    /*outer : for (int i = 1; i <= count; i++) {
                         cursor.moveToNext(); // 다음 행으로
                         diary_id = cursor.getString(cursor.getColumnIndex("userid"));
                         diary_date = cursor.getString(cursor.getColumnIndex("date"));
@@ -100,7 +101,24 @@ public class TodayList extends AppCompatActivity {
                         }else {
                             Text_diary.setText("저장된 일기가 없습니다");
                         }
+                    }*/
+                    outer : for (int i = 1; i <= count; i++) {
+                        cursor.moveToNext(); // 다음 행으로
+                        diary_id = cursor.getString(cursor.getColumnIndex("userid"));
+                        diary_date = cursor.getString(cursor.getColumnIndex("date"));
+                        diary_value = cursor.getString(cursor.getColumnIndex("diary"));
+                        diary_question = cursor.getString(cursor.getColumnIndex("question"));
+
+                        if (diary_date.equals(day_select) && diary_id.equals(user_id)) {
+                            Text_diary.setText(diary_value);
+                            Toast.makeText(getApplicationContext(), diary_question, Toast.LENGTH_SHORT).show();
+                            TextView_Question.setText(diary_question);
+                            break outer;
+                        }else {
+                            Text_diary.setText("저장된 일기가 없습니다");
+                        }
                     }
+
                     cursor.close();
                     sqlDB.close();
 
