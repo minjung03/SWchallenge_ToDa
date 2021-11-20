@@ -50,9 +50,8 @@ public class TodoList extends AppCompatActivity {
         tx_getID.setText(user_id);
 
         setListBackground();
-
-        String n = preferences.getString("color", "#FFFFFF");
-        Todolist_Layout.setBackgroundColor(Color.parseColor(n));
+        /*String n = preferences.getString("color", "#FFFFFF");
+        Todolist_Layout.setBackgroundColor(Color.parseColor(n));*/
 
         displayList();
 
@@ -83,25 +82,107 @@ public class TodoList extends AppCompatActivity {
 
     void setListBackground(){
 
+        String Backcolor;
         preferences = getSharedPreferences("change_color", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
+        int color = preferences.getInt("setColor", 0);
 
         ListDBHelper helper = new ListDBHelper(this);
         SQLiteDatabase database = helper.getReadableDatabase();
 
         Cursor cursor_listchk = database.rawQuery("SELECT list_chk FROM listTBL WHERE list_chk='true';", null);
         Cursor cursor_list = database.rawQuery("SELECT * FROM listTBL", null);
+        int percent = cursor_listchk.getCount() * 100 / cursor_list.getCount() ;
 
         if(cursor_list.getCount() == 0 || cursor_listchk.getCount() == 0){
-            editor.putInt("chk_percent", 0);
+            editor.putString("color", "#FFFFFF");
             editor.commit();
         }
-        else {
-            int num = cursor_listchk.getCount() * 100 / cursor_list.getCount() ;
-            // Toast.makeText(getApplicationContext(), String.valueOf(num), Toast.LENGTH_SHORT).show();
-            editor.putInt("chk_percent", num);
-            editor.commit();
+        else if(cursor_listchk.getCount() == 1){
+            switch (color) {
+                case 1:
+                    editor.putString("color", "#FDF1F3"); editor.commit();
+                    break;
+                case 2:
+                    editor.putString("color", "#ECF6FC"); editor.commit();
+                    break;
+                case 3:
+                    editor.putString("color", "#FEFBE1"); editor.commit();
+                    break;
+                case 4:
+                    editor.putString("color", "#E4F1E2"); editor.commit();
+                    break;
+                case 5:
+                    editor.putString("color", "#FFFFFF"); editor.commit();
+                    break;
+            }
         }
+        else if(cursor_listchk.getCount() >= 1){
+            switch (color) {
+                case 1: {
+
+                    if (percent < 34) {
+                        editor.putString("color", "#FDF1F3");
+                    }
+                    else if (percent < 67) {
+                        editor.putString("color", "#FCEDEF");
+                    }
+                    else if (percent <= 100) {
+                        editor.putString("color", "#FCE9EB");
+                    }
+                    editor.commit();
+                    break;
+                }
+                case 2: {
+                    if (percent < 34) {
+                        editor.putString("color", "#ECF6FC");
+                    }
+                    else if (percent < 67) {
+                        editor.putString("color", "#E6F3FB");
+                    }
+                    else if (percent <= 100) {
+                        editor.putString("color", "#E0F0FB");
+                    }
+                    editor.commit();
+                    break;
+                }
+                case 3: {
+                    if (percent < 34) {
+                        editor.putString("color", "#FEFBE1");
+                    }
+                    else if (percent < 67) {
+                        editor.putString("color", "#FEFAD7");
+                    }
+                    else if (percent <= 100) {
+                        editor.putString("color", "#FEF9CD");
+                    }
+                    editor.commit();
+                    break;
+                }
+                case 4: {
+
+                    if (percent < 34) {
+                        editor.putString("color", "#E4F1E2");
+                    }
+                    else if (percent < 67) {
+                        editor.putString("color", "#DBECD8");
+                    }
+                    else if (percent <= 100) {
+                        editor.putString("color", "#D2E8CF");
+                    }
+                    editor.commit();
+                    break;
+                }
+                case 5:{
+                    editor.putString("color", "#FFFFFF");
+                    editor.commit();
+                    break;
+                }
+
+            }
+        }
+        String n = preferences.getString("color", "#FFFFFF");
+        Todolist_Layout.setBackgroundColor(Color.parseColor(n));
     }
 
     void displayList() {

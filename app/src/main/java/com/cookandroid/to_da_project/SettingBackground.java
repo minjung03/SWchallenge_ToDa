@@ -30,7 +30,6 @@ public class SettingBackground extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences("change_color", MODE_PRIVATE);
         int color = preferences.getInt("setColor", 0);
-        int percent = preferences.getInt("chk_percent", 0);
 
         switch(color){
             case 1: btnPink.setBackgroundResource(R.drawable.button1_select); break;
@@ -54,17 +53,6 @@ public class SettingBackground extends AppCompatActivity {
             public void onClick(View v) {
 
                 SharedPreferences.Editor editor = preferences.edit();
-                if(percent > 33){
-                    editor.putString("color", "#FDF1F3");
-                }
-                else if(percent > 66){
-                    editor.putString("color", "#FCE9EB");
-                }
-                else if(percent == 100){
-                    editor.putString("color", "#FCEDEF");
-                }
-                else  editor.putString("color", "#FFFFFF");
-
                 editor.putInt("setColor", 1);
                 editor.commit();
 
@@ -80,17 +68,6 @@ public class SettingBackground extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = preferences.edit();
-
-                if(percent > 33){
-                    editor.putString("color", "#E0F0FB");
-                }
-                else if(percent > 66){
-                    editor.putString("color", "#ECF6FC");
-                }
-                else if(percent == 100){
-                    editor.putString("color", "#E6F3FB");
-                }
-                else  editor.putString("color", "#FFFFFF");
                 editor.putInt("setColor", 2);
                 editor.commit();
                 btnPink.setBackgroundResource(R.drawable.button1_background_color);
@@ -106,19 +83,6 @@ public class SettingBackground extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = preferences.edit();
-
-
-                if(percent > 33){
-                    editor.putString("color", "#FEFBE1");
-                }
-                else if(percent > 66){
-                    editor.putString("color", "#FEF9CD");
-                }
-                else if(percent == 100){
-                    editor.putString("color", "#FEFAD7");
-                }
-                else  editor.putString("color", "#FFFFFF");
-
                 editor.putInt("setColor", 3);
                 editor.commit();
 
@@ -135,18 +99,6 @@ public class SettingBackground extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = preferences.edit();
-
-                if(percent > 33){
-                    editor.putString("color", "#E4F1E2");
-                }
-                else if(percent > 66){
-                    editor.putString("color", "#D2E8CF");
-                }
-                else if(percent == 100){
-                    editor.putString("color", "#DBECD8");
-                }
-                else  editor.putString("color", "#FFFFFF");
-
                 editor.putInt("setColor", 4);
                 editor.commit();
                 btnPink.setBackgroundResource(R.drawable.button1_background_color);
@@ -162,7 +114,6 @@ public class SettingBackground extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("color", "#FFFFFF");
                 editor.putInt("setColor", 5);
                 editor.commit();
                 btnPink.setBackgroundResource(R.drawable.button1_background_color);

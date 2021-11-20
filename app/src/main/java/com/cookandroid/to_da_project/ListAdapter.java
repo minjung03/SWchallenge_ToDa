@@ -119,6 +119,7 @@ public class ListAdapter extends BaseAdapter {
                         listDB.execSQL(list_sql);
                         listDB.close();
                         mtodoList.setListBackground();
+                        notifyDataSetChanged();
                     }
                     else {
                         list.get(i).setList_chk("false");
@@ -127,6 +128,7 @@ public class ListAdapter extends BaseAdapter {
                         listDB.execSQL(list_sql);
                         listDB.close();
                         mtodoList.setListBackground();
+                        notifyDataSetChanged();
                     }
                 }
             }
