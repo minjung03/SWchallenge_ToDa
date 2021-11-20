@@ -68,8 +68,8 @@ public class TodayList extends AppCompatActivity {
 
         // 주말 색 바꾸기
         calendarView.addDecorators(
-                    new Calendar_SaturdayDecorator(),
-                    new Calendar_SundayDecorator()
+                new Calendar_SaturdayDecorator(),
+                new Calendar_SundayDecorator()
         );
 
         // 날짜를 누르면 색 변하게 하는
@@ -106,6 +106,15 @@ public class TodayList extends AppCompatActivity {
         cursor.close();
         sqlDB.close();
 
+        img_editIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TodayQuestionCrystal.class);
+                startActivity(intent);
+
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+            }
+        });
 
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
@@ -152,11 +161,11 @@ public class TodayList extends AppCompatActivity {
 
                         if (diary_date.equals(day_select) && diary_id.equals(user_id)) {
                             Text_diary.setText(diary_value);
-                            Toast.makeText(getApplicationContext(), diary_question, Toast.LENGTH_SHORT).show();
                             TextView_Question.setText(diary_question);
                             break outer;
                         }else {
                             Text_diary.setText("저장된 일기가 없습니다");
+                            TextView_Question.setText("저장된 일기가 없습니다.");
                         }
                     }
 
@@ -171,6 +180,8 @@ public class TodayList extends AppCompatActivity {
         });
     }
 
+
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -184,4 +195,5 @@ public class TodayList extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
     }
+
 }
