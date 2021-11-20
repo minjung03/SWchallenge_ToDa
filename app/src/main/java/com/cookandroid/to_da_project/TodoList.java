@@ -85,14 +85,14 @@ public class TodoList extends AppCompatActivity {
         SQLiteDatabase database = helper.getReadableDatabase();
 
         //Cursor라는 그릇에 목록을 담아주기
-        Cursor cursor = database.rawQuery("SELECT userid, list_value FROM listTBL WHERE userid='"+user_id+"';", null);
+        Cursor cursor = database.rawQuery("SELECT userid, list_value, list_chk FROM listTBL WHERE userid='"+user_id+"';", null);
 
         //리스트뷰에 목록 채워주는 도구인 adapter준비
         ListAdapter adapter = new ListAdapter(this);
 
         //목록의 개수만큼 순회하여 adapter에 있는 list배열에 add
         while (cursor.moveToNext()) {
-            adapter.addItemToList(user_id, cursor.getString(1));
+            adapter.addItemToList(user_id, cursor.getString(1), cursor.getString(2));
         }
         //리스트뷰의 어댑터 대상을 여태 설계한 adapter로 설정
         listView.setAdapter(adapter);
@@ -102,7 +102,7 @@ public class TodoList extends AppCompatActivity {
         ListDBHelper helper = new ListDBHelper(this);
         SQLiteDatabase database = helper.getReadableDatabase();
 
-        String qry = "INSERT INTO listTBL(userid ,list_value) VALUES('"+user_id+"', '"+list_value+"')";
+        String qry = "INSERT INTO listTBL(userid ,list_value, list_chk) VALUES('"+user_id+"', '"+list_value+"', 'false')";
 
         database.execSQL(qry); //만들어준 쿼리문 실행
         Ed_list.setText("");

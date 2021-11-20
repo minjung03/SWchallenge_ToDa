@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,9 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class TodayList extends AppCompatActivity {
 
@@ -26,48 +30,48 @@ public class TodayList extends AppCompatActivity {
     Calendar_OndDayDecorator oneDayDecorator;
     MaterialCalendarView calendarView;
     TextView Text_diary, TextView_Question;
+    ImageView img_editIcon;
 
     DiaryDBHelper diaryDBHelper;
     SQLiteDatabase sqlDB;
 
     String diary_date, diary_value, diary_id, diary_question;
-    String day_select;
+    String day_select, getDate;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView(R.layout.today_list);
 
-        btn_today_Back = (Button)findViewById(R.id.btn_today_Back);
         Text_diary = findViewById(R.id.Text_diary);
         TextView_Question = findViewById(R.id.TextView_Question);
+        img_editIcon = findViewById(R.id.img_editIcon);
 
-        // 날짜 출력 테스트
-        TextView textView = findViewById(R.id.TextView);
+        img_editIcon.setVisibility(View.INVISIBLE);
+
+        long now = System.currentTimeMillis();
+        // date 형식으로 바꾸기
+        Date date = new Date(now);
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+        getDate = simpleDate.format(date);
+
 
         calendarView = findViewById(R.id.calendarView);
         oneDayDecorator = new Calendar_OndDayDecorator();
 
         diaryDBHelper = new DiaryDBHelper(this);
 
-        btn_today_Back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-                startActivity(intent);
-
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-            }
-        });
-
+        // 주말 색 바꾸기
         calendarView.addDecorators(
                     new Calendar_SaturdayDecorator(),
                     new Calendar_SundayDecorator()
-                );
+        );
 
+        // 날짜를 누르면 색 변하게 하는
         calendarView.addDecorators(
                 new Calendar_MySelectDecorator(this)
         );
 
+        // 오늘 날짜 표시
         calendarView.addDecorators(
                 oneDayDecorator
         );
@@ -81,6 +85,11 @@ public class TodayList extends AppCompatActivity {
                     int Month = date.getMonth() + 1;
                     int Day = date.getDay();
                     day_select = Year + "-" + Month + "-" + Day;
+
+                    if(getDate.equals(day_select)){
+                        img_editIcon.setVisibility(View.VISIBLE);
+                    }
+                    else img_editIcon.setVisibility(View.INVISIBLE);
 
                     SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
                     String user_id = test.getString("user_id", "null");

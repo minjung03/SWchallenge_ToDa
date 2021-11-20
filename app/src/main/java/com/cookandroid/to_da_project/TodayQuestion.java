@@ -119,8 +119,6 @@ public class TodayQuestion extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "저장에 실패하였습니다.", Toast.LENGTH_SHORT).show();
         }
 
-
-
         //test
         //cnt = 1;
         //int cnt2 = (int)cnt;

@@ -26,6 +26,8 @@
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/calendarView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -61,9 +63,9 @@
         android:gravity="center"
         android:layout_marginTop="17dp"/>
 
-
     <FrameLayout
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="50dp"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -77,44 +79,24 @@
         android:textAlignment="center"
         android:background="#F4F4F4"/>
 
-    <TextView
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:id="@+id/Text_diary"
-        android:textSize="12sp"
-        android:layout_width="300dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:text="해당 날짜의 일기가 보여집니다."/>
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/Text_diary"
+            android:textSize="12sp"
+            android:layout_width="300dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="해당 날짜의 일기가 보여집니다."/>
 
+        <ImageView
+            android:id="@+id/img_editIcon"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="15dp"
+            android:src="@drawable/edit" />
     </FrameLayout>
-
-
-    <LinearLayout
-        android:layout_marginTop="25dp"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-        <Button
-            android:textStyle="bold"
-            android:layout_width="145dp"
-            android:layout_height="35dp"
-            android:text="돌아가기"
-            android:textColor="#FFFFFF"
-            android:id="@+id/btn_today_Back"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/button_style"/>
-
-        <Button
-            android:id="@+id/btn_today_edit"
-            android:layout_width="145dp"
-            android:layout_height="35dp"
-            android:background="@drawable/button_style"
-            android:text="수정하기"
-            android:textColor="#ffffff"
-            android:textStyle="bold" />
-    </LinearLayout>
 
 </LinearLayout>

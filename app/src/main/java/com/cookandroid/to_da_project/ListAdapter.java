@@ -24,12 +24,16 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class ListAdapter extends BaseAdapter {
 
+    /*
+                            // String.valueOf(listChk_cnt) 리스트 개수 변수 출력
+                        // list.get(i).getList_value().toString() 내용출력
+                        // String.valueOf(getCount()) 현재 리스트 전체 개수 or db count
+     */
+
     ArrayList<List> list = new ArrayList<List>();
     ListDBHelper listDBHelper;
     SQLiteDatabase listDB;
     TodoList mtodoList;
-
-    int listChk_cnt = 0;
 
     String id;
 
@@ -69,11 +73,16 @@ public class ListAdapter extends BaseAdapter {
         TextView list_value = (TextView) view.findViewById(R.id.tx_todolist_value);
         Button btn_list_delete = (Button) view.findViewById(R.id.btn_list_delete);
         CheckBox list_chk = (CheckBox) view.findViewById(R.id.list_chk);
-        LinearLayout item_layout = (LinearLayout)view.findViewById(R.id.item_layout);
 
         List listitem = list.get(i);
+
         //가져온 객체안에 있는 글자들을 각 뷰에 적용한다
         list_value.setText(listitem.getList_value());
+
+     //   Toast.makeText(context, listdata.getList_chk() ,Toast.LENGTH_SHORT).show();
+          if(list.get(i).getList_chk() == "true"){
+                list_chk.setChecked(true);
+          }
 
         btn_list_delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,15 +111,18 @@ public class ListAdapter extends BaseAdapter {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(compoundButton.getId() == R.id.list_chk){
                     if(list_chk.isChecked()){
-                        // DB에 리스트 목록이랑 체크 여부 테이블 만들기
-                        listChk_cnt++;
-                        Toast.makeText(context,  String.valueOf(listChk_cnt) , Toast.LENGTH_SHORT).show();
-                        // list.get(i).getList_value().toString() 내용출력
-                        // String.valueOf(getCount()) 현재 리스트 전체 개수 or db count
+                        listDB = listDBHelper.getWritableDatabase();
+                        String list_sql = "UPDATE listTBL SET list_chk = 'true' WHERE userid = '"+id+"' And list_value = '" + list.get(i).getList_value().toString() + "';";
+                        listDB.execSQL(list_sql);
+                        listDB.close();
+                        notifyDataSetChanged();
                     }
                     else {
-                        listChk_cnt--;
-                        Toast.makeText(context, String.valueOf(listChk_cnt), Toast.LENGTH_SHORT).show();
+                        listDB = listDBHelper.getWritableDatabase();
+                        String list_sql = "UPDATE listTBL SET list_chk = 'false' WHERE userid = '"+id+"' And list_value = '" + list.get(i).getList_value().toString() + "';";
+                        listDB.execSQL(list_sql);
+                        listDB.close();
+                        notifyDataSetChanged();
                     }
                 }
             }
@@ -119,13 +131,18 @@ public class ListAdapter extends BaseAdapter {
     }
 
     //ArrayList로 선언된 list 변수에 목록을 채워주기 위함 다른방시으로 구현해도 됨
-    public void addItemToList(String userid, String name){
+    public void addItemToList(String userid, String list_value, String list_chk){
+
         List listdata = new List();
-
         listdata.setUserid(userid);
-        listdata.setList_value(name);
+        listdata.setList_value(list_value);
+        if(list_chk.equals("true")){
+            listdata.setList_chk("true");
+        }
+        else listdata.setList_chk("false");
 
-        //값들의 조립이 완성된 listdata객체 한개를 list배열에 추가
+        // 값들의 조립이 완성된 listdata객체 한개를 list배열에 추가
         list.add(listdata);
+
     }
 }

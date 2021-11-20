@@ -6,6 +6,7 @@ public class List {
 
     public String userid;
     public String list_value;
+    public String list_chk;
 
     public String getUserid() {
         return userid;
@@ -22,4 +23,13 @@ public class List {
     public void setList_value(String list_value) {
         this.list_value = list_value;
     }
+
+    public String getList_chk() {
+        return list_chk;
+    }
+
+    public void setList_chk(String list_chk) {
+        this.list_chk = list_chk;
+    }
+
 }
