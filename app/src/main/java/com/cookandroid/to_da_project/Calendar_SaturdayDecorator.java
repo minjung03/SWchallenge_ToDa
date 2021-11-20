@@ -24,4 +24,5 @@ public class Calendar_SaturdayDecorator implements DayViewDecorator {
     public void decorate(DayViewFacade view) {
         view.addSpan(new ForegroundColorSpan(Color.rgb(68,73,207)));
     }
+
 }

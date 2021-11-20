@@ -97,6 +97,7 @@ public class ListAdapter extends BaseAdapter {
                     listDB.execSQL(list_sql);
                     listDB.close();
                     list.remove(i);
+                    mtodoList.setListBackground();
                     notifyDataSetChanged();
 
                 } catch (Exception e) {
@@ -117,16 +118,15 @@ public class ListAdapter extends BaseAdapter {
                         String list_sql = "UPDATE listTBL SET list_chk = 'true' WHERE userid = '"+id+"' And list_value = '" + list.get(i).getList_value().toString() + "';";
                         listDB.execSQL(list_sql);
                         listDB.close();
-                        notifyDataSetChanged();
+                        mtodoList.setListBackground();
                     }
-
                     else {
                         list.get(i).setList_chk("false");
                         listDB = listDBHelper.getWritableDatabase();
                         String list_sql = "UPDATE listTBL SET list_chk = 'false' WHERE userid = '"+id+"' And list_value = '" + list.get(i).getList_value().toString() + "';";
                         listDB.execSQL(list_sql);
                         listDB.close();
-                        notifyDataSetChanged();
+                        mtodoList.setListBackground();
                     }
                 }
             }

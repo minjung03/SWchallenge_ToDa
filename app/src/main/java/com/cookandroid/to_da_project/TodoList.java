@@ -45,14 +45,14 @@ public class TodoList extends AppCompatActivity {
         listView = findViewById(R.id.todoListView);
         tx_getID = findViewById(R.id.tx_getID);
 
-        preferences = getSharedPreferences("change_color", MODE_PRIVATE);
-        String n = preferences.getString("color", "#FFFFFF");
-        Todolist_Layout.setBackgroundColor(Color.parseColor(n));
-
-
         SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
         user_id = test.getString("user_id", "null");
         tx_getID.setText(user_id);
+
+        setListBackground();
+
+        String n = preferences.getString("color", "#FFFFFF");
+        Todolist_Layout.setBackgroundColor(Color.parseColor(n));
 
         displayList();
 
@@ -62,6 +62,7 @@ public class TodoList extends AppCompatActivity {
                 String list_value =  Ed_list.getText().toString();
                 if(!list_value.equals("")){
                     insertList(list_value);
+                    setListBackground();
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
@@ -81,10 +82,26 @@ public class TodoList extends AppCompatActivity {
     }
 
     void setListBackground(){
+
+        preferences = getSharedPreferences("change_color", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
         ListDBHelper helper = new ListDBHelper(this);
         SQLiteDatabase database = helper.getReadableDatabase();
 
-        Cursor cursor = database.rawQuery("SELECT count(*) FROM listTBL WHERE list_chk='true';", null);
+        Cursor cursor_listchk = database.rawQuery("SELECT list_chk FROM listTBL WHERE list_chk='true';", null);
+        Cursor cursor_list = database.rawQuery("SELECT * FROM listTBL", null);
+
+        if(cursor_list.getCount() == 0 || cursor_listchk.getCount() == 0){
+            editor.putInt("chk_percent", 0);
+            editor.commit();
+        }
+        else {
+            int num = cursor_listchk.getCount() * 100 / cursor_list.getCount() ;
+            // Toast.makeText(getApplicationContext(), String.valueOf(num), Toast.LENGTH_SHORT).show();
+            editor.putInt("chk_percent", num);
+            editor.commit();
+        }
     }
 
     void displayList() {
