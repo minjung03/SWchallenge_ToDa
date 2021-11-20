@@ -82,7 +82,7 @@ public class ListAdapter extends BaseAdapter {
      //   Toast.makeText(context, listdata.getList_chk() ,Toast.LENGTH_SHORT).show();
           if(list.get(i).getList_chk() == "true"){
                 list_chk.setChecked(true);
-          }
+          } else list_chk.setChecked(false);
 
         btn_list_delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +111,8 @@ public class ListAdapter extends BaseAdapter {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(compoundButton.getId() == R.id.list_chk){
                     if(list_chk.isChecked()){
+
+                        list.get(i).setList_chk("true");
                         listDB = listDBHelper.getWritableDatabase();
                         String list_sql = "UPDATE listTBL SET list_chk = 'true' WHERE userid = '"+id+"' And list_value = '" + list.get(i).getList_value().toString() + "';";
                         listDB.execSQL(list_sql);
@@ -118,6 +120,7 @@ public class ListAdapter extends BaseAdapter {
                         notifyDataSetChanged();
                     }
                     else {
+                        list.get(i).setList_chk("false");
                         listDB = listDBHelper.getWritableDatabase();
                         String list_sql = "UPDATE listTBL SET list_chk = 'false' WHERE userid = '"+id+"' And list_value = '" + list.get(i).getList_value().toString() + "';";
                         listDB.execSQL(list_sql);
