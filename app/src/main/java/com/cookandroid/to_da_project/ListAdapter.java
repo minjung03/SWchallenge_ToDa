@@ -119,6 +119,7 @@ public class ListAdapter extends BaseAdapter {
                         listDB.close();
                         notifyDataSetChanged();
                     }
+
                     else {
                         list.get(i).setList_chk("false");
                         listDB = listDBHelper.getWritableDatabase();
