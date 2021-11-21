@@ -71,8 +71,6 @@
         android:background="#E1E1E1"/>
 
 
-
-
     <LinearLayout
         android:id="@+id/Linear_calendar"
         android:layout_marginTop="20dp"

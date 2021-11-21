@@ -34,7 +34,6 @@ public class TodayQuestion extends AppCompatActivity {
 
     String getDate, diary_value, user_id, myDB_date, myDB_userid, myDate;
 
-    long cnt;
     int cnt2;
 
     Date FirstDate, SecondDate;
@@ -140,25 +139,24 @@ public class TodayQuestion extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try{
-                    diary_value = Ed_Diary.getText().toString();
+                        diary_value = Ed_Diary.getText().toString();
+                        String q = Question[cnt2 % 2].toString();
 
-                    String q = Question[cnt2%2].toString();
+                        sqlDB_D = diaryDBHelper.getWritableDatabase();
+                        // String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + diary_value + "');";
+                        String sql = "INSERT INTO diaryTBL VALUES ('" + user_id + "', '" + getDate + "', '" + diary_value + "', '" + q + "');";
 
-                    sqlDB_D = diaryDBHelper.getWritableDatabase();
-                    // String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + diary_value + "');";
-                    String sql = "INSERT INTO diaryTBL VALUES ('" + user_id + "', '" +getDate + "', '" + diary_value + "', '"+q+"');";
+                        sqlDB_D.execSQL(sql);
+                        sqlDB_D.close();
+                        Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_LONG).show();
 
-                    sqlDB_D.execSQL(sql);
-                    sqlDB_D.close();
-                    Toast.makeText(getApplicationContext(), "저장되었습니다.",Toast.LENGTH_LONG).show();
-
-                    Intent intent = new Intent(getApplicationContext(), TodayList.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        Intent intent = new Intent(getApplicationContext(), TodayList.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
                 }catch (Exception e){
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "저장에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
             }
         });
