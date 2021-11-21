@@ -72,7 +72,7 @@ public class TodoList extends AppCompatActivity {
         btn_ListBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
                 startActivity(intent);
 
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
