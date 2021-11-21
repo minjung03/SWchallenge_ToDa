@@ -32,6 +32,7 @@ public class TodoList extends AppCompatActivity {
     ListView listView;
 
     String user_id;
+    int percent;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -92,7 +93,8 @@ public class TodoList extends AppCompatActivity {
 
         Cursor cursor_listchk = database.rawQuery("SELECT list_chk FROM listTBL WHERE list_chk='true';", null);
         Cursor cursor_list = database.rawQuery("SELECT * FROM listTBL", null);
-        int percent = cursor_listchk.getCount() * 100 / cursor_list.getCount() ;
+        if(cursor_list.getCount()== 0) percent = 0;
+        else percent = cursor_listchk.getCount() * 100 / cursor_list.getCount() ;
 
         if(cursor_list.getCount() == 0 || cursor_listchk.getCount() == 0){
             editor.putString("color", "#FFFFFF");

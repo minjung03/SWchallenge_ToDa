@@ -58,9 +58,47 @@ public class MainMenu extends AppCompatActivity {
         Linear_diary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TodayQuestion.class);
+
+                long now = System.currentTimeMillis();
+                // date 형식으로 바꾸기
+                Date date = new Date(now);
+                SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+                getDate = simpleDate.format(date);
+
+
+                sqlDB = diaryDBHelper.getWritableDatabase();
+                Cursor cursor = sqlDB.rawQuery("SELECT userid, date FROM " + "diaryTBL", null);
+                int count = cursor.getCount();
+
+                outer : for (int i = 1; i <= count; i++) {
+                    cursor.moveToNext(); // 다음 행으로
+
+                    diary_userid = cursor.getString(cursor.getColumnIndex("userid"));
+                    diary_date = cursor.getString(cursor.getColumnIndex("date"));
+
+
+                    if (diary_date.equals(getDate) && diary_userid.equals(user_id)) {
+                        Date_equals_cnt = 1;
+                        break outer;
+                    }else {
+                        Date_equals_cnt = 0;
+                    }
+                }
+                cursor.close();
+                sqlDB.close();
+
+                Intent intent;
+                if(Date_equals_cnt==1) {
+                    intent = new Intent(getApplicationContext(), TodayQuestionCrystal.class);
+                }
+                else {
+                    intent = new Intent(getApplicationContext(), TodayQuestion.class);
+                }
                 startActivity(intent);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+
+
             }
         });
 
@@ -77,6 +115,7 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TodoList.class);
+                //  Intent intent = new Intent(getApplicationContext(), ListActivity.class);
                 startActivity(intent);
 
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
