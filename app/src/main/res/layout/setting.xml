@@ -20,7 +20,7 @@
         android:layout_marginLeft="55dp"
         android:layout_gravity="left"
         android:background="#EDA1A1"/>
-
+<!--
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="65dp"
@@ -28,6 +28,7 @@
         android:layout_marginLeft="60dp"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/Rogin_R"
             android:layout_width="230dp"
             android:layout_height="60dp"
             android:text="푸시 알람"
@@ -48,9 +49,10 @@
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:background="#E1E1E1"/>
-
+!-->
 
     <Button
+        android:layout_marginTop="50dp"
         android:id="@+id/btn_setting_Background"
         android:layout_width="300dp"
         android:layout_height="65dp"
