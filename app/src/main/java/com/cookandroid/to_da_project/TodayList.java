@@ -31,6 +31,7 @@ public class TodayList extends AppCompatActivity {
     MaterialCalendarView calendarView;
     TextView Text_diary, TextView_Question, Text_Date;
     ImageView img_editIcon;
+    ImageView today_list_back;
 
     DiaryDBHelper diaryDBHelper;
     SQLiteDatabase sqlDB;
@@ -45,6 +46,7 @@ public class TodayList extends AppCompatActivity {
         Text_diary = findViewById(R.id.Text_diary);
         TextView_Question = findViewById(R.id.TextView_Question);
         img_editIcon = findViewById(R.id.img_editIcon);
+        today_list_back = findViewById(R.id.today_list_back);
 
         img_editIcon.setVisibility(View.INVISIBLE);
 
@@ -57,6 +59,15 @@ public class TodayList extends AppCompatActivity {
         Text_Date = findViewById(R.id.Text_Date);
         Text_Date.setText(getDate);
 
+        today_list_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+                startActivity(intent);
+
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+            }
+        });
 
         calendarView = findViewById(R.id.calendarView);
         oneDayDecorator = new Calendar_OndDayDecorator();

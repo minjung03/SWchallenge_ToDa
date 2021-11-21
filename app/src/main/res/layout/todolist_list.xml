@@ -92,22 +92,13 @@
 
         <Button
             android:id="@+id/btn_ListBack"
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="35dp"
             android:background="@drawable/button_style"
             android:text="돌아가기"
             android:layout_marginRight="20dp"
             android:textColor="#ffffff"
             android:textStyle="bold" />
-
-        <Button
-            android:textStyle="bold"
-            android:layout_width="150dp"
-            android:layout_height="35dp"
-            android:text="추가하기"
-            android:textColor="#FFFFFF"
-            android:id="@+id/btn_ListAdd"
-            android:background="@drawable/button_style"/>
     </LinearLayout>
 
 </LinearLayout>

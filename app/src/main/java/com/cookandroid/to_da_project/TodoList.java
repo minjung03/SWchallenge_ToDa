@@ -24,7 +24,7 @@ public class TodoList extends AppCompatActivity {
 
     LinearLayout Todolist_Layout;
     SharedPreferences preferences;
-    Button btn_ListAdd, btn_ListBack;
+    Button btn_ListBack;
     ImageView img_listAdd;
     EditText Ed_list;
     TextView tx_getID;
@@ -38,7 +38,6 @@ public class TodoList extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView(R.layout.todolist_list);
 
-        btn_ListAdd = (Button) findViewById(R.id.btn_ListAdd);
         btn_ListBack = (Button) findViewById(R.id.btn_ListBack);
         Todolist_Layout = findViewById(R.id.Todolist_list);
         img_listAdd = findViewById(R.id.img_listAdd);

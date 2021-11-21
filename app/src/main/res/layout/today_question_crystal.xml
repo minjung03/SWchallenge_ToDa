@@ -61,8 +61,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:id="@+id/Ed_Diary"
-        android:text="답변을 작성해주세요"
-        android:textColor="#AAAAAA"
+        android:hint="답변을 작성해주세요"
+        android:textColor="#6F6F6F"
         android:textSize="13sp"
         android:textAlignment="center"
         android:background="#F4F4F4"/>
