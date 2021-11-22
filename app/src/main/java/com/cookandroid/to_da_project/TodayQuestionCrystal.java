@@ -24,18 +24,16 @@ import java.util.Date;
 
 public class TodayQuestionCrystal extends AppCompatActivity {
 
-    Button btnSumit;
-    ImageView today_list_back;
+    Button btnBackMenu, btnSumit;
     TextView TextView_Nickname, Text_Question;
     EditText Ed_Diary;
+    ImageView today_list_back;
     SharedPreferences preferences;
 
     DiaryDBHelper diaryDBHelper;
     SQLiteDatabase sqlDB_D;
 
     String getDate, diary_value, user_id, DDB_userid, DDB_date, DDB_value, DDB_question;
-
-    int cnt2;
 
 
 
@@ -91,15 +89,12 @@ public class TodayQuestionCrystal extends AppCompatActivity {
 
         today_list_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
+            public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainMenu.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
-
-
 
         btnSumit.setOnClickListener(new View.OnClickListener() {
             @Override

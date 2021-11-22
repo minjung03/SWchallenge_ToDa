@@ -55,10 +55,11 @@
         android:layout_height="wrap_content"
         android:text="Q. 해당 날짜의 질문이 보여집니다."
         android:textStyle="bold"
+        android:textSize="13sp"
         android:id="@+id/TextView_Question"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="#F5EDA9"
+        android:background="@drawable/today_list_textview"
         android:layout_marginTop="17dp"/>
 
     <TextView

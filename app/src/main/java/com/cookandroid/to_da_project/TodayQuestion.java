@@ -24,11 +24,11 @@ import java.util.Date;
 
 public class TodayQuestion extends AppCompatActivity {
 
-    Button btnSumit;
-    ImageView today_list_back;
+    Button btnBackMenu, btnSumit;
     TextView TextView_Nickname, Text_Question;
     EditText Ed_Diary;
     SharedPreferences preferences;
+    ImageView today_list_back;
 
     DiaryDBHelper diaryDBHelper;
     MyDBHelper myDBHelper;
@@ -47,13 +47,17 @@ public class TodayQuestion extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView(R.layout.today_question);
 
-        String[] Question = {"한달 후의 자신에게 하고 싶은 말은 무엇인가요?", "오늘 하루는 어땠나요?", "당신이 사랑하는 사람 중 한 명을 소개해주세요!",
-                "오늘 가장 맛있게 먹었던 음식은 무엇인가요?", "주변 사람들에게 평소 하고 싶은 말이 있나요?", "오늘의 반성할 점은 무엇인가요?",
-                "오늘 가장 보고 싶었던 사람은 누구였나요?", "오늘 하루를 한 문장으로 표현해주세요. 또, 왜 그렇게 적으셨나요?", "오늘 하루 중 가장 기뻤던 순간은 언제인가요?",
-                "오늘 하루를 어떤 식으로 마무리 하고 있으신가요?", "오늘의 목표는 무엇이였나요?", "오늘 가장 많이 느꼈던 감정은 무엇인가요?",
-                "당신의 기분에 어울리는 색깔을 적어주세요. 또, 왜 그렇게 적으셨나요?", "이 다이어리를 열기 전 무엇을 하고 계셨나요?",
-                "오늘의 자신에게 해줄 칭찬을 적어주세요!", "다이어리를 닫은 뒤, 무엇을 하실껀가요?", "오늘의 제일 인상 깊었던 뉴스는 무엇인가요?",
-                "오늘, 나를 가장 행복하게 만들었던 것은 무엇인가요?", "오늘의 마지막을 장식할 할 일은 무엇인가요?", "오늘은 어디를 다녀오셨나요? 다녀온 곳이 없다면 최근에 다녀온 곳을 적어주세요!"};
+        String[] Question = {"한달 후의 자신에게 하고 싶은 말은 무엇인가요 ?", "오늘 하루는 어땠나요 ?", "당신이 사랑하는 사람 중 한 명을 소개해주세요 !",
+                "오늘 가장 맛있게 먹었던 음식은 무엇인가요 ?", "주변 사람들에게 평소 하고 싶은 말이 있나요 ?", "오늘의 반성할 점은 무엇인가요 ?",
+                "오늘 가장 보고 싶었던 사람은 누구였나요 ?", "오늘 하루를 한 문장으로 표현해주세요.", "오늘 하루 중 가장 기뻤던 순간은 언제인가요 ?",
+                "오늘 하루를 어떤 식으로 마무리 하고 있으신가요 ?", "오늘의 목표는 무엇이였나요 ?", "오늘 가장 많이 느꼈던 감정은 무엇인가요 ?",
+                "당신의 기분에 어울리는 색깔을 적어주세요. ", "이 다이어리를 열기 전 무엇을 하고 계셨나요 ?",
+                "오늘의 자신에게 해줄 칭찬을 적어주세요 !", "다이어리를 닫은 뒤, 무엇을 하실껀가요 ?", "오늘의 제일 인상 깊었던 뉴스는 무엇인가요 ?",
+                "오늘, 당신을 가장 행복하게 만들었던 것은 무엇인가요 ?", "오늘의 마지막을 장식할 할 일은 무엇인가요 ?", "오늘은 어디를 다녀오셨나요 ?",
+                "오늘 들었던 노래들 중 마음에 드는 게 있었나요 ?", "오늘 제일 하기 싫었던 일은 무엇인가요 ?",
+                "당장 순간이동을 할 수 있다면 어디로 가고 싶나요 ?", "오늘 즐긴 여가 중 제일 재밌던 것은 무엇인가요 ?", "오늘 목표는 무엇이었나요 ?",
+                "오늘 제일 보람찼던 일은 무엇인가요 ?", "어제의 당신보다 바뀐 점이 무엇인가요 ?", "오늘의 옷차림은 어떤가요 ?", "30일을 채운 소감이 어떠신가요 ?"
+        };
 
         today_list_back = findViewById(R.id.today_list_back);
         btnSumit = findViewById(R.id.btnSumit);
@@ -111,7 +115,7 @@ public class TodayQuestion extends AppCompatActivity {
             cnt = Math.abs(cnt);
 
             cnt2 = (int)cnt;
-            Text_Question.setText(Question[cnt2%2]);
+            Text_Question.setText(Question[cnt2%30]);
         }
         catch(ParseException e)
         {
@@ -129,8 +133,7 @@ public class TodayQuestion extends AppCompatActivity {
 
         today_list_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
+            public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainMenu.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
@@ -141,20 +144,20 @@ public class TodayQuestion extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try{
-                        diary_value = Ed_Diary.getText().toString();
-                        String q = Question[cnt2 % 2].toString();
+                    diary_value = Ed_Diary.getText().toString();
+                    String q = Question[cnt2 % 30].toString();
 
-                        sqlDB_D = diaryDBHelper.getWritableDatabase();
-                        // String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + diary_value + "');";
-                        String sql = "INSERT INTO diaryTBL VALUES ('" + user_id + "', '" + getDate + "', '" + diary_value + "', '" + q + "');";
+                    sqlDB_D = diaryDBHelper.getWritableDatabase();
+                    // String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + diary_value + "');";
+                    String sql = "INSERT INTO diaryTBL VALUES ('" + user_id + "', '" + getDate + "', '" + diary_value + "', '" + q + "');";
+                    Toast.makeText(getApplicationContext(), sql, Toast.LENGTH_LONG).show();
+                    sqlDB_D.execSQL(sql);
+                    sqlDB_D.close();
+                    Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_LONG).show();
 
-                        sqlDB_D.execSQL(sql);
-                        sqlDB_D.close();
-                        Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_LONG).show();
-
-                        Intent intent = new Intent(getApplicationContext(), TodayList.class);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    Intent intent = new Intent(getApplicationContext(), TodayList.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
                 }catch (Exception e){
                     e.printStackTrace();
