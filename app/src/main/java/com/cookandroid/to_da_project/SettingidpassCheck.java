@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingidpassCheck extends AppCompatActivity {
 
-    Button btn_CheckCancel;
+    ImageView today_list_back;
     Button btn_CheckSumit;
 
     TextView Ed_Ex_id, Ed_Ex_pass;
@@ -27,12 +28,12 @@ public class SettingidpassCheck extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_idpass_check);
 
-        btn_CheckCancel = (Button)findViewById(R.id.btn_CheckCancel);
+        today_list_back = findViewById(R.id.today_list_back);
         btn_CheckSumit  = (Button)findViewById(R.id.btn_CheckSumit);
         Ed_Ex_id  = (EditText)findViewById(R.id.Ed_Ex_id);
         Ed_Ex_pass  = (EditText)findViewById(R.id.Ed_Ex_pass);
 
-        btn_CheckCancel.setOnClickListener(new View.OnClickListener() {
+        today_list_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Setting.class);

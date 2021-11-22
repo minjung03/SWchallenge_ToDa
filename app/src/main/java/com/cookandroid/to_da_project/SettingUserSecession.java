@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -14,9 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingUserSecession extends AppCompatActivity {
 
-    Button btn_secession_NO, btn_secession_YES;
+    Button btn_secession_YES;
     EditText Ed_Ex_id, Ed_Ex_pass;
 
+    ImageView today_list_back;
     MyDBHelper myHelper;
     DiaryDBHelper diaryDBHelper;
     ListDBHelper listDBHelper;
@@ -29,7 +31,7 @@ public class SettingUserSecession extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_user_secession);
 
-        btn_secession_NO = (Button)findViewById(R.id.btn_secession_NO);
+        today_list_back = findViewById(R.id.today_list_back);
         btn_secession_YES = (Button)findViewById(R.id.btn_secession_YES);
         Ed_Ex_id = findViewById(R.id.Ed_Ex_id);
         Ed_Ex_pass = findViewById(R.id.Ed_Ex_pass);
@@ -38,7 +40,7 @@ public class SettingUserSecession extends AppCompatActivity {
         diaryDBHelper = new DiaryDBHelper(this);
         listDBHelper = new ListDBHelper(this);
 
-        btn_secession_NO.setOnClickListener(new View.OnClickListener() {
+        today_list_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Setting.class);

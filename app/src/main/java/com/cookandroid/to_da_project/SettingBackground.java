@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -14,8 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SettingBackground extends AppCompatActivity {
 
     Button btnPink, btnBlue, btnYellow, btnGreen, btnWhite;
-    Button btn_Setting_back;
-    int gradient_step = 1;
+   ImageView today_list_back;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +26,7 @@ public class SettingBackground extends AppCompatActivity {
         btnYellow = (Button)findViewById(R.id.btnYellow);
         btnGreen = (Button)findViewById(R.id.btnGreen);
         btnWhite = findViewById(R.id.btnWhite);
-        btn_Setting_back = (Button)findViewById(R.id.btn_setting_back);
+        today_list_back = findViewById(R.id.today_list_back);
 
         SharedPreferences preferences = getSharedPreferences("change_color", MODE_PRIVATE);
         int color = preferences.getInt("setColor", 0);
@@ -39,7 +39,7 @@ public class SettingBackground extends AppCompatActivity {
             default: btnWhite.setBackgroundResource(R.drawable.button5_select); break;
         }
 
-        btn_Setting_back.setOnClickListener(new View.OnClickListener() {
+        today_list_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Setting.class);

@@ -3,6 +3,20 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent" android:background="#ffffff">
 
+
+    <LinearLayout
+        android:layout_margin="35dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/today_list_back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/back"/>
+
     <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -71,7 +85,7 @@
             />
     </LinearLayout>
 
-    <Button
+<!--    <Button
         android:id="@+id/btn_setting_back"
         android:layout_width="300dp"
         android:layout_height="35dp"
@@ -80,6 +94,7 @@
         android:background="@drawable/button_style"
         android:text="돌아가기"
         android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        android:textStyle="bold" />-->
 
+    </LinearLayout>
 </LinearLayout>

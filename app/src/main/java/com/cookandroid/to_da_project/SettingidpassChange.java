@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -15,7 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SettingidpassChange extends AppCompatActivity {
 
     EditText Ed_new_id, Ed_new_pass;
-    Button btn_idpass_cancel, btn_idpass_change;
+    Button btn_idpass_change;
+    ImageView today_list_back;
 
     MyDBHelper myHelper;
     SQLiteDatabase sqlDB;
@@ -26,14 +28,14 @@ public class SettingidpassChange extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_idpass_change);
 
-        btn_idpass_cancel = findViewById(R.id.btn_idpass_cancel);
+        today_list_back = findViewById(R.id.today_list_back);
         btn_idpass_change = findViewById(R.id.btn_idpass_change);
         Ed_new_id = findViewById(R.id.Ed_new_id);
         Ed_new_pass = findViewById(R.id.Ed_new_pass);
 
         myHelper = new MyDBHelper(this);
 
-        btn_idpass_cancel.setOnClickListener(new View.OnClickListener() {
+        today_list_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Setting.class);

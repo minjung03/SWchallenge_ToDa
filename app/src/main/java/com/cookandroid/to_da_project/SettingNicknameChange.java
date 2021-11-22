@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -15,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingNicknameChange extends AppCompatActivity {
 
-    Button btn_nickname_cancel;
+    ImageView today_list_back;
     Button btn_nickname_change;
     EditText ED_nickname_Change;
 
@@ -28,13 +29,13 @@ public class SettingNicknameChange extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_nickname_change);
 
-        btn_nickname_cancel = (Button)findViewById(R.id.btn_nickname_cancel);
+        today_list_back = findViewById(R.id.today_list_back);
         btn_nickname_change = (Button)findViewById(R.id.btn_nickname_change);
         ED_nickname_Change = (EditText) findViewById(R.id.ED_nickname_Change);
 
         myHelper = new MyDBHelper(this);
 
-        btn_nickname_cancel.setOnClickListener(new View.OnClickListener() {
+        today_list_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Setting.class);
