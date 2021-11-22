@@ -36,8 +36,10 @@ public class TodayList extends AppCompatActivity {
     DiaryDBHelper diaryDBHelper;
     SQLiteDatabase sqlDB;
 
-    String diary_date, diary_value, diary_id, diary_question;
+    String diary_date, diary_value, diary_id, diary_question, diary_userid;
     String day_select, getDate;
+
+    int Date_equals_cnt;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -117,12 +119,46 @@ public class TodayList extends AppCompatActivity {
         cursor.close();
         sqlDB.close();
 
+        // 일기 수정
         img_editIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TodayQuestionCrystal.class);
-                startActivity(intent);
+                long now = System.currentTimeMillis();
+                // date 형식으로 바꾸기
+                Date date = new Date(now);
+                SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+                getDate = simpleDate.format(date);
 
+
+                sqlDB = diaryDBHelper.getWritableDatabase();
+                Cursor cursor = sqlDB.rawQuery("SELECT userid, date FROM " + "diaryTBL", null);
+                int count = cursor.getCount();
+
+                outer : for (int i = 1; i <= count; i++) {
+                    cursor.moveToNext(); // 다음 행으로
+
+                    diary_userid = cursor.getString(cursor.getColumnIndex("userid"));
+                    diary_date = cursor.getString(cursor.getColumnIndex("date"));
+
+
+                    if (diary_date.equals(getDate) && diary_userid.equals(user_id)) {
+                        Date_equals_cnt = 1;
+                        break outer;
+                    }else {
+                        Date_equals_cnt = 0;
+                    }
+                }
+                cursor.close();
+                sqlDB.close();
+
+                Intent intent;
+                if(Date_equals_cnt==1) {
+                    intent = new Intent(getApplicationContext(), TodayQuestionCrystal.class);
+                }
+                else {
+                    intent = new Intent(getApplicationContext(), TodayQuestion.class);
+                }
+                startActivity(intent);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
