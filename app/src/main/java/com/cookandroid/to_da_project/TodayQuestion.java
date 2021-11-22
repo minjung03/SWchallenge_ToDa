@@ -145,19 +145,25 @@ public class TodayQuestion extends AppCompatActivity {
             public void onClick(View view) {
                 try{
                     diary_value = Ed_Diary.getText().toString();
-                    String q = Question[cnt2 % 30].toString();
 
-                    sqlDB_D = diaryDBHelper.getWritableDatabase();
-                    // String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + diary_value + "');";
-                    String sql = "INSERT INTO diaryTBL VALUES ('" + user_id + "', '" + getDate + "', '" + diary_value + "', '" + q + "');";
-                    Toast.makeText(getApplicationContext(), sql, Toast.LENGTH_LONG).show();
-                    sqlDB_D.execSQL(sql);
-                    sqlDB_D.close();
-                    Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_LONG).show();
+                    if(!diary_value.equals("")){
+                        String q = Question[cnt2 % 30].toString();
 
-                    Intent intent = new Intent(getApplicationContext(), TodayList.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        sqlDB_D = diaryDBHelper.getWritableDatabase();
+
+                        String sql = "INSERT INTO diaryTBL VALUES ('" + user_id + "', '" + getDate + "', '" + diary_value + "', '" + q + "');";
+                        sqlDB_D.execSQL(sql);
+                        sqlDB_D.close();
+                        Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(getApplicationContext(), TodayList.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
+                    }
+
 
                 }catch (Exception e){
                     e.printStackTrace();

@@ -9,13 +9,23 @@
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-<!--        <TextView
-            android:textColor="#000000"
-            android:id="@+id/tx_todolist_num"
+        <!--        <TextView
+                    android:textColor="#000000"
+                    android:id="@+id/tx_todolist_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1."
+                    android:layout_marginRight="10dp"/>-->
+
+        <!--
+                <CheckBox
+            android:button="@android:color/transparent"
+            android:background="@drawable/chechk_box_custom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1."
-            android:layout_marginRight="10dp"/>-->
+            android:layout_marginRight="3dp"
+            android:id="@+id/list_chk"/>
+        -->
 
         <CheckBox
             android:layout_width="wrap_content"

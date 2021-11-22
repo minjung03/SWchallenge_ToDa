@@ -1,5 +1,7 @@
+
 package com.cookandroid.to_da_project;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -24,6 +26,7 @@ public class Login extends AppCompatActivity {
 
     String loginID, loginPW;
     String strName, strID, strPW;
+    private Activity activity;
 
     private BackDoubleClick backDoubleClick;
 
@@ -89,7 +92,7 @@ public class Login extends AppCompatActivity {
                         if (togle == 0) Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show();
                     }
                     else if(loginID.equals("") && loginPW.equals("")){
-                        Toast.makeText(getApplicationContext(), "값을 입력해주세요", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, "값을 입력해주세요", Toast.LENGTH_SHORT).show();
                     }
                     else {
                         Toast.makeText(getApplicationContext(), "아이디/비밀번호를 전부 입력해주세요", Toast.LENGTH_SHORT).show();

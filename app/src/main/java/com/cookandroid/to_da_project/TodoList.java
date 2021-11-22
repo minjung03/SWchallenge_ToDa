@@ -1,4 +1,3 @@
-
 package com.cookandroid.to_da_project;
 
 import android.content.Intent;
@@ -21,6 +20,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TodoList extends AppCompatActivity {
 
     LinearLayout Todolist_Layout;
@@ -31,7 +33,7 @@ public class TodoList extends AppCompatActivity {
 
     ListView listView;
 
-    String user_id;
+    String user_id, getDate;
     int percent;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +50,12 @@ public class TodoList extends AppCompatActivity {
         SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
         user_id = test.getString("user_id", "null");
         tx_getID.setText(user_id);
+
+        long now = System.currentTimeMillis();
+        // date 형식으로 바꾸기
+        Date date = new Date(now);
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+        getDate = simpleDate.format(date);
 
         setListBackground();
         /*String n = preferences.getString("color", "#FFFFFF");
@@ -192,7 +200,7 @@ public class TodoList extends AppCompatActivity {
         SQLiteDatabase database = helper.getReadableDatabase();
 
         //Cursor라는 그릇에 목록을 담아주기
-        Cursor cursor = database.rawQuery("SELECT userid, list_value, list_chk FROM listTBL WHERE userid='"+user_id+"';", null);
+        Cursor cursor = database.rawQuery("SELECT userid, list_value, list_chk, date FROM listTBL WHERE userid='"+user_id+"' AND date='"+getDate+"';", null);
 
         //리스트뷰에 목록 채워주는 도구인 adapter준비
         ListAdapter adapter = new ListAdapter(this);
@@ -209,7 +217,7 @@ public class TodoList extends AppCompatActivity {
         ListDBHelper helper = new ListDBHelper(this);
         SQLiteDatabase database = helper.getReadableDatabase();
 
-        String qry = "INSERT INTO listTBL(userid ,list_value, list_chk) VALUES('"+user_id+"', '"+list_value+"', 'false')";
+        String qry = "INSERT INTO listTBL(userid ,list_value, list_chk, date) VALUES('"+user_id+"', '"+list_value+"', 'false' , '"+getDate+"')";
 
         database.execSQL(qry); //만들어준 쿼리문 실행
         Ed_list.setText("");
@@ -231,3 +239,4 @@ public class TodoList extends AppCompatActivity {
         }
     }
 }
+

@@ -86,7 +86,7 @@
         android:textColor="#AAAAAA"
         android:textSize="13sp"
         android:textAlignment="center"
-        android:background="#F4F4F4"/>
+        android:background="@drawable/todaylist_textview_style"/>
 
         <TextView
             android:layout_marginTop="5dp"

@@ -102,18 +102,25 @@ public class TodayQuestionCrystal extends AppCompatActivity {
                 try{
                     diary_value = Ed_Diary.getText().toString();
 
-                    sqlDB_D = diaryDBHelper.getWritableDatabase();
-                    // String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + diary_value + "');";
-                    String sql = "UPDATE diaryTBL SET diary = '" + diary_value + "' WHERE date = '"+ getDate +"' And userid='"+user_id+"';";
-                    Toast.makeText(getApplicationContext(), "저장되었습니다.",Toast.LENGTH_LONG).show();
+                    if(!diary_value.equals("")){
+                        sqlDB_D = diaryDBHelper.getWritableDatabase();
+                        // String sql = "INSERT INTO diaryTBL VALUES ('" + getDate + "', '" + diary_value + "');";
+                        String sql = "UPDATE diaryTBL SET diary = '" + diary_value + "' WHERE date = '"+ getDate +"' And userid='"+user_id+"';";
+                        Toast.makeText(getApplicationContext(), "저장되었습니다.",Toast.LENGTH_LONG).show();
 
-                    sqlDB_D.execSQL(sql);
-                    sqlDB_D.close();
+                        sqlDB_D.execSQL(sql);
+                        sqlDB_D.close();
 
 
-                    Intent intent = new Intent(getApplicationContext(), TodayList.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        Intent intent = new Intent(getApplicationContext(), TodayList.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "내용을 입력해 주세요", Toast.LENGTH_SHORT).show();
+                    }
+
 
                 }catch (Exception e){
                     e.printStackTrace();

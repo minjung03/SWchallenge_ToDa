@@ -59,6 +59,7 @@ public class ListAdapter extends BaseAdapter {
         TextView list_value = (TextView) view.findViewById(R.id.tx_todolist_value);
         Button btn_list_delete = (Button) view.findViewById(R.id.btn_list_delete);
         CheckBox list_chk = (CheckBox) view.findViewById(R.id.list_chk);
+
         List listitem = list.get(i);
         //가져온 객체안에 있는 글자들을 각 뷰에 적용한다
         list_value.setText(listitem.getList_value());

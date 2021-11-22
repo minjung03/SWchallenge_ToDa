@@ -1,3 +1,4 @@
+
 package com.cookandroid.to_da_project;
 
 import android.content.Context;
@@ -12,7 +13,7 @@ public class ListDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE listTBL(userid TEXT, list_value TEXT, list_chk TEXT)");
+        db.execSQL("CREATE TABLE listTBL(userid TEXT, list_value TEXT, list_chk TEXT, date TEXT)");
     }
 
     @Override
