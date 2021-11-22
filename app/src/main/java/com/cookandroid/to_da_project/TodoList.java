@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -24,8 +25,7 @@ public class TodoList extends AppCompatActivity {
 
     LinearLayout Todolist_Layout;
     SharedPreferences preferences;
-    Button btn_ListBack;
-    ImageView img_listAdd;
+    ImageView today_list_back, img_listAdd;
     EditText Ed_list;
     TextView tx_getID;
 
@@ -38,7 +38,7 @@ public class TodoList extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView(R.layout.todolist_list);
 
-        btn_ListBack = (Button) findViewById(R.id.btn_ListBack);
+        today_list_back = findViewById(R.id.today_list_back);
         Todolist_Layout = findViewById(R.id.Todolist_list);
         img_listAdd = findViewById(R.id.img_listAdd);
         Ed_list = findViewById(R.id.Ed_list);
@@ -69,7 +69,7 @@ public class TodoList extends AppCompatActivity {
             }
         });
 
-        btn_ListBack.setOnClickListener(new View.OnClickListener() {
+        today_list_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainMenu.class);

@@ -6,10 +6,10 @@
 
     <ImageView
         android:id="@+id/today_list_back"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="30dp"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="25dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:src="@drawable/back"/>
 
     <TextView
@@ -35,10 +35,9 @@
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/calendarView"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         app:mcv_showOtherDates="all"
@@ -71,7 +70,7 @@
         android:id="@+id/Text_Date"
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_marginTop="17dp"/>
+        android:layout_marginTop="10dp"/>
 
     <FrameLayout
         android:layout_marginTop="10dp"
