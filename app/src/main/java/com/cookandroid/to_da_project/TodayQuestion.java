@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,8 @@ import java.util.Date;
 
 public class TodayQuestion extends AppCompatActivity {
 
-    Button btnBackMenu, btnSumit;
+    Button btnSumit;
+    ImageView today_list_back;
     TextView TextView_Nickname, Text_Question;
     EditText Ed_Diary;
     SharedPreferences preferences;
@@ -53,7 +55,7 @@ public class TodayQuestion extends AppCompatActivity {
                 "오늘의 자신에게 해줄 칭찬을 적어주세요!", "다이어리를 닫은 뒤, 무엇을 하실껀가요?", "오늘의 제일 인상 깊었던 뉴스는 무엇인가요?",
                 "오늘, 나를 가장 행복하게 만들었던 것은 무엇인가요?", "오늘의 마지막을 장식할 할 일은 무엇인가요?", "오늘은 어디를 다녀오셨나요? 다녀온 곳이 없다면 최근에 다녀온 곳을 적어주세요!"};
 
-        btnBackMenu = findViewById(R.id.btnBackMenu);
+        today_list_back = findViewById(R.id.today_list_back);
         btnSumit = findViewById(R.id.btnSumit);
         TextView_Nickname = findViewById(R.id.TextView_Nickname);
         Text_Question = findViewById(R.id.Text_Question);
@@ -125,7 +127,7 @@ public class TodayQuestion extends AppCompatActivity {
 
         //Text_Question.setText(Question[0]);
 
-        btnBackMenu.setOnClickListener(new View.OnClickListener() {
+        today_list_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

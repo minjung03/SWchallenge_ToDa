@@ -4,8 +4,9 @@
     android:layout_height="match_parent"  android:background="#ffffff">
 
     <LinearLayout
+        android:padding="3dp"
         android:id="@+id/item_layout"
-        android:layout_width="320dp"
+        android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 <!--        <TextView
@@ -23,12 +24,12 @@
 
         <TextView
             android:id="@+id/tx_todolist_value"
-            android:layout_width="190dp"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="70dp"
             android:text="내용입니다."
             android:textColor="#000000"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:textStyle="bold" />
 
         <Button
@@ -39,15 +40,14 @@
             android:gravity="center"
             android:layout_gravity="center_vertical"
             android:background="@drawable/button_list_del"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
             android:textSize="7dp"
             android:id="@+id/btn_list_delete"/>
     </LinearLayout>
 
     <View
-        android:layout_width="320dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="7dp"
         android:background="#E1E1E1"/>
 </LinearLayout>

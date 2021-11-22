@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,8 @@ import java.util.Date;
 
 public class TodayQuestionCrystal extends AppCompatActivity {
 
-    Button btnBackMenu, btnSumit;
+    Button btnSumit;
+    ImageView today_list_back;
     TextView TextView_Nickname, Text_Question;
     EditText Ed_Diary;
     SharedPreferences preferences;
@@ -43,7 +45,7 @@ public class TodayQuestionCrystal extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView(R.layout.today_question_crystal);
 
-        btnBackMenu = findViewById(R.id.btnBackMenu);
+        today_list_back = findViewById(R.id.today_list_back);
         btnSumit = findViewById(R.id.btnSumit);
         TextView_Nickname = findViewById(R.id.TextView_Nickname);
         Text_Question = findViewById(R.id.Text_Question);
@@ -87,7 +89,7 @@ public class TodayQuestionCrystal extends AppCompatActivity {
         cursor.close();
         sqlDB_D.close();
 
-        btnBackMenu.setOnClickListener(new View.OnClickListener() {
+        today_list_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

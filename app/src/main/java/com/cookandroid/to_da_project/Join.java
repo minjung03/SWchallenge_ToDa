@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +21,8 @@ import java.util.Date;
 
 public class Join extends AppCompatActivity {
 
-    Button btnBack, btnJoin;
+    Button  btnJoin;
+    ImageView today_list_back;
     EditText Ed_JoinName, Ed_JoinID, Ed_JoinPW;
 
     MyDBHelper myHelper;
@@ -32,7 +34,7 @@ public class Join extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.join);
 
-        btnBack = (Button) findViewById(R.id.btnBack);
+        today_list_back =findViewById(R.id.today_list_back);
         btnJoin = (Button) findViewById(R.id.btnJoin);
         Ed_JoinName = findViewById(R.id.Ed_JoinName);
         Ed_JoinID = findViewById(R.id.Ed_JoinID);
@@ -41,7 +43,7 @@ public class Join extends AppCompatActivity {
 
         myHelper = new MyDBHelper(this);
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        today_list_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Login.class);
@@ -113,3 +115,4 @@ public class Join extends AppCompatActivity {
         }
     }
 }
+

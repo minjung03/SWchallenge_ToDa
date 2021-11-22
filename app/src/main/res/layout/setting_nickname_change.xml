@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"   android:padding="30dp"
     android:layout_height="match_parent" android:background="#ffffff">
 
 
-    <LinearLayout
-        android:layout_margin="35dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/today_list_back"
@@ -62,7 +57,7 @@
 
     <LinearLayout
         android:layout_marginTop="200dp"
-        android:layout_width="300dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal">
@@ -75,7 +70,6 @@
             android:text="변경"
             android:textColor="#ffffff"
             android:textStyle="bold" />
-    </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
