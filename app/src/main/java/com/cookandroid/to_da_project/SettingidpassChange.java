@@ -20,7 +20,9 @@ public class SettingidpassChange extends AppCompatActivity {
     ImageView today_list_back;
 
     MyDBHelper myHelper;
-    SQLiteDatabase sqlDB;
+    DiaryDBHelper diaryDBHelper;
+    ListDBHelper listDBHelper;
+    SQLiteDatabase sqlDB, diaryDB, listDB;
 
     String new_id, new_pw;
 
@@ -34,6 +36,8 @@ public class SettingidpassChange extends AppCompatActivity {
         Ed_new_pass = findViewById(R.id.Ed_new_pass);
 
         myHelper = new MyDBHelper(this);
+        diaryDBHelper = new DiaryDBHelper(this);
+        listDBHelper = new ListDBHelper(this);
 
         today_list_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,8 +60,21 @@ public class SettingidpassChange extends AppCompatActivity {
 
                     sqlDB = myHelper.getWritableDatabase();
                     String sql = "UPDATE userTBL SET userid = '" + new_id + "', userpw = '" + new_pw + "' WHERE userid = '"+user_id+"';";
+
+                    listDB = listDBHelper.getWritableDatabase();
+                    String sql2 = "UPDATE listTBL SET userid='" + new_id + "' WHERE userid='"+user_id+"';";
+
+                    diaryDB = diaryDBHelper.getWritableDatabase();
+                    String sql3 = "UPDATE diaryTBL SET userid='" + new_id + "' WHERE userid ='"+user_id+"';";
+
                     sqlDB.execSQL(sql);
                     sqlDB.close();
+
+                    listDB.execSQL(sql2);
+                    listDB.close();
+
+                    diaryDB.execSQL(sql3);
+                    diaryDB.close();
 
                     SharedPreferences.Editor editor = test.edit();
                     editor.remove("user_id");

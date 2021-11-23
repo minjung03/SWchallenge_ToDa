@@ -90,7 +90,9 @@ public class TodoList extends AppCompatActivity {
 
     void setListBackground(){
 
-        String Backcolor;
+        preferences = getSharedPreferences("user_info", MODE_PRIVATE);
+        String userid = preferences.getString("user_id", "null");
+
         preferences = getSharedPreferences("change_color", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         int color = preferences.getInt("setColor", 0);
@@ -98,10 +100,10 @@ public class TodoList extends AppCompatActivity {
         ListDBHelper helper = new ListDBHelper(this);
         SQLiteDatabase database = helper.getReadableDatabase();
 
-        Cursor cursor_listchk = database.rawQuery("SELECT list_chk FROM listTBL WHERE list_chk='true';", null);
-        Cursor cursor_list = database.rawQuery("SELECT * FROM listTBL", null);
-        if(cursor_list.getCount()== 0) percent = 0;
-        else percent = cursor_listchk.getCount() * 100 / cursor_list.getCount() ;
+        Cursor cursor_listchk = database.rawQuery("SELECT list_chk FROM listTBL WHERE list_chk='true' AND userid = '"+userid+"';", null);
+        Cursor cursor_list = database.rawQuery("SELECT list_value FROM listTBL WHERE userid='"+userid+"';", null);
+
+        Toast.makeText(getApplicationContext(), cursor_list.getCount()+", "+cursor_listchk.getCount(), Toast.LENGTH_SHORT).show();
 
         if(cursor_list.getCount() == 0 || cursor_listchk.getCount() == 0){
             editor.putString("color", "#FFFFFF");
@@ -127,6 +129,7 @@ public class TodoList extends AppCompatActivity {
             }
         }
         else if(cursor_listchk.getCount() >= 1){
+            percent = cursor_listchk.getCount() * 100 / cursor_list.getCount();
             switch (color) {
                 case 1: {
 

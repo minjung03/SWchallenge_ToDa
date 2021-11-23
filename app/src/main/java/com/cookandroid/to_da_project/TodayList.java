@@ -140,7 +140,6 @@ public class TodayList extends AppCompatActivity {
                     diary_userid = cursor.getString(cursor.getColumnIndex("userid"));
                     diary_date = cursor.getString(cursor.getColumnIndex("date"));
 
-
                     if (diary_date.equals(getDate) && diary_userid.equals(user_id)) {
                         Date_equals_cnt = 1;
                         break outer;

@@ -78,8 +78,8 @@ public class ListAdapter extends BaseAdapter {
                     listDB.execSQL(list_sql);
                     listDB.close();
                     list.remove(i);
-                    mtodoList.setListBackground();
                     notifyDataSetChanged();
+                    mtodoList.setListBackground();
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(context,"실패하였습니다", Toast.LENGTH_SHORT).show();
