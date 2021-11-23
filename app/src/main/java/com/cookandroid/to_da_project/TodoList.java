@@ -103,10 +103,28 @@ public class TodoList extends AppCompatActivity {
         Cursor cursor_listchk = database.rawQuery("SELECT list_chk FROM listTBL WHERE list_chk='true' AND userid = '"+userid+"';", null);
         Cursor cursor_list = database.rawQuery("SELECT list_value FROM listTBL WHERE userid='"+userid+"';", null);
 
-
         if(cursor_list.getCount() == 0 || cursor_listchk.getCount() == 0){
             editor.putString("color", "#FFFFFF");
             editor.commit();
+        }
+        else if(cursor_list.getCount() == 1 && cursor_listchk.getCount() == 1) {
+            switch (color) {
+                case 1:
+                    editor.putString("color", "#FCE9EB"); editor.commit();
+                    break;
+                case 2:
+                    editor.putString("color", "#E0F0FB"); editor.commit();
+                    break;
+                case 3:
+                    editor.putString("color", "#FEF9CD"); editor.commit();
+                    break;
+                case 4:
+                    editor.putString("color", "#D2E8CF"); editor.commit();
+                    break;
+                case 5:
+                    editor.putString("color", "#FFFFFF"); editor.commit();
+                    break;
+            }
         }
         else if(cursor_listchk.getCount() == 1){
             switch (color) {

@@ -68,6 +68,7 @@ public class ListAdapter extends BaseAdapter {
         if(list.get(i).getList_chk() == "true"){
             list_chk.setChecked(true);
         } else list_chk.setChecked(false);
+
         btn_list_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,7 +116,6 @@ public class ListAdapter extends BaseAdapter {
                 }
             }
         });
-
         return view;
     }
 
