@@ -103,7 +103,6 @@ public class TodoList extends AppCompatActivity {
         Cursor cursor_listchk = database.rawQuery("SELECT list_chk FROM listTBL WHERE list_chk='true' AND userid = '"+userid+"';", null);
         Cursor cursor_list = database.rawQuery("SELECT list_value FROM listTBL WHERE userid='"+userid+"';", null);
 
-        Toast.makeText(getApplicationContext(), cursor_list.getCount()+", "+cursor_listchk.getCount(), Toast.LENGTH_SHORT).show();
 
         if(cursor_list.getCount() == 0 || cursor_listchk.getCount() == 0){
             editor.putString("color", "#FFFFFF");
