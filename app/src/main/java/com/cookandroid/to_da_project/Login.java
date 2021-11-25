@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,12 +21,14 @@ public class Login extends AppCompatActivity {
 
     EditText Ed_LoginID, Ed_LoginPW;
     Button btnJoin, btnLogin;
+    CheckBox chk_autoLogin;
 
     MyDBHelper myHelper;
     SQLiteDatabase sqlDB;
 
     String loginID, loginPW;
     String strName, strID, strPW;
+    String auto_ID, auto_Pass;
     private Activity activity;
 
     private BackDoubleClick backDoubleClick;
@@ -38,9 +41,21 @@ public class Login extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.btnLogin);
         Ed_LoginID = (EditText) findViewById(R.id.Ed_LoginID);
         Ed_LoginPW = (EditText) findViewById(R.id.Ed_LoginPW);
+        chk_autoLogin = findViewById(R.id.chk_autoLogin);
 
         backDoubleClick = new BackDoubleClick(this);
         myHelper = new MyDBHelper(this);
+
+        SharedPreferences autoLogin = getSharedPreferences("auto_Login", MODE_PRIVATE);
+        auto_ID = autoLogin.getString("auto_id", "");
+        auto_Pass = autoLogin.getString("auto_pw", "");
+
+        if(!(auto_ID.equals("") && auto_Pass.equals(""))){
+            Toast.makeText(getApplicationContext(), "자동 로그인 되었습니다", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+        }
 
         btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +89,14 @@ public class Login extends AppCompatActivity {
 
                             if (loginID.equals(strID) && loginPW.equals(strPW)) {
 
+                                if(chk_autoLogin.isChecked()){
+                                    SharedPreferences autoLogin = getSharedPreferences("auto_Login", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = autoLogin.edit();
+                                    editor.putString("auto_id", loginID);
+                                    editor.putString("auto_pw", loginPW);
+                                    editor.commit();
+                                }
+
                                 SharedPreferences user = getSharedPreferences("user_info", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = user.edit();
                                 editor.putString("user_name", strName);
@@ -83,6 +106,8 @@ public class Login extends AppCompatActivity {
 
                                 Intent intent = new Intent(getApplicationContext(), MainMenu.class);
                                 startActivity(intent);
+                                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
                                 togle = 1;
                             }
                         }

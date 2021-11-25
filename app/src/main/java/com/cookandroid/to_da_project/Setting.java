@@ -10,6 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -92,6 +93,14 @@ public class Setting extends AppCompatActivity {
         btn_setting_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                SharedPreferences auto_Login = getSharedPreferences("auto_Login", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor editor = auto_Login.edit();
+                editor.clear();
+                editor.commit();
+
+                Toast.makeText(getApplicationContext(), "로그아웃 되었습니다", Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
