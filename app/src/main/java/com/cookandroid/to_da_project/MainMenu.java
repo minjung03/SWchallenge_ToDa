@@ -36,21 +36,15 @@ public class MainMenu extends AppCompatActivity {
         Linear_calendar = (LinearLayout)findViewById(R.id.Linear_calendar);
         Linear_todoList = (LinearLayout)findViewById(R.id.Linear_todoList);
 
-
         diaryDBHelper = new DiaryDBHelper(this);
         preferences = getSharedPreferences("user_info", MODE_PRIVATE);
         String user_id = preferences.getString("user_id", "null");
-
-
-
-
 
         imgView_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent2 = new Intent(getApplicationContext(), Setting.class);
                 startActivity(intent2);
-
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
@@ -65,7 +59,6 @@ public class MainMenu extends AppCompatActivity {
                 SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
                 getDate = simpleDate.format(date);
 
-
                 sqlDB = diaryDBHelper.getWritableDatabase();
                 Cursor cursor = sqlDB.rawQuery("SELECT userid, date FROM " + "diaryTBL", null);
                 int count = cursor.getCount();
@@ -75,7 +68,6 @@ public class MainMenu extends AppCompatActivity {
 
                     diary_userid = cursor.getString(cursor.getColumnIndex("userid"));
                     diary_date = cursor.getString(cursor.getColumnIndex("date"));
-
 
                     if (diary_date.equals(getDate) && diary_userid.equals(user_id)) {
                         Date_equals_cnt = 1;
@@ -96,8 +88,6 @@ public class MainMenu extends AppCompatActivity {
                 }
                 startActivity(intent);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-
-
 
             }
         });

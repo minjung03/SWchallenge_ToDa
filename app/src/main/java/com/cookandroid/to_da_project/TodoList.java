@@ -20,7 +20,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class TodoList extends AppCompatActivity {
@@ -31,9 +33,11 @@ public class TodoList extends AppCompatActivity {
     EditText Ed_list;
     TextView tx_getID;
 
+    SQLiteDatabase listDB;
+
     ListView listView;
 
-    String user_id, getDate;
+    String user_id, getDate, getTomorrow;
     int percent;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class TodoList extends AppCompatActivity {
         listView = findViewById(R.id.todoListView);
         tx_getID = findViewById(R.id.tx_getID);
 
+
         SharedPreferences test = getSharedPreferences("user_info", MODE_PRIVATE);
         user_id = test.getString("user_id", "null");
         tx_getID.setText(user_id);
@@ -56,6 +61,13 @@ public class TodoList extends AppCompatActivity {
         Date date = new Date(now);
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
         getDate = simpleDate.format(date);
+
+        // 내일 날짜 얻어오기
+/*        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE,1);
+        Date date2 = cal.getTime();
+        SimpleDateFormat simpleDate2 = new SimpleDateFormat("yyyy-MM-dd");
+        getTomorrow = simpleDate2.format(date2);*/
 
         setListBackground();
         /*String n = preferences.getString("color", "#FFFFFF");
@@ -100,8 +112,8 @@ public class TodoList extends AppCompatActivity {
         ListDBHelper helper = new ListDBHelper(this);
         SQLiteDatabase database = helper.getReadableDatabase();
 
-        Cursor cursor_listchk = database.rawQuery("SELECT list_chk FROM listTBL WHERE list_chk='true' AND userid = '"+userid+"';", null);
-        Cursor cursor_list = database.rawQuery("SELECT list_value FROM listTBL WHERE userid='"+userid+"';", null);
+        Cursor cursor_listchk = database.rawQuery("SELECT list_chk FROM listTBL WHERE list_chk='true' AND userid = '"+userid+"' AND date='"+getDate+"';", null);
+        Cursor cursor_list = database.rawQuery("SELECT list_value FROM listTBL WHERE userid='"+userid+"' AND date='"+getDate+"';", null);
 
         if(cursor_list.getCount() == 0 || cursor_listchk.getCount() == 0){
             editor.putString("color", "#FFFFFF");
@@ -218,7 +230,6 @@ public class TodoList extends AppCompatActivity {
         //Dbhelper의 읽기모드 객체를 가져와 SQLiteDatabase에 담아 사용준비
         ListDBHelper helper = new ListDBHelper(this);
         SQLiteDatabase database = helper.getReadableDatabase();
-
         //Cursor라는 그릇에 목록을 담아주기
         Cursor cursor = database.rawQuery("SELECT userid, list_value, list_chk, date FROM listTBL WHERE userid='"+user_id+"' AND date='"+getDate+"';", null);
 
