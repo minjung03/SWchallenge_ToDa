@@ -70,7 +70,6 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
-
                     loginID = Ed_LoginID.getText().toString();
                     loginPW = Ed_LoginPW.getText().toString();
 

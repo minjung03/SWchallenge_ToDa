@@ -170,7 +170,8 @@ public class TodayList extends AppCompatActivity {
                     int Year = date.getYear();
                     int Month = date.getMonth() + 1;
                     int Day = date.getDay();
-                    day_select = Year + "-" + Month + "-" + Day;
+                    if(Day < 10)day_select = Year + "-" + Month + "-0" + Day;
+                    else day_select = Year + "-" + Month + "-" + Day;
 
                     Text_Date.setText(day_select);
 
@@ -200,6 +201,7 @@ public class TodayList extends AppCompatActivity {
                     }*/
                     outer : for (int i = 1; i <= count; i++) {
                         cursor.moveToNext(); // 다음 행으로
+                        Toast.makeText(getApplicationContext(), cursor.getString(cursor.getColumnIndex("date")), Toast.LENGTH_SHORT).show();
                         diary_id = cursor.getString(cursor.getColumnIndex("userid"));
                         diary_date = cursor.getString(cursor.getColumnIndex("date"));
                         diary_value = cursor.getString(cursor.getColumnIndex("diary"));
