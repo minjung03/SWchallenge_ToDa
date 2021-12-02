@@ -201,7 +201,7 @@ public class TodayList extends AppCompatActivity {
                     }*/
                     outer : for (int i = 1; i <= count; i++) {
                         cursor.moveToNext(); // 다음 행으로
-                        Toast.makeText(getApplicationContext(), cursor.getString(cursor.getColumnIndex("date")), Toast.LENGTH_SHORT).show();
+
                         diary_id = cursor.getString(cursor.getColumnIndex("userid"));
                         diary_date = cursor.getString(cursor.getColumnIndex("date"));
                         diary_value = cursor.getString(cursor.getColumnIndex("diary"));

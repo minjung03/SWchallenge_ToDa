@@ -65,6 +65,13 @@ public class SettingUserSecession extends AppCompatActivity {
 
                         if (ed_id.equals(user_id) && ed_pw.equals(user_pw)) {
 
+
+                            SharedPreferences autoLogin = getSharedPreferences("auto_Login", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = autoLogin.edit();
+                            editor.putString("auto_id", "");
+                            editor.putString("auto_pw", "");
+                            editor.commit();
+
                             // 유저의 정보 삭제
                             userDB = myHelper.getWritableDatabase();
                             String user_sql = "DELETE FROM userTBL WHERE userid= '" + user_id+"'";

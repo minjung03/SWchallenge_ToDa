@@ -7,7 +7,7 @@ android {
         applicationId "com.cookandroid.to_da_project"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 8
+        versionCode 9
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
